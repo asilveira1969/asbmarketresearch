@@ -9,7 +9,7 @@ export type SampleReport = {
 export const sampleReports: SampleReport[] = [
   {
     slug: "latam-b2b-software-expansion-snapshot",
-    pdfHref: "/pdfs/reports/latam-b2b-software-expansion-snapshot.pdf",
+    pdfHref: "/pdfs/reports/executive-report.pdf",
     locales: {
       es: { title: "Expansion B2B software en Latam", excerpt: "Ejemplo de lectura ejecutiva sobre tamano, competencia y entrada al mercado.", market: "LatAm", highlights: ["Demanda priorizada", "Competidores principales", "Recomendacion de entrada"] },
       en: { title: "LatAm B2B software expansion snapshot", excerpt: "Sample executive read on market size, competition, and expansion feasibility.", market: "LatAm", highlights: ["Prioritized demand", "Main competitors", "Entry recommendation"] },
@@ -18,7 +18,7 @@ export const sampleReports: SampleReport[] = [
   },
   {
     slug: "premium-food-category-benchmark",
-    pdfHref: "/pdfs/reports/premium-food-category-benchmark.pdf",
+    pdfHref: "/pdfs/reports/uruguay-economic-profile-2024-2025.pdf",
     locales: {
       es: { title: "Benchmark de categoria premium food", excerpt: "Reporte de muestra para comparar posicionamiento, pricing y canales.", market: "Alimentos", highlights: ["Mapa de marcas", "Rangos de precio", "Canales de distribucion"] },
       en: { title: "Premium food category benchmark", excerpt: "Sample report comparing positioning, pricing, and channel structure.", market: "Food", highlights: ["Brand map", "Price ranges", "Channel structure"] },

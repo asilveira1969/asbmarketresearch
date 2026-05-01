@@ -17,10 +17,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function SampleReportsPage({ params }: { params: Promise<{ locale: string }> }) {
   const locale = resolveLocale((await params).locale);
   const page = staticPages[locale]["sample-reports"];
+  const previewReportSlugs = new Set([
+    "latam-b2b-software-expansion-snapshot",
+    "premium-food-category-benchmark",
+  ]);
+
   return (
     <>
       <PageHeader title={page.title} description={page.description} eyebrow="Library" />
-      <Section className="bg-surface"><div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">{sampleReports.map((report) => <div key={report.slug} className="grid gap-4"><PdfDownloadCard title={report.locales[locale].title} description={report.locales[locale].excerpt} href={report.pdfHref} label={report.pdfHref ? (locale === "es" ? "Descargar PDF" : locale === "pt" ? "Baixar PDF" : "Download PDF") : (locale === "es" ? "Disponible a pedido" : locale === "pt" ? "Disponivel sob consulta" : "Available on request")} /><Link href={getLocalizedPath(locale, `/sample-reports/${report.slug}`)} className="text-sm font-semibold text-accent transition-colors hover:text-brand-primary">{locale === "es" ? "Ver ficha" : locale === "pt" ? "Ver ficha" : "View overview"}</Link></div>)}</div></Section>
+      <Section className="bg-surface"><div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">{sampleReports.map((report) => <div key={report.slug} className="grid gap-4"><PdfDownloadCard title={report.locales[locale].title} description={report.locales[locale].excerpt} href={report.pdfHref} previewHref={previewReportSlugs.has(report.slug) ? report.pdfHref : undefined} label={report.pdfHref ? (locale === "es" ? "Descargar PDF" : locale === "pt" ? "Baixar PDF" : "Download PDF") : (locale === "es" ? "Disponible a pedido" : locale === "pt" ? "Disponivel sob consulta" : "Available on request")} /><Link href={getLocalizedPath(locale, `/sample-reports/${report.slug}`)} className="text-sm font-semibold text-accent transition-colors hover:text-brand-primary">{locale === "es" ? "Ver ficha" : locale === "pt" ? "Ver ficha" : "View overview"}</Link></div>)}</div></Section>
     </>
   );
 }
