@@ -11,7 +11,7 @@ export const sampleReports: SampleReport[] = [
     slug: "latam-b2b-software-expansion-snapshot",
     pdfHref: "/pdfs/reports/executive-report.pdf",
     locales: {
-      es: { title: "Expansion B2B software en Latam", excerpt: "Ejemplo de lectura ejecutiva sobre tamano, competencia y entrada al mercado.", market: "LatAm", highlights: ["Demanda priorizada", "Competidores principales", "Recomendacion de entrada"] },
+      es: { title: "Expansion B2B software en Latam", excerpt: "Ejemplo de lectura ejecutiva sobre tamano y competencia.", market: "LatAm", highlights: ["Demanda priorizada", "Competidores principales", "Recomendacion de entrada"] },
       en: { title: "LatAm B2B software expansion snapshot", excerpt: "Sample executive read on market size, competition, and expansion feasibility.", market: "LatAm", highlights: ["Prioritized demand", "Main competitors", "Entry recommendation"] },
       pt: { title: "Panorama de expansao de software B2B na America Latina", excerpt: "Exemplo executivo sobre tamanho de mercado, concorrencia e viabilidade de entrada.", market: "America Latina", highlights: ["Demanda priorizada", "Principais concorrentes", "Recomendacao de entrada"] }
     }
