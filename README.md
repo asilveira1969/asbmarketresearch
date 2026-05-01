@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ASB Market Research
 
-## Getting Started
+Professional multilingual website scaffold for `ASB Market Research`, built with Next.js App Router, TypeScript, and Tailwind CSS.
 
-First, run the development server:
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Localized routes:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `http://localhost:3000/es`
+- `http://localhost:3000/en`
+- `http://localhost:3000/pt`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Main project areas
 
-## Learn More
+- `app/[locale]`: localized routes and pages
+- `components`: reusable UI, layout, cards, forms, and SEO helpers
+- `content`: multilingual homepage, services, reports, and insights content
+- `data`: company and founder profile data
+- `config`: locales, navigation, forms, and site defaults
+- `public/media`: photos and visual assets
+- `public/pdfs`: downloadable reports, brochures, and credentials
 
-To learn more about Next.js, take a look at the following resources:
+## Homepage editing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Edit homepage text in [content/site.ts](/f:/WORK/ASB%20Market%20Research/content/site.ts).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Founder profile editing
 
-## Deploy on Vercel
+Edit founder data in [data/company.ts](/f:/WORK/ASB%20Market%20Research/data/company.ts).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+That file controls:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- founder name
+- role
+- biography
+- profile image path
+- resume PDF path
+
+## PDFs and downloadable files
+
+Place real PDFs in:
+
+- [public/pdfs/company](/f:/WORK/ASB%20Market%20Research/public/pdfs/company)
+- [public/pdfs/services](/f:/WORK/ASB%20Market%20Research/public/pdfs/services)
+- [public/pdfs/reports](/f:/WORK/ASB%20Market%20Research/public/pdfs/reports)
+- [public/pdfs/insights](/f:/WORK/ASB%20Market%20Research/public/pdfs/insights)
+
+Reference guide:
+
+- [public/pdfs/README.md](/f:/WORK/ASB%20Market%20Research/public/pdfs/README.md)
+
+## Media assets
+
+Place the real founder photo and future media files in:
+
+- [public/media](/f:/WORK/ASB%20Market%20Research/public/media)
+
+Reference guide:
+
+- [public/media/README.md](/f:/WORK/ASB%20Market%20Research/public/media/README.md)
+
+## Environment variables
+
+Copy `.env.example` to `.env.local` and set:
+
+- `NEXT_PUBLIC_SITE_URL`
+- `NEXT_PUBLIC_GA_MEASUREMENT_ID`
+
+## Verification
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```

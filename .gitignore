@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# logs
+*.log
+dev-server.err.log
+dev-server.out.log
+
+# windows shortcuts
+*.lnk
