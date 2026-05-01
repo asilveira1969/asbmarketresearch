@@ -47,3 +47,8 @@ dev-server.out.log
 
 # windows shortcuts
 *.lnk
+
+# internal project assets (not part of the website)
+project-assets/
+
+.vercel
