@@ -20,6 +20,7 @@ export default async function SampleReportsPage({ params }: { params: Promise<{ 
   const previewReportSlugs = new Set([
     "latam-b2b-software-expansion-snapshot",
     "premium-food-category-benchmark",
+    "investor-market-scoping-note",
   ]);
 
   return (

@@ -27,6 +27,7 @@ export const sampleReports: SampleReport[] = [
   },
   {
     slug: "investor-market-scoping-note",
+    pdfHref: "/pdfs/reports/montevideo-dental-clinics-map.pdf",
     locales: {
       es: { title: "Nota de alcance de mercado para inversion", excerpt: "Formato breve para analisis preliminar antes de due diligence ampliada.", market: "Inversion", highlights: ["Tesis inicial", "Alertas tempranas", "Areas a profundizar"] },
       en: { title: "Investor market scoping note", excerpt: "Short format for early market screening before deeper diligence.", market: "Investment", highlights: ["Initial thesis", "Early warnings", "Areas for deeper work"] },
