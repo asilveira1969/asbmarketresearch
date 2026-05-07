@@ -68,23 +68,23 @@ export default async function StaticPageRouter({ params }: { params: Promise<{ l
   if (key === "services") {
     const servicesIntro = locale === "es"
       ? [
-          "Nuestros servicios se centran en la elaboracion de reportes de investigacion de mercado disenados a medida de cada cliente.",
-          "Cada proyecto culmina en un documento estructurado y accionable, pensado para ser utilizado por el equipo directivo en la toma de decisiones estrategicas. Nuestros reportes integran informacion relevante del mercado, analisis cualitativo y una sintesis clara de oportunidades y riesgos.",
-          "El resultado final es un reporte profesional que transforma informacion dispersa en insights concretos, facilitando una mejor comprension del entorno y una ejecucion mas efectiva de la estrategia empresarial.",
+          "Nuestros servicios estan organizados para acompanar distintos niveles de necesidad: reportes listos para usar, estudios a medida, briefings mensuales y sistemas agent-powered de inteligencia de mercado.",
+          "La progresion Reports -> Studies -> Briefings -> Systems permite empezar con un entregable puntual y avanzar hacia una capacidad recurrente o interna de research cuando el negocio lo necesita.",
+          "Cada servicio mantiene el mismo enfoque consultivo: transformar informacion dispersa en insights estructurados, accionables y utiles para decisiones de negocio.",
         ]
       : locale === "pt"
         ? [
-            "Nossos servicos se concentram na elaboracao de relatorios de pesquisa de mercado desenhados sob medida para cada cliente.",
-            "Cada projeto culmina em um documento estruturado e acionavel, pensado para ser utilizado pela equipe diretiva na tomada de decisoes estrategicas. Nossos relatorios integram informacoes relevantes do mercado, analise qualitativa e uma sintese clara de oportunidades e riscos.",
-            "O resultado final e um relatorio profissional que transforma informacoes dispersas em insights concretos, facilitando uma melhor compreensao do ambiente e uma execucao mais efetiva da estrategia empresarial.",
+            "Nossos servicos estao organizados para acompanhar diferentes niveis de necessidade: relatorios prontos para uso, estudos sob medida, briefings mensais e sistemas agent-powered de inteligencia de mercado.",
+            "A progressao Reports -> Studies -> Briefings -> Systems permite comecar com um entregavel pontual e evoluir para uma capacidade recorrente ou interna de research quando o negocio precisa.",
+            "Cada servico mantem o mesmo enfoque consultivo: transformar informacao dispersa em insights estruturados, acionaveis e uteis para decisoes de negocio.",
           ]
         : [
-            "Our services are centered on tailored market research reports designed around each client's specific needs.",
-            "Each project culminates in a structured, actionable document prepared for leadership teams making strategic decisions. Our reports combine relevant market information, qualitative analysis, and a clear synthesis of opportunities and risks.",
-            "The final result is a professional report that turns dispersed information into concrete insights, enabling a stronger understanding of the market environment and more effective strategic execution.",
+            "Our services are organized around different levels of research need: ready-to-use reports, custom studies, monthly briefings, and agent-powered market intelligence systems.",
+            "The progression Reports -> Studies -> Briefings -> Systems allows a company to start with a single deliverable and move toward recurring or internal research capability when the business needs it.",
+            "Each service keeps the same consulting discipline: turning dispersed information into structured, actionable insights for business decisions.",
           ];
 
-    return <><PageHeader title={page.title} description={page.description} eyebrow="Capabilities" /><Section className="bg-surface !pt-2 md:!pt-3"><div className="max-w-4xl"><div className="grid gap-5 text-lg leading-8 text-body-secondary">{servicesIntro.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div></div><div className="mt-10 grid gap-6 lg:grid-cols-3">{serviceDetails.map((service) => <ServiceCard key={service.slug} locale={locale} slug={service.slug} icon={service.icon} title={service.locales[locale].title} summary={service.locales[locale].summary} />)}</div></Section><Section className="bg-canvas"><div className="mb-10 max-w-3xl"><p className="eyebrow">PDF Downloads</p><h2 className="mt-3 text-display-sm text-brand-primary">{locale === "es" ? "Folletos y documentos" : locale === "pt" ? "Folhetos e documentos" : "Brochures and documents"}</h2></div><div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">{serviceDetails.map((service) => <PdfDownloadCard key={service.slug} title={service.locales[locale].title} description={service.locales[locale].summary} href={service.brochureHref} label={locale === "es" ? "Descargar brochure" : locale === "pt" ? "Baixar brochure" : "Download brochure"} />)}</div></Section><Section className="bg-surface"><ReportRequestForm locale={locale} /></Section></>;
+    return <><PageHeader title={page.title} description={page.description} eyebrow="Capabilities" /><Section className="bg-surface !pt-2 md:!pt-3"><div className="max-w-4xl"><div className="grid gap-5 text-lg leading-8 text-body-secondary">{servicesIntro.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div></div><div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">{serviceDetails.map((service) => <ServiceCard key={service.slug} locale={locale} slug={service.slug} icon={service.icon} title={service.locales[locale].title} summary={service.locales[locale].summary} />)}</div></Section><Section className="bg-canvas"><div className="mb-10 max-w-3xl"><p className="eyebrow">PDF Downloads</p><h2 className="mt-3 text-display-sm text-brand-primary">{locale === "es" ? "Folletos y documentos" : locale === "pt" ? "Folhetos e documentos" : "Brochures and documents"}</h2></div><div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">{serviceDetails.map((service) => <PdfDownloadCard key={service.slug} title={service.locales[locale].title} description={service.locales[locale].summary} href={service.brochureHref} label={locale === "es" ? "Descargar brochure" : locale === "pt" ? "Baixar brochure" : "Download brochure"} />)}</div></Section><Section className="bg-surface"><ReportRequestForm locale={locale} /></Section></>;
   }
 
   if (key === "methodology") {
@@ -149,8 +149,6 @@ export default async function StaticPageRouter({ params }: { params: Promise<{ l
 
   return <><PageHeader title={page.title} description="" eyebrow="Legal" /><Section className="bg-surface"><div className="mx-auto max-w-3xl grid gap-6">{paragraphs.map((paragraph) => <p key={paragraph} className="text-lg leading-8 text-body-secondary">{paragraph}</p>)}</div></Section></>;
 }
-
-
 
 
 

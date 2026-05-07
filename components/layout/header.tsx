@@ -2,9 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/config/locales";
 import { mainNavigation } from "@/config/navigation";
+import { serviceDetails } from "@/content/services";
 import { siteConfig } from "@/config/site";
 import { getLocalizedPath } from "@/lib/routes";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
+import { ServicesMenu } from "@/components/layout/services-menu";
 
 export function Header({ locale }: { locale: Locale }) {
   const brief =
@@ -31,15 +33,19 @@ export function Header({ locale }: { locale: Locale }) {
             </Link>
             <div className="hidden lg:flex lg:flex-col lg:items-center">
               <nav className="flex items-center gap-4">
-                {mainNavigation.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={getLocalizedPath(locale, item.href)}
-                    className="text-sm font-medium text-body-secondary transition-colors hover:text-brand-primary"
-                  >
-                    {item.label[locale]}
-                  </Link>
-                ))}
+                {mainNavigation.map((item) =>
+                  item.href === "/services" ? (
+                    <ServicesMenu key={item.href} label={item.label[locale]} locale={locale} services={serviceDetails} />
+                  ) : (
+                    <Link
+                      key={item.href}
+                      href={getLocalizedPath(locale, item.href)}
+                      className="text-sm font-medium text-body-secondary transition-colors hover:text-brand-primary"
+                    >
+                      {item.label[locale]}
+                    </Link>
+                  )
+                )}
               </nav>
               <Link
                 className="mt-3 inline-flex min-h-[2.125rem] items-center justify-center rounded-full bg-brand-primary px-4 py-1 text-xs font-semibold text-white transition-colors hover:bg-brand-secondary"
@@ -47,6 +53,17 @@ export function Header({ locale }: { locale: Locale }) {
               >
                 {brief}
               </Link>
+              <div className="mt-2 flex items-center gap-2">
+                <Link
+                  className="inline-flex min-h-[2.125rem] items-center justify-center rounded-full bg-brand-primary px-4 py-1 text-xs font-semibold text-white transition-colors hover:bg-brand-secondary"
+                  href={getLocalizedPath(locale, "/services/agentic-market-intelligence-system")}
+                >
+                  Agentic Market Intelligence System
+                </Link>
+                <span className="-ml-1 -rotate-6 rounded-full bg-[#76b900] px-2.5 py-1 text-[0.65rem] font-medium uppercase tracking-[0.12em] text-white shadow-sm">
+                  New!
+                </span>
+              </div>
             </div>
           </div>
           <div className="hidden md:block">
@@ -57,5 +74,3 @@ export function Header({ locale }: { locale: Locale }) {
     </header>
   );
 }
-
-

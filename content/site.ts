@@ -88,11 +88,11 @@ export const homeContent: Record<Locale, HomeLocaleContent> = {
       "Inversionistas y asesores que requieren un primer marco de analisis serio",
       "Consultores que necesitan soporte documental riguroso para sus clientes",
     ],
-    serviceTitle: "Servicios orientados a decisiones de negocio concretas",
+    serviceTitle: "Servicios de research para distintos niveles de necesidad",
     serviceBody:
-      "La arquitectura del sitio ya enlaza cada servicio con su pagina especifica, documentos descargables y futuros casos o reportes asociados.",
+      "La oferta se organiza en cuatro niveles: reportes de industria y producto, estudios a medida, briefings mensuales y sistemas agent-powered de inteligencia de mercado.",
     serviceClosing:
-      "Cada linea de servicio puede ampliarse con nuevas paginas por industria, geografia o necesidad analitica sin rehacer la base del sitio.",
+      "La progresion Reports -> Studies -> Briefings -> Systems permite empezar con un entregable puntual y avanzar hacia una capacidad recurrente o interna de research.",
     methodologyTitle: "Metodo de trabajo disciplinado y comprensible",
     methodologyBody:
       "La metodologia se comunica con el tono de una firma consultiva: definicion clara del brief, investigacion estructurada y sintesis final pensada para actuar.",
@@ -184,11 +184,11 @@ export const homeContent: Record<Locale, HomeLocaleContent> = {
       "Investors and advisors who need an initial market framing before deeper work",
       "Consultants who require disciplined research support for client assignments",
     ],
-    serviceTitle: "Services aligned with concrete business decisions",
+    serviceTitle: "Research services for different levels of need",
     serviceBody:
-      "The homepage now gives each service a clear consulting context and routes visitors toward deeper service pages, downloadable documents, and future case-specific content.",
+      "The offer is organized into four levels: industry and product reports, custom research studies, monthly market briefings, and agent-powered market intelligence systems.",
     serviceClosing:
-      "This structure is ready to expand into industry pages, geographic landing pages, and more specialized research offerings without rebuilding the core site.",
+      "The progression Reports -> Studies -> Briefings -> Systems allows clients to start with a single deliverable and move toward recurring or internal research capability.",
     methodologyTitle: "A disciplined and transparent working method",
     methodologyBody:
       "The methodology preview presents the process with the tone of a professional advisory firm: clear brief definition, structured research, and a final synthesis that is ready to be used.",
@@ -280,11 +280,11 @@ export const homeContent: Record<Locale, HomeLocaleContent> = {
       "Investidores e assessores que necessitam de um primeiro enquadramento serio de mercado",
       "Consultores que buscam suporte de pesquisa disciplinado para projetos de clientes",
     ],
-    serviceTitle: "Servicos alinhados a decisoes empresariais concretas",
+    serviceTitle: "Servicos de research para diferentes niveis de necessidade",
     serviceBody:
-      "A homepage agora apresenta cada servico dentro de um contexto consultivo claro e encaminha o visitante para paginas detalhadas, documentos baixaveis e futuros casos associados.",
+      "A oferta se organiza em quatro niveis: relatorios de industria e produto, estudos sob medida, briefings mensais e sistemas agent-powered de inteligencia de mercado.",
     serviceClosing:
-      "A estrutura ja esta pronta para crescer com paginas por industria, geografia e linhas de pesquisa mais especializadas sem reconstruir o site.",
+      "A progressao Reports -> Studies -> Briefings -> Systems permite comecar com um entregavel pontual e evoluir para uma capacidade recorrente ou interna de research.",
     methodologyTitle: "Um metodo de trabalho disciplinado e transparente",
     methodologyBody:
       "A previa da metodologia apresenta o processo com o tom de uma firma consultiva profissional: definicao precisa do brief, pesquisa estruturada e sintese final pronta para uso.",
@@ -339,7 +339,7 @@ export const homeContent: Record<Locale, HomeLocaleContent> = {
 export const staticPages = {
   es: {
     about: { title: "Quienes somos", description: "Somos los ojos y oidos de las empresas." },
-    services: { title: "Servicios", description: "Elaboramos reportes de investigacion de mercado disenados a medida de cada cliente." },
+    services: { title: "Servicios", description: "Reportes, estudios a medida, briefings mensuales y sistemas agent-powered de inteligencia de mercado." },
     methodology: { title: "Metodologia", description: "Garantizamos la solidez, trazabilidad y credibilidad de cada reporte que entregamos." },
     "sample-reports": { title: "Reportes de muestra", description: "Biblioteca preparada para descargas PDF, vistas previas y futuros casos." },
     insights: { title: "Insights", description: "Base editorial para articulos, estudios breves y contenidos SEO en tres idiomas." },
@@ -351,7 +351,7 @@ export const staticPages = {
   },
   en: {
     about: { title: "Who we are", description: "We are the eyes and ears of companies." },
-    services: { title: "Services", description: "We develop tailored market research reports designed for each client." },
+    services: { title: "Services", description: "Industry reports, custom research studies, monthly market briefings, and agent-powered market intelligence systems." },
     methodology: { title: "Methodology", description: "We ensure the solidity, traceability, and credibility of every report we deliver." },
     "sample-reports": { title: "Sample Reports", description: "A library prepared for PDF downloads, previews, and future case material." },
     insights: { title: "Insights", description: "Editorial base for articles, short studies, and multilingual SEO content." },
@@ -363,7 +363,7 @@ export const staticPages = {
   },
   pt: {
     about: { title: "Quem somos", description: "Somos os olhos e ouvidos das empresas." },
-    services: { title: "Servicos", description: "Elaboramos relatorios de pesquisa de mercado desenhados sob medida para cada cliente." },
+    services: { title: "Servicos", description: "Relatorios, estudos sob medida, briefings mensais e sistemas agent-powered de inteligencia de mercado." },
     methodology: { title: "Metodologia", description: "Garantimos a solidez, a rastreabilidade e a credibilidade de cada relatorio que entregamos." },
     "sample-reports": { title: "Relatorios de amostra", description: "Biblioteca preparada para downloads em PDF, previews e futuros casos." },
     insights: { title: "Insights", description: "Base editorial para artigos, estudos curtos e conteudo SEO multilingue." },

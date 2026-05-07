@@ -104,7 +104,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           <p className="mt-4 text-body-secondary">{content.serviceBody}</p>
           <p className="mt-4 text-body-secondary">{content.serviceClosing}</p>
         </div>
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {serviceDetails.map((service) => (
             <ServiceCard
               key={service.slug}
@@ -272,7 +272,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     </>
   );
 }
-
 
 
 
