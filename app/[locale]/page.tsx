@@ -31,6 +31,47 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const reportButton = locale === "es" ? "Descargar PDF" : locale === "pt" ? "Baixar PDF" : "Download PDF";
   const founderLink = getLocalizedPath(locale, "/about");
   const newsletterLink = getLocalizedPath(locale, "/newsletter");
+  const labels = {
+    es: {
+      positioning: "Posicionamiento",
+      audience: "A quién sirve",
+      value: "Valor",
+      services: "Servicios",
+      methodology: "Metodología",
+      sampleReports: "Reportes de muestra",
+      insights: "Insights",
+      founder: "Fundador",
+      newsletter: "Newsletter",
+      viewMethodology: "Ver metodología",
+      viewInsights: "Ver insights",
+    },
+    en: {
+      positioning: "Positioning",
+      audience: "Who it serves",
+      value: "Value",
+      services: "Services",
+      methodology: "Methodology",
+      sampleReports: "Sample reports",
+      insights: "Insights",
+      founder: "Founder",
+      newsletter: "Newsletter",
+      viewMethodology: "View methodology",
+      viewInsights: "View insights",
+    },
+    pt: {
+      positioning: "Posicionamento",
+      audience: "Para quem serve",
+      value: "Valor",
+      services: "Serviços",
+      methodology: "Metodologia",
+      sampleReports: "Relatórios de amostra",
+      insights: "Insights",
+      founder: "Fundador",
+      newsletter: "Newsletter",
+      viewMethodology: "Ver metodologia",
+      viewInsights: "Ver insights",
+    },
+  }[locale];
 
   return (
     <>
@@ -71,12 +112,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <Section className="bg-canvas">
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
           <div>
-            <p className="eyebrow">Positioning</p>
+            <p className="eyebrow">{labels.positioning}</p>
             <h2 className="mt-3 text-display-sm text-brand-primary">{content.valueTitle}</h2>
             <p className="mt-4 max-w-3xl text-base leading-8 text-body-secondary md:text-lg">{content.valueBody}</p>
           </div>
           <div className="surface-panel">
-            <p className="eyebrow">Who it serves</p>
+            <p className="eyebrow">{labels.audience}</p>
             <h3 className="mt-3 text-xl font-medium text-brand-primary">{content.audienceTitle}</h3>
             <p className="mt-4 text-body-secondary">{content.audienceBody}</p>
             <ul className="mt-5 grid gap-3 text-body-secondary">
@@ -89,7 +130,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <div className="mt-10 grid gap-6 lg:grid-cols-3">
           {content.valuePoints.map((item) => (
             <article key={item.title} className="surface-card h-full">
-              <p className="eyebrow">Value</p>
+              <p className="eyebrow">{labels.value}</p>
               <h3 className="mt-4 text-xl font-medium text-brand-primary">{item.title}</h3>
               <p className="mt-4 text-sm leading-7 text-body-secondary md:text-base">{item.body}</p>
             </article>
@@ -99,7 +140,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
       <Section className="bg-surface">
         <div className="mb-10 max-w-3xl">
-          <p className="eyebrow">Services</p>
+          <p className="eyebrow">{labels.services}</p>
           <h2 className="mt-3 text-display-sm text-brand-primary">{content.serviceTitle}</h2>
           <p className="mt-4 text-body-secondary">{content.serviceBody}</p>
           <p className="mt-4 text-body-secondary">{content.serviceClosing}</p>
@@ -120,7 +161,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
       <Section className="bg-canvas">
         <div className="mb-10 max-w-3xl">
-          <p className="eyebrow">Methodology</p>
+          <p className="eyebrow">{labels.methodology}</p>
           <h2 className="mt-3 text-display-sm text-brand-primary">{content.methodologyTitle}</h2>
           <p className="mt-4 text-body-secondary">{content.methodologyBody}</p>
         </div>
@@ -135,14 +176,14 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </div>
         <div className="mt-8">
           <Link className="button-secondary" href={getLocalizedPath(locale, "/methodology")}>
-            {locale === "es" ? "Ver metodologia" : locale === "pt" ? "Ver metodologia" : "View methodology"}
+            {labels.viewMethodology}
           </Link>
         </div>
       </Section>
 
       <Section className="bg-surface">
         <div className="mb-10 max-w-3xl">
-          <p className="eyebrow">Sample reports</p>
+          <p className="eyebrow">{labels.sampleReports}</p>
           <h2 className="mt-3 text-display-sm text-brand-primary">{content.reportsTitle}</h2>
           <p className="mt-4 text-body-secondary">{content.reportsBody}</p>
           <p className="mt-4 text-body-secondary">{content.reportsClosing}</p>
@@ -167,7 +208,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
       <Section className="bg-canvas">
         <div className="mb-10 max-w-3xl">
-          <p className="eyebrow">Insights</p>
+          <p className="eyebrow">{labels.insights}</p>
           <h2 className="mt-3 text-display-sm text-brand-primary">{content.insightsTitle}</h2>
           <p className="mt-4 text-body-secondary">{content.insightsBody}</p>
           <p className="mt-4 text-body-secondary">{content.insightsClosing}</p>
@@ -187,7 +228,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </div>
         <div className="mt-8">
           <Link className="button-secondary" href={getLocalizedPath(locale, "/insights")}>
-            {locale === "es" ? "Ver insights" : locale === "pt" ? "Ver insights" : "View insights"}
+            {labels.viewInsights}
           </Link>
         </div>
       </Section>
@@ -204,7 +245,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             />
           </div>
           <div>
-            <p className="eyebrow">Founder</p>
+            <p className="eyebrow">{labels.founder}</p>
             <h2 className="mt-3 text-display-sm text-brand-primary">{content.founderTitle}</h2>
             <p className="mt-4 text-body-secondary">{content.founderBody}</p>
             <ul className="mt-6 grid gap-3 text-body-secondary">
@@ -252,7 +293,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <Section className="bg-canvas">
         <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
           <div>
-            <p className="eyebrow">Newsletter</p>
+            <p className="eyebrow">{labels.newsletter}</p>
             <h2 className="mt-3 text-display-sm text-brand-primary">{content.newsletterTitle}</h2>
             <p className="mt-4 text-body-secondary">{content.newsletterBody}</p>
             <ul className="mt-6 grid gap-3 text-body-secondary">
@@ -272,6 +313,5 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     </>
   );
 }
-
 
 

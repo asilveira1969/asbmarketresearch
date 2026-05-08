@@ -8,7 +8,22 @@ import { getLocalizedPath } from "@/lib/routes";
 type FooterProps = { locale: Locale };
 
 export function Footer({ locale }: FooterProps) {
-  const navLabel = locale === "es" ? "Navegacion" : locale === "pt" ? "Navegacao" : "Navigation";
+  const copy = {
+    es: {
+      navigation: "Navegación",
+      description:
+        "ASB Market Research entrega inteligencia de mercado estructurada, soporte consultivo y research listo para decisiones ejecutivas, inversión y crecimiento.",
+    },
+    en: {
+      navigation: "Navigation",
+      description: siteConfig.defaultDescription,
+    },
+    pt: {
+      navigation: "Navegação",
+      description:
+        "A ASB Market Research entrega inteligência de mercado estruturada, suporte consultivo e pesquisas prontas para decisões executivas, investimento e crescimento.",
+    },
+  }[locale];
 
   return (
     <footer className="border-t border-line bg-canvas">
@@ -23,10 +38,10 @@ export function Footer({ locale }: FooterProps) {
               className="h-auto w-[317px] md:w-[422px]"
             />
           </Link>
-          <p className="mt-5 text-body-secondary">{siteConfig.defaultDescription}</p>
+          <p className="mt-5 text-body-secondary">{copy.description}</p>
         </div>
         <div>
-          <p className="eyebrow">{navLabel}</p>
+          <p className="eyebrow">{copy.navigation}</p>
           <div className="mt-4 flex flex-col gap-3">
             {mainNavigation.map((item) => (
               <Link key={item.href} href={getLocalizedPath(locale, item.href)} className="text-sm text-body-secondary transition-colors hover:text-brand-primary">{item.label[locale]}</Link>
@@ -47,6 +62,5 @@ export function Footer({ locale }: FooterProps) {
     </footer>
   );
 }
-
 
 

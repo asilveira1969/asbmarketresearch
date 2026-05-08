@@ -9,12 +9,23 @@ import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { ServicesMenu } from "@/components/layout/services-menu";
 
 export function Header({ locale }: { locale: Locale }) {
-  const brief =
-    locale === "es"
-      ? "Solicita Cotizacion Gratis"
-      : locale === "pt"
-        ? "Solicite Cotacao Gratis"
-        : "Request Free Quotation";
+  const copy = {
+    es: {
+      quote: "Solicita Cotización Gratis",
+      agentic: "Sistema Agentic de Inteligencia de Mercado",
+      badge: "Nuevo!",
+    },
+    en: {
+      quote: "Request Free Quotation",
+      agentic: "Agentic Market Intelligence System",
+      badge: "New!",
+    },
+    pt: {
+      quote: "Solicite Cotação Grátis",
+      agentic: "Sistema Agentic de Inteligência de Mercado",
+      badge: "Novo!",
+    },
+  }[locale];
 
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-canvas/95 backdrop-blur">
@@ -51,7 +62,7 @@ export function Header({ locale }: { locale: Locale }) {
                 className="mt-3 inline-flex min-h-[2.125rem] items-center justify-center rounded-full bg-brand-primary px-4 py-1 text-xs font-semibold text-white transition-colors hover:bg-brand-secondary"
                 href={getLocalizedPath(locale, "/quotation")}
               >
-                {brief}
+                {copy.quote}
               </Link>
               <div className="mt-2 flex items-center">
                 <a
@@ -61,10 +72,10 @@ export function Header({ locale }: { locale: Locale }) {
                   rel="noreferrer"
                 >
                   <span className="inline-flex min-h-[2.125rem] items-center justify-center rounded-full bg-brand-primary px-4 py-1 text-xs font-semibold text-white transition-colors hover:bg-brand-secondary">
-                    Agentic Market Intelligence System
+                    {copy.agentic}
                   </span>
                   <span className="-ml-1 -rotate-6 rounded-full bg-[#76b900] px-2.5 py-1 text-[0.65rem] font-medium uppercase tracking-[0.12em] text-white shadow-sm">
-                    New!
+                    {copy.badge}
                   </span>
                 </a>
               </div>

@@ -7,9 +7,9 @@ import { reportBudgetOptions, reportDepthOptions, reportTimelineOptions } from "
 
 type ReportRequestFormProps = { locale: Locale };
 const labels = {
-  es: { title: "Cotizacion", fullName: "Nombre completo", company: "Empresa", email: "Email", country: "Pais / mercado", industry: "Industria", objective: "Objetivo del reporte", competitors: "Competidores a analizar", depth: "Nivel de profundidad", timeline: "Plazo esperado", budget: "Presupuesto aproximado", notes: "Notas adicionales", submit: "Enviar solicitud", sending: "Enviando..." },
-  en: { title: "Quotation", fullName: "Full name", company: "Company", email: "Email", country: "Country / market", industry: "Industry", objective: "Report objective", competitors: "Competitors to analyze", depth: "Desired depth", timeline: "Expected timeline", budget: "Approximate budget", notes: "Additional notes", submit: "Submit request", sending: "Submitting..." },
-  pt: { title: "Cotacao", fullName: "Nome completo", company: "Empresa", email: "Email", country: "Pais / mercado", industry: "Industria", objective: "Objetivo do relatorio", competitors: "Concorrentes a analisar", depth: "Profundidade desejada", timeline: "Prazo esperado", budget: "Orcamento aproximado", notes: "Notas adicionais", submit: "Enviar solicitacao", sending: "Enviando..." },
+  es: { title: "Cotización", fullName: "Nombre completo", company: "Empresa", email: "Email", country: "País / mercado", industry: "Industria", objective: "Objetivo del reporte", competitors: "Competidores a analizar", depth: "Nivel de profundidad", timeline: "Plazo esperado", budget: "Presupuesto aproximado", notes: "Notas adicionales", submit: "Enviar solicitud", sending: "Enviando...", error: "Hubo un problema al enviar el formulario." },
+  en: { title: "Quotation", fullName: "Full name", company: "Company", email: "Email", country: "Country / market", industry: "Industry", objective: "Report objective", competitors: "Competitors to analyze", depth: "Desired depth", timeline: "Expected timeline", budget: "Approximate budget", notes: "Additional notes", submit: "Submit request", sending: "Submitting...", error: "There was a problem submitting the form." },
+  pt: { title: "Cotação", fullName: "Nome completo", company: "Empresa", email: "Email", country: "País / mercado", industry: "Indústria", objective: "Objetivo do relatório", competitors: "Concorrentes a analisar", depth: "Profundidade desejada", timeline: "Prazo esperado", budget: "Orçamento aproximado", notes: "Notas adicionais", submit: "Enviar solicitação", sending: "Enviando...", error: "Houve um problema ao enviar o formulário." },
 } as const;
 
 export function ReportRequestForm({ locale }: ReportRequestFormProps) {
@@ -23,7 +23,7 @@ export function ReportRequestForm({ locale }: ReportRequestFormProps) {
     const payload = Object.fromEntries(formData.entries());
     const response = await fetch("/api/forms", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ formType: "report-request", locale, payload }) });
     setIsSubmitting(false);
-    if (!response.ok) { setError("There was a problem submitting the form."); return; }
+    if (!response.ok) { setError(copy.error); return; }
     router.push(`/${locale}/thank-you/report-request`);
   }
 

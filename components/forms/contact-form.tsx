@@ -6,9 +6,9 @@ import type { Locale } from "@/config/locales";
 
 type ContactFormProps = { locale: Locale };
 const labels = {
-  es: { title: "Formulario de contacto", name: "Nombre completo", email: "Email", company: "Empresa", message: "Mensaje", submit: "Enviar consulta", sending: "Enviando..." },
-  en: { title: "Contact form", name: "Full name", email: "Email", company: "Company", message: "Message", submit: "Send inquiry", sending: "Sending..." },
-  pt: { title: "Formulario de contato", name: "Nome completo", email: "Email", company: "Empresa", message: "Mensagem", submit: "Enviar consulta", sending: "Enviando..." },
+  es: { title: "Formulario de contacto", name: "Nombre completo", email: "Email", company: "Empresa", message: "Mensaje", submit: "Enviar consulta", sending: "Enviando...", error: "Hubo un problema al enviar el formulario." },
+  en: { title: "Contact form", name: "Full name", email: "Email", company: "Company", message: "Message", submit: "Send inquiry", sending: "Sending...", error: "There was a problem submitting the form." },
+  pt: { title: "Formulário de contato", name: "Nome completo", email: "Email", company: "Empresa", message: "Mensagem", submit: "Enviar consulta", sending: "Enviando...", error: "Houve um problema ao enviar o formulário." },
 } as const;
 
 export function ContactForm({ locale }: ContactFormProps) {
@@ -23,7 +23,7 @@ export function ContactForm({ locale }: ContactFormProps) {
     const payload = Object.fromEntries(formData.entries());
     const response = await fetch("/api/forms", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ formType: "contact", locale, payload }) });
     setIsSubmitting(false);
-    if (!response.ok) { setError("There was a problem submitting the form."); return; }
+    if (!response.ok) { setError(copy.error); return; }
     router.push(`/${locale}/thank-you/contact`);
   }
 

@@ -27,11 +27,10 @@ export default async function SampleReportDetailPage({ params }: { params: Promi
 
   return (
     <>
-      <Section className="bg-canvas py-4"><Breadcrumbs locale={locale} items={[{ label: locale === "es" ? "Reportes de muestra" : locale === "pt" ? "Relatorios de amostra" : "Sample Reports", href: "/sample-reports" }, { label: content.title }]} /></Section>
+      <Section className="bg-canvas py-4"><Breadcrumbs locale={locale} items={[{ label: locale === "es" ? "Reportes de muestra" : locale === "pt" ? "Relatórios de amostra" : "Sample Reports", href: "/sample-reports" }, { label: content.title }]} /></Section>
       <PageHeader title={content.title} description={content.excerpt} eyebrow={content.market} />
       <Section className="bg-surface"><div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]"><div className="surface-panel"><p className="eyebrow">{locale === "es" ? "Aspectos clave" : locale === "pt" ? "Aspectos-chave" : "Highlights"}</p><ul className="mt-5 grid gap-4 text-body-secondary">{content.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}</ul></div><PdfDownloadCard title={content.title} description={content.excerpt} href={report.pdfHref} label={report.pdfHref ? (locale === "es" ? "Descargar PDF" : locale === "pt" ? "Baixar PDF" : "Download PDF") : (locale === "es" ? "Disponible a pedido" : locale === "pt" ? "Disponivel sob consulta" : "Available on request")} /></div></Section>
-      <Section className="bg-canvas"><EmbedContentBlock type="pdf" title={locale === "es" ? "Preview del documento" : locale === "pt" ? "Preview do documento" : "Document preview"} src={report.pdfHref || "/pdfs/placeholder.pdf"} /></Section>
+      <Section className="bg-canvas"><EmbedContentBlock type="pdf" locale={locale} title={locale === "es" ? "Vista previa del documento" : locale === "pt" ? "Prévia do documento" : "Document preview"} src={report.pdfHref || "/pdfs/placeholder.pdf"} /></Section>
     </>
   );
 }
-

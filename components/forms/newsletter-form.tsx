@@ -6,9 +6,9 @@ import type { Locale } from "@/config/locales";
 
 type NewsletterFormProps = { locale: Locale };
 const labels = {
-  es: { title: "Suscripcion", name: "Nombre", email: "Email", consent: "Acepto recibir novedades y comunicaciones relacionadas.", submit: "Suscribirme", sending: "Enviando..." },
-  en: { title: "Subscription", name: "Name", email: "Email", consent: "I agree to receive updates and related communications.", submit: "Subscribe", sending: "Submitting..." },
-  pt: { title: "Inscricao", name: "Nome", email: "Email", consent: "Concordo em receber novidades e comunicacoes relacionadas.", submit: "Inscrever-me", sending: "Enviando..." },
+  es: { title: "Suscripción", name: "Nombre", email: "Email", consent: "Acepto recibir novedades y comunicaciones relacionadas.", submit: "Suscribirme", sending: "Enviando...", error: "Hubo un problema al enviar el formulario." },
+  en: { title: "Subscription", name: "Name", email: "Email", consent: "I agree to receive updates and related communications.", submit: "Subscribe", sending: "Submitting...", error: "There was a problem submitting the form." },
+  pt: { title: "Inscrição", name: "Nome", email: "Email", consent: "Concordo em receber novidades e comunicações relacionadas.", submit: "Inscrever-me", sending: "Enviando...", error: "Houve um problema ao enviar o formulário." },
 } as const;
 
 export function NewsletterForm({ locale }: NewsletterFormProps) {
@@ -22,7 +22,7 @@ export function NewsletterForm({ locale }: NewsletterFormProps) {
     const payload = Object.fromEntries(formData.entries());
     const response = await fetch("/api/forms", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ formType: "newsletter", locale, payload }) });
     setIsSubmitting(false);
-    if (!response.ok) { setError("There was a problem submitting the form."); return; }
+    if (!response.ok) { setError(copy.error); return; }
     router.push(`/${locale}/thank-you/newsletter`);
   }
 

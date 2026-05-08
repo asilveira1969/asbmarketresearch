@@ -17,7 +17,7 @@ export default async function InsightsPage({ params }: { params: Promise<{ local
   const page = staticPages[locale].insights;
   return (
     <>
-      <PageHeader title={page.title} description={page.description} eyebrow="Editorial" />
+      <PageHeader title={page.title} description={page.description} eyebrow={locale === "es" ? "Editorial" : locale === "pt" ? "Editorial" : "Editorial"} />
       <Section className="bg-surface"><div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">{insightArticles.map((article) => <ArticleCard key={article.slug} locale={locale} slug={article.slug} title={article.locales[locale].title} excerpt={article.locales[locale].excerpt} category={article.locales[locale].category} publishedAt={article.publishedAt} />)}</div></Section>
     </>
   );

@@ -1,9 +1,9 @@
 import type { Locale } from "@/config/locales";
 
 export const reportDepthOptions: Record<Locale, string[]> = {
-  es: ["Resumen ejecutivo", "Analisis intermedio", "Profundidad completa"],
+  es: ["Resumen ejecutivo", "Análisis intermedio", "Profundidad completa"],
   en: ["Executive summary", "Intermediate analysis", "Full depth"],
-  pt: ["Resumo executivo", "Analise intermediaria", "Profundidade completa"],
+  pt: ["Resumo executivo", "Análise intermediária", "Profundidade completa"],
 };
 
 export const reportTimelineOptions: Record<Locale, string[]> = {
@@ -13,7 +13,7 @@ export const reportTimelineOptions: Record<Locale, string[]> = {
 };
 
 export const reportBudgetOptions: Record<Locale, string[]> = {
-  es: ["Menos de USD 2.000", "USD 2.000 - 5.000", "USD 5.000 - 10.000", "Mas de USD 10.000"],
+  es: ["Menos de USD 2.000", "USD 2.000 - 5.000", "USD 5.000 - 10.000", "Más de USD 10.000"],
   en: ["Under USD 2,000", "USD 2,000 - 5,000", "USD 5,000 - 10,000", "Over USD 10,000"],
   pt: ["Menos de USD 2.000", "USD 2.000 - 5.000", "USD 5.000 - 10.000", "Mais de USD 10.000"],
 };

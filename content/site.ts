@@ -44,8 +44,8 @@ type HomeLocaleContent = {
 
 export const homeContent: Record<Locale, HomeLocaleContent> = {
   es: {
-    eyebrow: "Investigacion de mercado y consultoria estrategica",
-    title: "ASB Market Research transforma la incertidumbre del mercado en decisiones estrategicas estructuradas.",
+    eyebrow: "Investigación de mercado y consultoría estratégica",
+    title: "ASB Market Research transforma la incertidumbre del mercado en decisiones estratégicas estructuradas.",
     description:
       "Desarrollamos investigaciones de mercado totalmente personalizadas, disenadas en funcion de los objetivos especificos de cada cliente. No producimos reportes genericos de industria: analizamos cada situacion de manera independiente para identificar oportunidades, riesgos y dinamicas competitivas relevantes.",
     heroDetail:
@@ -54,7 +54,7 @@ export const homeContent: Record<Locale, HomeLocaleContent> = {
       "Contamos con una capacidad analitica robusta y acceso a una amplia base de informacion secundaria, lo que nos permite estructurar reportes precisos, relevantes y adaptados a cada necesidad.",
       "El resultado es un documento profesional de varias paginas que describe el contexto de mercado, los actores clave, las tendencias y los insights necesarios para respaldar la toma de decisiones y mejorar la ejecucion estrategica.",
     ],
-    primaryCta: "Solicitar un reporte de investigacion",
+    primaryCta: "Solicitar un reporte de investigación",
     secondaryCta: "Ver reportes de muestra",
     tertiaryCta: "Contactar",
     trustPoints: [
@@ -92,8 +92,8 @@ export const homeContent: Record<Locale, HomeLocaleContent> = {
     serviceBody:
       "La oferta se organiza en cuatro niveles: reportes de industria y producto, estudios a medida, briefings mensuales y sistemas agent-powered de inteligencia de mercado.",
     serviceClosing:
-      "La progresion Reports -> Studies -> Briefings -> Systems permite empezar con un entregable puntual y avanzar hacia una capacidad recurrente o interna de research.",
-    methodologyTitle: "Metodo de trabajo disciplinado y comprensible",
+      "La progresión Reportes -> Estudios -> Briefings -> Sistemas permite empezar con un entregable puntual y avanzar hacia una capacidad recurrente o interna de research.",
+    methodologyTitle: "Método de trabajo disciplinado y comprensible",
     methodologyBody:
       "La metodologia se comunica con el tono de una firma consultiva: definicion clara del brief, investigacion estructurada y sintesis final pensada para actuar.",
     methodologySteps: [
@@ -110,7 +110,7 @@ export const homeContent: Record<Locale, HomeLocaleContent> = {
         body: "Los hallazgos se ordenan en una lectura profesional con implicancias, riesgos y recomendacion de siguiente paso.",
       },
     ],
-    reportsTitle: "Reportes de muestra preparados para descarga directa y evolucion futura",
+    reportsTitle: "Reportes de muestra preparados para descarga directa y evolución futura",
     reportsBody:
       "La homepage presenta ejemplos de salida para que el visitante entienda rapidamente el tipo de producto intelectual que puede solicitar.",
     reportsClosing:
@@ -239,15 +239,15 @@ export const homeContent: Record<Locale, HomeLocaleContent> = {
       "ASB Market Research can turn a broad need into a clear brief, an executive report, or a practical competitive reading that supports better decisions.",
   },
   pt: {
-    eyebrow: "Pesquisa de mercado e consultoria estrategica",
-    title: "A ASB Market Research transforma incerteza de mercado em decisoes empresariais mais bem estruturadas.",
+    eyebrow: "Pesquisa de mercado e consultoria estratégica",
+    title: "A ASB Market Research transforma incerteza de mercado em decisões empresariais mais bem estruturadas.",
     description:
       "Produzimos pesquisa executiva para liderancas, investidores, consultores e empresas que precisam compreender mercados, concorrentes e oportunidades com maior clareza.",
     heroDetail:
       "As entregas incluem relatorios sob medida, avaliacoes de entrada em mercado, inteligencia competitiva e sinteses executivas preparadas para diretoria, expansao ou uso comercial.",
     heroParagraphs: [],
-    primaryCta: "Solicitar um Relatorio de Pesquisa",
-    secondaryCta: "Ver Relatorios de Amostra",
+    primaryCta: "Solicitar um Relatório de Pesquisa",
+    secondaryCta: "Ver Relatórios de Amostra",
     tertiaryCta: "Contato",
     trustPoints: [
       "Relatorios executivos preparados para apoiar decisoes reais",
@@ -280,11 +280,11 @@ export const homeContent: Record<Locale, HomeLocaleContent> = {
       "Investidores e assessores que necessitam de um primeiro enquadramento serio de mercado",
       "Consultores que buscam suporte de pesquisa disciplinado para projetos de clientes",
     ],
-    serviceTitle: "Servicos de research para diferentes niveis de necessidade",
+    serviceTitle: "Serviços de research para diferentes níveis de necessidade",
     serviceBody:
       "A oferta se organiza em quatro niveis: relatorios de industria e produto, estudos sob medida, briefings mensais e sistemas agent-powered de inteligencia de mercado.",
     serviceClosing:
-      "A progressao Reports -> Studies -> Briefings -> Systems permite comecar com um entregavel pontual e evoluir para uma capacidade recorrente ou interna de research.",
+      "A progressão Relatórios -> Estudos -> Briefings -> Sistemas permite começar com um entregável pontual e evoluir para uma capacidade recorrente ou interna de research.",
     methodologyTitle: "Um metodo de trabalho disciplinado e transparente",
     methodologyBody:
       "A previa da metodologia apresenta o processo com o tom de uma firma consultiva profissional: definicao precisa do brief, pesquisa estruturada e sintese final pronta para uso.",
@@ -338,16 +338,16 @@ export const homeContent: Record<Locale, HomeLocaleContent> = {
 
 export const staticPages = {
   es: {
-    about: { title: "Quienes somos", description: "Somos los ojos y oidos de las empresas." },
+    about: { title: "Quiénes somos", description: "Somos los ojos y oídos de las empresas." },
     services: { title: "Servicios", description: "Reportes, estudios a medida, briefings mensuales y sistemas agent-powered de inteligencia de mercado." },
-    methodology: { title: "Metodologia", description: "Garantizamos la solidez, trazabilidad y credibilidad de cada reporte que entregamos." },
+    methodology: { title: "Metodología", description: "Garantizamos la solidez, trazabilidad y credibilidad de cada reporte que entregamos." },
     "sample-reports": { title: "Reportes de muestra", description: "Biblioteca preparada para descargas PDF, vistas previas y futuros casos." },
     insights: { title: "Insights", description: "Base editorial para articulos, estudios breves y contenidos SEO en tres idiomas." },
     contact: { title: "Contacto", description: "Formulario general para iniciar conversaciones y consultas profesionales." },
-    quotation: { title: "Cotizacion", description: "Solicita cotizacion sin compromiso y sin cargo alguno." },
+    quotation: { title: "Cotización", description: "Solicita cotización sin compromiso y sin cargo alguno." },
     newsletter: { title: "Newsletter", description: "Captacion de suscriptores para novedades, reportes y notas de analisis." },
-    "privacy-policy": { title: "Politica de privacidad", description: "Texto base listo para adaptacion legal final antes de publicacion." },
-    terms: { title: "Terminos y condiciones", description: "Marco base para uso del sitio, contenidos y formularios." }
+    "privacy-policy": { title: "Política de privacidad", description: "Texto base listo para adaptación legal final antes de publicación." },
+    terms: { title: "Términos y condiciones", description: "Marco base para uso del sitio, contenidos y formularios." }
   },
   en: {
     about: { title: "Who we are", description: "We are the eyes and ears of companies." },
@@ -363,15 +363,15 @@ export const staticPages = {
   },
   pt: {
     about: { title: "Quem somos", description: "Somos os olhos e ouvidos das empresas." },
-    services: { title: "Servicos", description: "Relatorios, estudos sob medida, briefings mensais e sistemas agent-powered de inteligencia de mercado." },
-    methodology: { title: "Metodologia", description: "Garantimos a solidez, a rastreabilidade e a credibilidade de cada relatorio que entregamos." },
-    "sample-reports": { title: "Relatorios de amostra", description: "Biblioteca preparada para downloads em PDF, previews e futuros casos." },
-    insights: { title: "Insights", description: "Base editorial para artigos, estudos curtos e conteudo SEO multilingue." },
-    contact: { title: "Contato", description: "Formulario geral para iniciar consultas e conversas profissionais." },
-    quotation: { title: "Cotacao", description: "Formulario de cotacao para briefs e necessidades de relatorio." },
-    newsletter: { title: "Newsletter", description: "Captacao de assinantes para atualizacoes, notas de pesquisa e futuras publicacoes." },
-    "privacy-policy": { title: "Politica de privacidade", description: "Texto base pronto para revisao juridica final antes do lancamento." },
-    terms: { title: "Termos", description: "Marco base para uso do site, conteudos e formularios." }
+    services: { title: "Serviços", description: "Relatórios, estudos sob medida, briefings mensais e sistemas agent-powered de inteligência de mercado." },
+    methodology: { title: "Metodologia", description: "Garantimos a solidez, a rastreabilidade e a credibilidade de cada relatório que entregamos." },
+    "sample-reports": { title: "Relatórios de amostra", description: "Biblioteca preparada para downloads em PDF, prévias e futuros casos." },
+    insights: { title: "Insights", description: "Base editorial para artigos, estudos curtos e conteúdo SEO multilíngue." },
+    contact: { title: "Contato", description: "Formulário geral para iniciar consultas e conversas profissionais." },
+    quotation: { title: "Cotação", description: "Formulário de cotação para briefs e necessidades de relatório." },
+    newsletter: { title: "Newsletter", description: "Captação de assinantes para atualizações, notas de pesquisa e futuras publicações." },
+    "privacy-policy": { title: "Política de privacidade", description: "Texto base pronto para revisão jurídica final antes do lançamento." },
+    terms: { title: "Termos", description: "Marco base para uso do site, conteúdos e formulários." }
   }
 } as const;
 
