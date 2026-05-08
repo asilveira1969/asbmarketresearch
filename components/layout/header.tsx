@@ -53,16 +53,20 @@ export function Header({ locale }: { locale: Locale }) {
               >
                 {brief}
               </Link>
-              <div className="mt-2 flex items-center gap-2">
-                <Link
-                  className="inline-flex min-h-[2.125rem] items-center justify-center rounded-full bg-brand-primary px-4 py-1 text-xs font-semibold text-white transition-colors hover:bg-brand-secondary"
+              <div className="mt-2 flex items-center">
+                <a
+                  className="inline-flex items-center gap-1.5"
                   href={getLocalizedPath(locale, "/services/agentic-market-intelligence-system")}
+                  target="_blank"
+                  rel="noreferrer"
                 >
-                  Agentic Market Intelligence System
-                </Link>
-                <span className="-ml-1 -rotate-6 rounded-full bg-[#76b900] px-2.5 py-1 text-[0.65rem] font-medium uppercase tracking-[0.12em] text-white shadow-sm">
-                  New!
-                </span>
+                  <span className="inline-flex min-h-[2.125rem] items-center justify-center rounded-full bg-brand-primary px-4 py-1 text-xs font-semibold text-white transition-colors hover:bg-brand-secondary">
+                    Agentic Market Intelligence System
+                  </span>
+                  <span className="-ml-1 -rotate-6 rounded-full bg-[#76b900] px-2.5 py-1 text-[0.65rem] font-medium uppercase tracking-[0.12em] text-white shadow-sm">
+                    New!
+                  </span>
+                </a>
               </div>
             </div>
           </div>
