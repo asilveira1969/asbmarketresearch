@@ -7,7 +7,7 @@ export const siteConfig = {
   defaultLocale,
   locales,
   defaultDescription:
-    "ASB Market Research delivers structured market intelligence, consulting support, and decision-ready research for executives, investors, and growth teams.",
+    "ASB Market Research provides an agentic market intelligence workstation for companies, associations, consultants, and strategy teams that need structured research workflows and decision-ready reports.",
   email: "contact@asbmarketresearch.com",
   linkedinUrl: "https://www.linkedin.com/company/asb-market-research",
   founderName: "Anastacio Silveira",

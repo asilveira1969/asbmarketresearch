@@ -3,19 +3,18 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import type { Locale } from "@/config/locales";
-import type { ServiceDetail } from "@/content/services";
 import { getLocalizedPath } from "@/lib/routes";
 
-type ServicesMenuProps = {
+type ContactMenuProps = {
   label: string;
   locale: Locale;
-  services: ServiceDetail[];
+  quoteLabel: string;
 };
 
-export function ServicesMenu({ label, locale, services }: ServicesMenuProps) {
+export function ContactMenu({ label, locale, quoteLabel }: ContactMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-  const overviewLabel = locale === "es" ? "Ver todos los servicios" : locale === "pt" ? "Ver todos os servicos" : "Services overview";
+  const contactLabel = locale === "es" ? "Contacto" : locale === "pt" ? "Contato" : "Contact";
 
   useEffect(() => {
     if (!isOpen) return;
@@ -51,25 +50,22 @@ export function ServicesMenu({ label, locale, services }: ServicesMenuProps) {
         {label}
       </button>
       {isOpen ? (
-        <div className="absolute left-1/2 top-full z-50 mt-4 w-80 -translate-x-1/2 rounded-2xl border border-line bg-surface p-2 shadow-soft">
-          <div className="grid gap-1">
+        <div className="absolute left-1/2 top-full z-50 mt-4 w-64 -translate-x-1/2 rounded-2xl border border-line bg-surface p-2 shadow-soft">
+          <div className="grid gap-2">
             <Link
-              href={getLocalizedPath(locale, "/services")}
-              className="rounded-xl bg-canvas px-4 py-3 text-sm font-semibold text-brand-primary transition-colors hover:bg-brand-primary hover:text-white"
+              href={getLocalizedPath(locale, "/contact")}
+              className="rounded-xl px-4 py-3 text-sm font-semibold text-body-secondary transition-colors hover:bg-canvas hover:text-brand-primary"
               onClick={() => setIsOpen(false)}
             >
-              {overviewLabel}
+              {contactLabel}
             </Link>
-            {services.map((service) => (
-              <Link
-                key={service.slug}
-                href={getLocalizedPath(locale, `/services/${service.slug}`)}
-                className="rounded-xl px-4 py-3 text-sm font-semibold text-body-secondary transition-colors hover:bg-canvas hover:text-brand-primary"
-                onClick={() => setIsOpen(false)}
-              >
-                {service.locales[locale].title}
-              </Link>
-            ))}
+            <Link
+              href={getLocalizedPath(locale, "/quotation")}
+              className="inline-flex min-h-[2.125rem] items-center justify-center rounded-full bg-brand-primary px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-brand-secondary"
+              onClick={() => setIsOpen(false)}
+            >
+              {quoteLabel}
+            </Link>
           </div>
         </div>
       ) : null}

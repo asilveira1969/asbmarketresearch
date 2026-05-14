@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/ui/page-header";
@@ -9,7 +9,6 @@ import { ReportRequestForm } from "@/components/forms/report-request-form";
 import { EmbedContentBlock } from "@/components/content/embed-content-block";
 import { FAQBlock } from "@/components/content/faq-block";
 import { PdfDownloadCard } from "@/components/cards/pdf-download-card";
-import { ServiceCard } from "@/components/cards/service-card";
 import { buildPageMetadata } from "@/lib/metadata";
 import { resolveLocale } from "@/lib/i18n";
 import { faqContent, staticPages } from "@/content/site";
@@ -38,17 +37,17 @@ const thankYouContent = {
 
 const pageLabels = {
   es: {
-    confirmation: "Confirmación",
+    confirmation: "ConfirmaciÃ³n",
     returnHome: "Volver al inicio",
     capabilities: "Capacidades",
     pdfDownloads: "Descargas PDF",
     process: "Proceso",
-    leadGeneration: "Generación de leads",
+    leadGeneration: "GeneraciÃ³n de leads",
     briefing: "Briefing",
     crm: "CRM",
     legal: "Legal",
-    whatToExpect: "Qué recibir",
-    newsletterItems: ["Notas de research y alertas de artículos", "Actualizaciones de reportes de muestra", "Insights ejecutivos seleccionados"],
+    whatToExpect: "QuÃ© recibir",
+    newsletterItems: ["Notas de research y alertas de artÃ­culos", "Actualizaciones de reportes de muestra", "Insights ejecutivos seleccionados"],
   },
   en: {
     confirmation: "Confirmation",
@@ -56,7 +55,7 @@ const pageLabels = {
     capabilities: "Capabilities",
     pdfDownloads: "PDF Downloads",
     process: "Process",
-    leadGeneration: "Lead generation",
+    leadGeneration: "Contact form",
     briefing: "Briefing",
     crm: "CRM",
     legal: "Legal",
@@ -64,17 +63,17 @@ const pageLabels = {
     newsletterItems: ["Research notes and article alerts", "Sample report updates", "Selected executive insights"],
   },
   pt: {
-    confirmation: "Confirmação",
-    returnHome: "Voltar ao início",
+    confirmation: "ConfirmaÃ§Ã£o",
+    returnHome: "Voltar ao inÃ­cio",
     capabilities: "Capacidades",
     pdfDownloads: "Downloads PDF",
     process: "Processo",
-    leadGeneration: "Geração de leads",
+    leadGeneration: "GeraÃ§Ã£o de leads",
     briefing: "Briefing",
     crm: "CRM",
     legal: "Legal",
     whatToExpect: "O que receber",
-    newsletterItems: ["Notas de pesquisa e alertas de artigos", "Atualizações de relatórios de amostra", "Insights executivos selecionados"],
+    newsletterItems: ["Notas de pesquisa e alertas de artigos", "AtualizaÃ§Ãµes de relatÃ³rios de amostra", "Insights executivos selecionados"],
   },
 } as const;
 
@@ -105,29 +104,118 @@ export default async function StaticPageRouter({ params }: { params: Promise<{ l
   const page = staticPages[locale][key];
 
   if (key === "about") {
-    return <><PageHeader title={page.title} description={page.description}  /><Section className="bg-surface"><div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]"><div className="surface-card"><Image src={founderProfile.image} alt={founderProfile.name} width={640} height={800} className="w-full rounded-2xl border border-line object-cover" /></div><div><p className="eyebrow">{founderProfile.role[locale]}</p><h2 className="mt-3 text-display-sm text-brand-primary">{founderProfile.name}</h2><p className="mt-5 text-lg leading-8 text-body-secondary">{founderProfile.biography[locale]}</p><div className="mt-8 surface-panel"><p className="eyebrow">{founderProfile.credentialsHeading[locale]}</p><div className="mt-5 grid gap-6 md:grid-cols-2"><div><h3 className="text-lg font-medium text-brand-primary">{founderProfile.educationLabel[locale]}</h3><div className="mt-4 grid gap-4">{founderProfile.education.map((item) => <div key={`${item.degree}-${item.institution}`}><p className="font-medium text-brand-primary">{item.degree}</p><p className="text-body-secondary">{item.institution}</p></div>)}</div></div><div><h3 className="text-lg font-medium text-brand-primary">{founderProfile.experienceLabel[locale]}</h3><div className="mt-4 grid gap-4">{founderProfile.experience.map((item) => <div key={`${item.company}-${item.location}`}><p className="font-medium text-brand-primary">{item.company}</p><p className="text-body-secondary">{item.location}</p></div>)}</div></div></div></div><div className="mt-8 grid gap-4 sm:grid-cols-2"><a className="button-secondary w-fit" href={founderProfile.resumeUrl} download>{locale === "es" ? "Descargar CV" : locale === "pt" ? "Baixar CV" : "Download resume"}</a><a className="button-secondary w-fit" href={siteConfig.linkedinUrl} target="_blank" rel="noreferrer">LinkedIn</a></div></div></div></Section><Section className="bg-canvas"><EmbedContentBlock type="reference" locale={locale} title={locale === "es" ? "Currículum y credenciales" : locale === "pt" ? "Currículo e credenciais" : "Resume and credentials"} href={founderProfile.resumeUrl} description={locale === "es" ? "Coloque aquí el PDF final del CV, certificaciones o credenciales profesionales." : locale === "pt" ? "Coloque aqui o PDF final do currículo, certificações ou credenciais profissionais." : "Place the final PDF resume, certifications, or credentials here."} /></Section></>;
+    return (
+      <>
+        <PageHeader title={page.title} description={page.description} />
+        <Section className="bg-surface">
+          <div className="grid gap-10 lg:grid-cols-[1fr_0.95fr] lg:items-start">
+            <div className="max-w-4xl">
+              <p className="eyebrow">ABOUT</p>
+              <h2 className="mt-3 text-display-sm text-brand-primary">Market Reports to Intelligence Systems</h2>
+              <p className="mt-5 text-lg leading-8 text-body-secondary">
+                ASB Market Research is an independent market intelligence initiative founded by Anastacio Silveira,
+                combining traditional market research methodology with emerging AI-assisted and agent-powered research workflows.
+              </p>
+              <p className="mt-5 text-lg leading-8 text-body-secondary">
+                Drawing from prior experience in market research, business strategy, entrepreneurship, and multinational
+                corporate environments, the initiative explores how modern technologies can make structured market intelligence
+                capabilities more accessible and scalable across organizations of different sizes.
+              </p>
+              <div className="mt-6">
+                <p className="text-lg leading-8 text-body-secondary">ASB Market Research focuses primarily on:</p>
+                <ul className="mt-4 grid gap-3 pl-5 text-lg leading-8 text-body-secondary list-disc">
+                  <li>secondary research;</li>
+                  <li>qualitative market analysis;</li>
+                  <li>strategic interpretation;</li>
+                  <li>market intelligence reporting;</li>
+                  <li>and AI-assisted research workflows.</li>
+                </ul>
+              </div>
+              <p className="mt-6 text-lg leading-8 text-body-secondary">
+                The broader vision behind the project is to explore how structured methodologies, organizational context, and
+                modern AI-assisted systems can work together to create a more continuous, scalable, and decision-oriented
+                approach to market intelligence.
+              </p>
+            </div>
+            <div className="overflow-hidden rounded-[1.75rem] border border-line bg-canvas shadow-soft">
+              <Image
+                src="/media/about-market-reports-to-intelligence-systems.png"
+                alt="ASB Market Research team reviewing market intelligence materials"
+                width={1024}
+                height={1536}
+                className="aspect-[4/5] w-full object-cover"
+              />
+            </div>
+          </div>
+        </Section>
+        <Section className="bg-canvas">
+          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+            <div className="surface-card">
+              <Image src={founderProfile.image} alt={founderProfile.name} width={640} height={800} className="w-full rounded-2xl border border-line object-cover" />
+            </div>
+            <div>
+              <p className="eyebrow">{founderProfile.role[locale]}</p>
+              <h2 className="mt-3 text-display-sm text-brand-primary">{founderProfile.name}</h2>
+              <p className="mt-5 text-lg leading-8 text-body-secondary">{founderProfile.biography[locale]}</p>
+              <div className="mt-8 surface-panel">
+                <p className="eyebrow">{founderProfile.credentialsHeading[locale]}</p>
+                <div className="mt-5 grid gap-6 md:grid-cols-2">
+                  <div>
+                    <h3 className="text-lg font-medium text-ink">{founderProfile.educationLabel[locale]}</h3>
+                    <div className="mt-4 grid gap-4">
+                      {founderProfile.education.map((item) => (
+                        <div key={`${item.degree}-${item.institution}`}>
+                          <p className="font-medium text-brand-primary">{item.degree}</p>
+                          <p className="text-body-secondary">{item.institution}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-medium text-ink">{founderProfile.experienceLabel[locale]}</h3>
+                    <div className="mt-4 grid gap-4">
+                      {founderProfile.experience.map((item) => (
+                        <div key={`${item.company}-${item.location}`}>
+                          <p className="font-medium text-brand-primary">{item.company}</p>
+                          <p className="text-body-secondary">{item.location}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                <a className="button-secondary w-fit" href={founderProfile.resumeUrl} download>
+                  {locale === "es" ? "Descargar CV" : locale === "pt" ? "Baixar CV" : "Download resume"}
+                </a>
+                <a className="button-secondary w-fit" href={siteConfig.linkedinUrl} target="_blank" rel="noreferrer">
+                  LinkedIn
+                </a>
+              </div>
+            </div>
+          </div>
+        </Section>
+        <Section className="bg-surface">
+          <EmbedContentBlock
+            type="reference"
+            locale={locale}
+            title={locale === "es" ? "CurrÃ­culum y credenciales" : locale === "pt" ? "CurrÃ­culo e credenciais" : "Resume and credentials"}
+            href={founderProfile.resumeUrl}
+            description={locale === "es" ? "Coloque aquÃ­ el PDF final del CV, certificaciones o credenciales profesionales." : locale === "pt" ? "Coloque aqui o PDF final do currÃ­culo, certificaÃ§Ãµes ou credenciais profissionais." : "Place the final PDF resume, certifications, or credentials here."}
+          />
+        </Section>
+      </>
+    );
   }
 
   if (key === "services") {
     const servicesIntro = locale === "es"
-      ? [
-          "Nuestros servicios están organizados para acompañar distintos niveles de necesidad: reportes listos para usar, estudios a medida, briefings mensuales y sistemas agent-powered de inteligencia de mercado.",
-          "La progresión Reportes -> Estudios -> Briefings -> Sistemas permite empezar con un entregable puntual y avanzar hacia una capacidad recurrente o interna de research cuando el negocio lo necesita.",
-          "Cada servicio mantiene el mismo enfoque consultivo: transformar información dispersa en insights estructurados, accionables y útiles para decisiones de negocio.",
-        ]
+      ? []
       : locale === "pt"
-        ? [
-            "Nossos serviços estão organizados para acompanhar diferentes níveis de necessidade: relatórios prontos para uso, estudos sob medida, briefings mensais e sistemas agent-powered de inteligência de mercado.",
-            "A progressão Relatórios -> Estudos -> Briefings -> Sistemas permite começar com um entregável pontual e evoluir para uma capacidade recorrente ou interna de research quando o negócio precisa.",
-            "Cada serviço mantém o mesmo enfoque consultivo: transformar informação dispersa em insights estruturados, acionáveis e úteis para decisões de negócio.",
-          ]
-        : [
-            "Our services are organized around different levels of research need: ready-to-use reports, custom studies, monthly briefings, and agent-powered market intelligence systems.",
-            "The progression Reports -> Studies -> Briefings -> Systems allows a company to start with a single deliverable and move toward recurring or internal research capability when the business needs it.",
-            "Each service keeps the same consulting discipline: turning dispersed information into structured, actionable insights for business decisions.",
-          ];
+        ? []
+        : [];
 
-    return <><PageHeader title={page.title} description={page.description} eyebrow={labels.capabilities} /><Section className="bg-surface !pt-2 md:!pt-3"><div className="max-w-4xl"><div className="grid gap-5 text-lg leading-8 text-body-secondary">{servicesIntro.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div></div><div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">{serviceDetails.map((service) => <ServiceCard key={service.slug} locale={locale} slug={service.slug} icon={service.icon} title={service.locales[locale].title} summary={service.locales[locale].summary} />)}</div></Section><Section className="bg-canvas"><div className="mb-10 max-w-3xl"><p className="eyebrow">{labels.pdfDownloads}</p><h2 className="mt-3 text-display-sm text-brand-primary">{locale === "es" ? "Folletos y documentos" : locale === "pt" ? "Folhetos e documentos" : "Brochures and documents"}</h2></div><div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">{serviceDetails.map((service) => <PdfDownloadCard key={service.slug} title={service.locales[locale].title} description={service.locales[locale].summary} href={service.brochureHref} label={locale === "es" ? "Descargar folleto" : locale === "pt" ? "Baixar folheto" : "Download brochure"} />)}</div></Section><Section className="bg-surface"><ReportRequestForm locale={locale} /></Section></>;
+    return <><PageHeader title={page.title} description={page.description} eyebrow={labels.capabilities} /><Section className="bg-surface !pt-2 md:!pt-3"><div className="max-w-4xl"><div className="grid gap-5 text-lg leading-8 text-body-secondary">{servicesIntro.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div></div><div className="mt-10 grid gap-5">{serviceDetails.map((service) => <article key={service.slug} className="surface-card grid gap-5 md:grid-cols-[4rem_1fr_auto] md:items-center"><p className="eyebrow text-brand-primary">{service.icon}</p><div><h2 className="text-xl font-medium text-brand-primary">{service.locales[locale].title}</h2><p className="mt-3 max-w-3xl text-sm leading-7 text-body-secondary md:text-base">{service.locales[locale].summary}</p></div><Link className="button-secondary w-fit md:justify-self-end" href={getLocalizedPath(locale, `/services/${service.slug}`)}>{locale === "es" ? "Ver detalle" : locale === "pt" ? "Ver detalhe" : "View details"}</Link></article>)}</div></Section><Section className="bg-canvas"><div className="mb-10 max-w-3xl"><p className="eyebrow">{labels.pdfDownloads}</p><h2 className="mt-3 text-display-sm text-brand-primary">{locale === "es" ? "Folletos y documentos" : locale === "pt" ? "Folhetos e documentos" : "Brochures and documents"}</h2></div><div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">{serviceDetails.map((service) => <PdfDownloadCard key={service.slug} title={service.locales[locale].title} description={service.locales[locale].summary} href={service.brochureHref} label={locale === "es" ? "Descargar folleto" : locale === "pt" ? "Baixar folheto" : "Download brochure"} />)}</div></Section><Section className="bg-surface"><ReportRequestForm locale={locale} /></Section></>;
   }
 
   if (key === "methodology") {
@@ -152,7 +240,7 @@ export default async function StaticPageRouter({ params }: { params: Promise<{ l
               "Nosso objetivo nao e apenas compilar informacao, mas transforma-la em conhecimento estruturado. Isso implica identificar padroes, conexoes e achados-chave que se convertem em insights acionaveis, fundamentais para a tomada de decisoes estrategicas.",
             ],
             listTitle: "Nossa metodologia se apoia no uso de informacao secundaria como base, incluindo:",
-            listItems: ["Bancos de dados", "Relatórios setoriais", "Publicações especializadas", "Fontes institucionais e governamentais", "Plataformas digitais de mercado"],
+            listItems: ["Bancos de dados", "RelatÃ³rios setoriais", "PublicaÃ§Ãµes especializadas", "Fontes institucionais e governamentais", "Plataformas digitais de mercado"],
             closing: "Essa abordagem nos permite desenvolver relatorios solidos, relevantes e orientados a resultados, adaptados as necessidades especificas de cada cliente.",
           }
         : {
@@ -173,7 +261,7 @@ export default async function StaticPageRouter({ params }: { params: Promise<{ l
         ? ["Alinhamos a pergunta de pesquisa com a decisao que precisa ser tomada.", "Definimos escopo, fontes, comparaveis e profundidade da analise.", "Entregamos sintese executiva com achados, riscos e a proxima acao recomendada."]
         : ["We align the research question with the decision that must be made.", "We define scope, sources, comparables, and the required depth of analysis.", "We deliver executive synthesis with findings, risks, and the next recommended action."];
 
-    return <><PageHeader title={page.title} description={page.description} eyebrow={labels.process} /><Section className="bg-surface !pt-2 md:!pt-3"><div className="max-w-4xl"><div className="grid gap-5 text-lg leading-8 text-body-secondary">{methodologyIntro.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div><div className="mt-6"><p className="text-lg leading-8 text-body-secondary">{methodologyIntro.listTitle}</p><ul className="mt-4 grid gap-3 pl-5 text-lg leading-8 text-body-secondary list-disc">{methodologyIntro.listItems.map((item) => <li key={item}>{item}</li>)}</ul></div><p className="mt-6 text-lg leading-8 text-body-secondary">{methodologyIntro.closing}</p></div><div className="mt-10 grid gap-5">{steps.map((step, index) => <div key={step} className="surface-card flex gap-5"><span className="text-sm font-semibold text-accent">0{index + 1}</span><p className="text-lg leading-8 text-body-secondary">{step}</p></div>)}</div></Section><Section className="bg-canvas"><div className="grid gap-8 lg:grid-cols-2"><EmbedContentBlock type="pdf" locale={locale} title={locale === "es" ? "Vista previa de metodología" : locale === "pt" ? "Prévia da metodologia" : "Methodology preview"} src="/pdfs/company/methodology-overview.pdf" /><FAQBlock items={faqContent[locale]} /></div></Section></>;
+    return <><PageHeader title={page.title} description={page.description} eyebrow={labels.process} /><Section className="bg-surface !pt-2 md:!pt-3"><div className="max-w-4xl"><div className="grid gap-5 text-lg leading-8 text-body-secondary">{methodologyIntro.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div><div className="mt-6"><p className="text-lg leading-8 text-body-secondary">{methodologyIntro.listTitle}</p><ul className="mt-4 grid gap-3 pl-5 text-lg leading-8 text-body-secondary list-disc">{methodologyIntro.listItems.map((item) => <li key={item}>{item}</li>)}</ul></div><p className="mt-6 text-lg leading-8 text-body-secondary">{methodologyIntro.closing}</p></div><div className="mt-10 grid gap-5">{steps.map((step, index) => <div key={step} className="surface-card flex gap-5"><span className="text-sm font-semibold text-accent">0{index + 1}</span><p className="text-lg leading-8 text-body-secondary">{step}</p></div>)}</div></Section><Section className="bg-canvas"><div className="grid gap-8 lg:grid-cols-2"><EmbedContentBlock type="pdf" locale={locale} title={locale === "es" ? "Vista previa de metodologÃ­a" : locale === "pt" ? "PrÃ©via da metodologia" : "Methodology preview"} src="/pdfs/company/methodology-overview.pdf" /><FAQBlock items={faqContent[locale]} /></div></Section></>;
   }
 
   if (key === "contact") {
@@ -192,5 +280,4 @@ export default async function StaticPageRouter({ params }: { params: Promise<{ l
 
   return <><PageHeader title={page.title} description="" eyebrow={labels.legal} /><Section className="bg-surface"><div className="mx-auto max-w-3xl grid gap-6">{paragraphs.map((paragraph) => <p key={paragraph} className="text-lg leading-8 text-body-secondary">{paragraph}</p>)}</div></Section></>;
 }
-
 

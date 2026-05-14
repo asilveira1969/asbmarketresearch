@@ -16,27 +16,27 @@ export const founderProfile = {
     pt: "Os pesquisadores de mercado são os olhos e os ouvidos das empresas. Identificamos e tornamos visíveis as oportunidades e as ameaças. A partir do contexto do cliente e da coleta de informações, elaboramos relatórios que articulam achados-chave, permitindo ao cliente traçar seu próprio plano de ação com base em evidência.",
   } satisfies Record<Locale, string>,
   credentialsHeading: {
-    es: "Formación académica y experiencia profesional en investigación de mercados",
-    en: "Academic Background & Professional Experience in Market Research",
-    pt: "Formação acadêmica e experiência profissional em pesquisa de mercado",
+    es: "Academic & Professional Background",
+    en: "Academic & Professional Background",
+    pt: "Academic & Professional Background",
   } satisfies Record<Locale, string>,
   educationLabel: {
-    es: "Formación",
-    en: "Education",
-    pt: "Formação",
+    es: "Business Education",
+    en: "Business Education",
+    pt: "Business Education",
   } satisfies Record<Locale, string>,
   experienceLabel: {
-    es: "Experiencia",
-    en: "Experience",
-    pt: "Experiência",
+    es: "Market Research Experience",
+    en: "Market Research Experience",
+    pt: "Market Research Experience",
   } satisfies Record<Locale, string>,
   education: [
     {
       degree: "Master of Science in Marketing",
-      institution: "Johns Hopkins University",
+      institution: "The Johns Hopkins University",
     },
     {
-      degree: "Bachelor of Science",
+      degree: "Bachelor of Science in Business",
       institution: "University of Baltimore",
     },
   ],

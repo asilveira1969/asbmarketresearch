@@ -125,30 +125,30 @@ export const serviceDetails: ServiceDetail[] = [
     locales: {
       es: {
         title: "Sistema Agentic de Inteligencia de Mercado",
-        summary: "Implementacion de un sistema de research agent-powered dentro de la empresa para workflows continuos de inteligencia de mercado.",
+        summary: "Market Research Workstation para construir capacidad recurrente de inteligencia de mercado sin depender de un departamento interno completo.",
         body: [
-          "Implementamos o configuramos un sistema agent-powered para que la empresa pueda generar, organizar, actualizar y reutilizar inteligencia de mercado de forma continua.",
-          "Este servicio esta pensado para equipos con necesidades recurrentes de research que quieren convertir preguntas de negocio en workflows y outputs estructurados.",
+          "Implementamos o configuramos un workstation agent-powered para que la organizacion pueda generar, organizar, actualizar y reutilizar inteligencia de mercado de forma continua.",
+          "Este servicio esta pensado para empresas, camaras, asociaciones, equipos comerciales y consultores con necesidades recurrentes de research que quieren convertir preguntas de negocio en workflows y outputs estructurados.",
         ],
-        deliverables: ["Sistema de research agent-powered", "Workflow de inteligencia de mercado", "Configuracion de contexto de empresa", "Outputs estructurados y reutilizables"],
+        deliverables: ["Market Research Workstation", "Workflow de inteligencia de mercado", "Configuracion de contexto de empresa", "Briefs, reportes y outputs reutilizables"],
       },
       en: {
         title: "Agentic Market Intelligence System",
-        summary: "Implementation of an agent-powered research system inside the company for continuous market intelligence workflows.",
+        summary: "Market Research Workstation for building recurring market intelligence capability without depending on a full internal research department.",
         body: [
-          "We implement or configure an agent-powered system so the company can generate, organize, update, and reuse market intelligence continuously.",
-          "This service is designed for teams with recurring research needs that want to turn business questions into repeatable workflows and structured outputs.",
+          "We implement or configure an agent-powered workstation so the organization can generate, organize, update, and reuse market intelligence continuously.",
+          "This service is designed for companies, chambers, associations, commercial teams, and consultants with recurring research needs that want to turn business questions into repeatable workflows and structured outputs.",
         ],
-        deliverables: ["Agent-powered research system", "Market intelligence workflow", "Company context configuration", "Reusable structured outputs"],
+        deliverables: ["Market Research Workstation", "Market intelligence workflow", "Company context configuration", "Reusable briefs, reports, and outputs"],
       },
       pt: {
         title: "Sistema Agentic de Inteligência de Mercado",
-        summary: "Implementacao de um sistema de research agent-powered dentro da empresa para workflows continuos de inteligencia de mercado.",
+        summary: "Market Research Workstation para construir capacidade recorrente de inteligencia de mercado sem depender de um departamento interno completo.",
         body: [
-          "Implementamos ou configuramos um sistema agent-powered para que a empresa possa gerar, organizar, atualizar e reutilizar inteligencia de mercado continuamente.",
-          "Este servico e indicado para equipes com necessidades recorrentes de research que querem transformar perguntas de negocio em workflows repetiveis e outputs estruturados.",
+          "Implementamos ou configuramos um workstation agent-powered para que a organizacao possa gerar, organizar, atualizar e reutilizar inteligencia de mercado continuamente.",
+          "Este servico e indicado para empresas, camaras, associacoes, equipes comerciais e consultores com necessidades recorrentes de research que querem transformar perguntas de negocio em workflows repetiveis e outputs estruturados.",
         ],
-        deliverables: ["Sistema de research agent-powered", "Workflow de inteligencia de mercado", "Configuracao de contexto da empresa", "Outputs estruturados e reutilizaveis"],
+        deliverables: ["Market Research Workstation", "Workflow de inteligencia de mercado", "Configuracao de contexto da empresa", "Briefs, relatorios e outputs reutilizaveis"],
       },
     },
   },

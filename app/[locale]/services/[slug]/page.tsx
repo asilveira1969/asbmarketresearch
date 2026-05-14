@@ -145,7 +145,42 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             </div>
           </div>
         ) : isAgenticSystem ? (
-          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="mx-auto grid max-w-5xl gap-8 text-center">
+            <div className="surface-panel mx-auto flex min-h-80 w-full items-center justify-center text-center">
+              <Image
+                src="/media/market-research-workstation-workflow.png"
+                alt="Market Research Workstation workflow"
+                width={1800}
+                height={1000}
+                className="h-full min-h-80 w-full object-contain"
+              />
+            </div>
+            <div className="grid gap-10 text-left lg:grid-cols-[1fr_0.85fr] lg:items-start">
+              <div className="max-w-3xl">
+              <p className="eyebrow">{agenticWorkflow.eyebrow}</p>
+              <h2 className="mt-3 text-display-xs text-brand-primary">{agenticWorkflow.title}</h2>
+              {agenticWorkflow.body.map((paragraph) => (
+                <p key={paragraph} className="mt-5 text-[1.05rem] leading-[1.65] text-body-secondary">{paragraph}</p>
+              ))}
+              </div>
+              <div className="overflow-hidden rounded-[1.75rem] border border-line bg-canvas shadow-soft lg:mt-[6.75rem]">
+                <Image
+                  src="/media/agentic-workflow-programmer.png"
+                  alt="Technical consultant configuring a market intelligence workstation"
+                  width={1200}
+                  height={900}
+                  className="aspect-[4/5] w-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]"><div className="grid gap-5">{bodyParagraphs.map((paragraph) => <p key={paragraph} className="max-w-[42rem] text-[1.05rem] leading-[1.65] text-body-secondary">{paragraph}</p>)}</div><div className="surface-panel"><p className="eyebrow">{labels.deliverables}</p><ul className="mt-5 grid gap-4 text-body-secondary">{content.deliverables.map((item) => <li key={item}>{item}</li>)}</ul></div></div>
+        )}
+      </Section>
+      {isAgenticSystem ? (
+        <Section className="bg-canvas">
+          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div className="grid gap-6">
               <p className="eyebrow">{agenticPrimary.eyebrow}</p>
               <h2 className="text-display-xs text-brand-primary">{agenticPrimary.title}</h2>
@@ -160,30 +195,6 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 height={900}
                 className="h-full min-h-80 w-full object-contain"
               />
-            </div>
-          </div>
-        ) : (
-          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]"><div className="grid gap-5">{bodyParagraphs.map((paragraph) => <p key={paragraph} className="max-w-[42rem] text-[1.05rem] leading-[1.65] text-body-secondary">{paragraph}</p>)}</div><div className="surface-panel"><p className="eyebrow">{labels.deliverables}</p><ul className="mt-5 grid gap-4 text-body-secondary">{content.deliverables.map((item) => <li key={item}>{item}</li>)}</ul></div></div>
-        )}
-      </Section>
-      {isAgenticSystem ? (
-        <Section className="bg-canvas">
-          <div className="mx-auto grid max-w-4xl gap-8 text-center">
-            <div className="surface-panel mx-auto flex min-h-80 w-full max-w-3xl items-center justify-center text-center">
-              <Image
-                src="/media/market-research-workstation-workflow.png"
-                alt="Market Research Workstation workflow"
-                width={1800}
-                height={1000}
-                className="h-full min-h-80 w-full object-contain"
-              />
-            </div>
-            <div className="mx-auto max-w-3xl">
-              <p className="eyebrow">{agenticWorkflow.eyebrow}</p>
-              <h2 className="mt-3 text-display-xs text-brand-primary">{agenticWorkflow.title}</h2>
-              {agenticWorkflow.body.map((paragraph) => (
-                <p key={paragraph} className="mt-5 text-[1.05rem] leading-[1.65] text-body-secondary">{paragraph}</p>
-              ))}
             </div>
           </div>
         </Section>

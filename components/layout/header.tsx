@@ -2,11 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/config/locales";
 import { mainNavigation } from "@/config/navigation";
-import { serviceDetails } from "@/content/services";
 import { siteConfig } from "@/config/site";
 import { getLocalizedPath } from "@/lib/routes";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
-import { ServicesMenu } from "@/components/layout/services-menu";
+import { ContactMenu } from "@/components/layout/contact-menu";
 
 export function Header({ locale }: { locale: Locale }) {
   const copy = {
@@ -16,7 +15,7 @@ export function Header({ locale }: { locale: Locale }) {
       badge: "Nuevo!",
     },
     en: {
-      quote: "Request Free Quotation",
+      quote: "Request Proposal",
       agentic: "Agentic Market Intelligence System",
       badge: "New!",
     },
@@ -42,11 +41,11 @@ export function Header({ locale }: { locale: Locale }) {
                 className="h-[110px] md:h-[140px] w-full object-contain mix-blend-multiply"
               />
             </Link>
-            <div className="hidden lg:flex lg:flex-col lg:items-center">
+            <div className="hidden lg:flex lg:flex-1 lg:flex-col">
               <nav className="flex items-center gap-4">
                 {mainNavigation.map((item) =>
-                  item.href === "/services" ? (
-                    <ServicesMenu key={item.href} label={item.label[locale]} locale={locale} services={serviceDetails} />
+                  item.href === "/contact" ? (
+                    <ContactMenu key={item.href} label={item.label[locale]} locale={locale} quoteLabel={copy.quote} />
                   ) : (
                     <Link
                       key={item.href}
@@ -58,15 +57,9 @@ export function Header({ locale }: { locale: Locale }) {
                   )
                 )}
               </nav>
-              <Link
-                className="mt-3 inline-flex min-h-[2.125rem] items-center justify-center rounded-full bg-brand-primary px-4 py-1 text-xs font-semibold text-white transition-colors hover:bg-brand-secondary"
-                href={getLocalizedPath(locale, "/quotation")}
-              >
-                {copy.quote}
-              </Link>
-              <div className="mt-2 flex items-center">
+              <div className="mt-6 grid w-full grid-cols-[auto_1fr_auto] items-center">
                 <a
-                  className="inline-flex items-center gap-1.5"
+                  className="inline-flex items-center gap-1.5 justify-self-start"
                   href={getLocalizedPath(locale, "/services/agentic-market-intelligence-system")}
                   target="_blank"
                   rel="noreferrer"
@@ -78,10 +71,12 @@ export function Header({ locale }: { locale: Locale }) {
                     {copy.badge}
                   </span>
                 </a>
+                <div />
+                <LanguageSwitcher locale={locale} />
               </div>
             </div>
           </div>
-          <div className="hidden md:block">
+          <div className="hidden md:block lg:hidden">
             <LanguageSwitcher locale={locale} />
           </div>
         </div>

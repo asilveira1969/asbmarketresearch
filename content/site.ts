@@ -144,12 +144,15 @@ export const homeContent: Record<Locale, HomeLocaleContent> = {
   },
   en: {
     eyebrow: "Market research and strategic consulting",
-    title: "ASB Market Research turns market uncertainty into better structured business decisions.",
+    title: "ASB Market Research",
     description:
-      "We develop executive-grade research for leaders, investors, consultants, and companies that need a clearer view of markets, competitors, and commercial opportunities.",
+      "provides structured market intelligence for companies, investors, consultants, and business leaders who need clarity before making important decisions.",
     heroDetail:
-      "Typical outputs include custom research reports, market entry assessments, competitor intelligence, and executive summaries prepared for board, expansion, or commercial use.",
-    heroParagraphs: [],
+      "We help clients move from market uncertainty to evidence-based understanding by analyzing industries, competitors, customer trends, risks, and commercial opportunities.",
+    heroParagraphs: [
+      "Our work combines secondary research, business analysis, and strategic interpretation to produce executive-grade reports that are clear, practical, and decision-ready.",
+      "We also offer our new Agentic Market Intelligence System: an AI-powered research environment designed to help organizations transform recurring market questions into structured workflows, continuous analysis, and decision-ready intelligence.",
+    ],
     primaryCta: "Request a Research Report",
     secondaryCta: "View Sample Reports",
     tertiaryCta: "Contact",
@@ -350,13 +353,13 @@ export const staticPages = {
     terms: { title: "Términos y condiciones", description: "Marco base para uso del sitio, contenidos y formularios." }
   },
   en: {
-    about: { title: "Who we are", description: "We are the eyes and ears of companies." },
+    about: { title: "Who we are", description: "About and Founder" },
     services: { title: "Services", description: "Industry reports, custom research studies, monthly market briefings, and agent-powered market intelligence systems." },
     methodology: { title: "Methodology", description: "We ensure the solidity, traceability, and credibility of every report we deliver." },
     "sample-reports": { title: "Sample Reports", description: "A library prepared for PDF downloads, previews, and future case material." },
-    insights: { title: "Insights", description: "Editorial base for articles, short studies, and multilingual SEO content." },
+    insights: { title: "Insights", description: "Editorial blog for articles, short studies, and opinions." },
     contact: { title: "Contact", description: "General contact form for professional inquiries and conversations." },
-    quotation: { title: "Quotation", description: "Quotation request form for briefs and report requirements." },
+    quotation: { title: "Request for Custom Research Proposal", description: "Quotation request form for briefs and report requirements." },
     newsletter: { title: "Newsletter", description: "Subscriber capture for updates, research notes, and future publications." },
     "privacy-policy": { title: "Privacy Policy", description: "Base privacy copy ready for final legal review before launch." },
     terms: { title: "Terms", description: "Base terms for site use, content access, and form submissions." }

@@ -7,8 +7,8 @@ type CTABlockProps = { locale: Locale; title: string; body: string };
 
 export function CTABlock({ locale, title, body }: CTABlockProps) {
   const eyebrow = locale === "es" ? "Siguiente paso" : locale === "pt" ? "Proximo passo" : "Next step";
-  const contact = locale === "es" ? "Contactar" : locale === "pt" ? "Entrar em contato" : "Get in touch";
-  const services = locale === "es" ? "Ver servicios" : locale === "pt" ? "Ver servicos" : "View services";
+  const contact = locale === "es" ? "Solicitar consultoria" : locale === "pt" ? "Solicitar consultoria" : "Request consultation";
+  const services = locale === "es" ? "Ver Workstation" : locale === "pt" ? "Ver Workstation" : "View Workstation";
 
   return (
     <Section className="bg-brand-primary text-white">
@@ -19,8 +19,8 @@ export function CTABlock({ locale, title, body }: CTABlockProps) {
           <p className="mt-4 text-base leading-8 text-white/80">{body}</p>
         </div>
         <div className="flex flex-wrap gap-4">
-          <Link className="button-primary bg-white text-brand-primary hover:bg-white/90" href={getLocalizedPath(locale, "/contact")}>{contact}</Link>
-          <Link className="button-secondary border-white/25 text-white hover:bg-white/8" href={getLocalizedPath(locale, "/services")}>{services}</Link>
+          <Link className="button-primary bg-white text-brand-primary hover:bg-white/90" href={getLocalizedPath(locale, "/quotation")}>{contact}</Link>
+          <Link className="button-secondary border-white/25 text-white hover:bg-white/8" href={getLocalizedPath(locale, "/services/agentic-market-intelligence-system")}>{services}</Link>
         </div>
       </div>
     </Section>
