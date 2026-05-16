@@ -7,8 +7,8 @@ type CTABlockProps = { locale: Locale; title: string; body: string };
 
 export function CTABlock({ locale, title, body }: CTABlockProps) {
   const eyebrow = locale === "es" ? "Siguiente paso" : locale === "pt" ? "Proximo passo" : "Next step";
-  const contact = locale === "es" ? "Solicitar consultoria" : locale === "pt" ? "Solicitar consultoria" : "Request consultation";
-  const services = locale === "es" ? "Ver Workstation" : locale === "pt" ? "Ver Workstation" : "View Workstation";
+  const contact = locale === "es" ? "Solicitar consultoria" : locale === "pt" ? "Solicitar consultoria" : "Request Consultation";
+  const services = locale === "es" ? "Ver Workstation" : locale === "pt" ? "Ver Workstation" : "Explore Workstation";
 
   return (
     <Section className="bg-brand-primary text-white">

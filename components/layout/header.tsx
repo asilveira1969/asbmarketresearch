@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/config/locales";
-import { mainNavigation } from "@/config/navigation";
+import { headerNavigation } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
 import { getLocalizedPath } from "@/lib/routes";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
@@ -43,19 +43,16 @@ export function Header({ locale }: { locale: Locale }) {
             </Link>
             <div className="hidden lg:flex lg:flex-1 lg:flex-col">
               <nav className="flex items-center gap-4">
-                {mainNavigation.map((item) =>
-                  item.href === "/contact" ? (
-                    <ContactMenu key={item.href} label={item.label[locale]} locale={locale} quoteLabel={copy.quote} />
-                  ) : (
-                    <Link
-                      key={item.href}
-                      href={getLocalizedPath(locale, item.href)}
-                      className="text-sm font-medium text-body-secondary transition-colors hover:text-brand-primary"
-                    >
-                      {item.label[locale]}
-                    </Link>
-                  )
-                )}
+                {headerNavigation.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={getLocalizedPath(locale, item.href)}
+                    className="text-sm font-medium text-body-secondary transition-colors hover:text-brand-primary"
+                  >
+                    {item.label[locale]}
+                  </Link>
+                ))}
+                <ContactMenu label={locale === "es" ? "Contacto" : locale === "pt" ? "Contato" : "Contact"} locale={locale} quoteLabel={copy.quote} />
               </nav>
               <div className="mt-6 grid w-full grid-cols-[auto_1fr_auto] items-center">
                 <a

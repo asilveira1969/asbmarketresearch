@@ -144,9 +144,9 @@ export const workstationHomeContent: Record<Locale, WorkstationHomeContent> = {
   },
   en: {
     eyebrow: "Agentic Market Intelligence System",
-    title: "Workstation",
+    title: "Agentic Research Workstation",
     description:
-      "ASB Market Research helps organizations build structured market intelligence capability through AI-powered research workflows, specialized agents, connected data sources, and business-oriented reporting systems.",
+      "ASB Market Research supports organizations in building structured market intelligence capabilities through AI-powered research workflows, specialized agents, connected data sources, and business-oriented reporting systems.",
     heroDetail:
       "The workstation was designed for companies that need more than conversation-based AI tools.",
     heroParagraphs: [
@@ -198,7 +198,7 @@ export const workstationHomeContent: Record<Locale, WorkstationHomeContent> = {
       "A company can begin with a single deliverable and evolve into a continuous workflow that preserves knowledge, improves speed, and reduces improvisation in market decisions.",
     methodologyTitle: "How the Workstation works",
     methodologyBody:
-      "Implementation keeps ASB's consulting style: define the decision, map sources and context, design workflows, and produce intelligence that is useful for action.",
+      "Define the decision, map sources and context, design workflows, and produce intelligence that is useful for action.",
     methodologySteps: [
       {
         title: "Define intelligence questions",
@@ -232,18 +232,19 @@ export const workstationHomeContent: Record<Locale, WorkstationHomeContent> = {
       "A sober approach for expansion, competition, and investment decisions",
     ],
     founderCta: "View full profile",
-    newsletterTitle: "Professional market intelligence follow-up",
+    newsletterTitle: "Market Intelligence Newsletter",
     newsletterBody:
-      "The newsletter can become an editorial channel for sharing new insights, reports, frameworks, and examples of applied market intelligence.",
+      "Receive occasional updates with market insights, research notes, reports, and selected examples from our intelligence workflows.",
     newsletterPoints: [
-      "Notes on competitive intelligence and expansion",
-      "New reports, examples, and downloadable material",
-      "Ideas on AI, research workflows, and emerging markets",
+      "Market intelligence updates",
+      "Research reports and examples",
+      "AI and workflow insights",
+      "Emerging markets and industry notes",
     ],
     newsletterCta: "Subscribe to Newsletter",
     finalCtaTitle: "If your organization needs better market decisions, the next step is to design the workflow.",
     finalCtaBody:
-      "ASB Market Research can help turn recurring questions into a structured market intelligence capability, from a first report to a customized agentic workstation.",
+      "ASB Market Research supports organizations in transforming recurring business questions into structured market intelligence systems - from focused research reports to customized agentic workstations.",
   },
   pt: {
     eyebrow: "Sistema Agentic de Inteligencia de Mercado",

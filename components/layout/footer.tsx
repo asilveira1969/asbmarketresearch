@@ -1,13 +1,19 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import type { Locale } from "@/config/locales";
-import { footerNavigation, mainNavigation } from "@/config/navigation";
+import { footerNavigation, footerPrimaryNavigation } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
 import { getLocalizedPath } from "@/lib/routes";
 
 type FooterProps = { locale: Locale };
 
 export function Footer({ locale }: FooterProps) {
+  const pathname = usePathname().replace(/\/$/, "");
+  const servicesPath = getLocalizedPath(locale, "/services").replace(/\/$/, "");
+  const isServicesPage = pathname === servicesPath;
   const copy = {
     es: {
       navigation: "Navegación",
@@ -26,7 +32,7 @@ export function Footer({ locale }: FooterProps) {
   }[locale];
 
   return (
-    <footer className="border-t border-line bg-canvas">
+    <footer className={`border-t border-line ${isServicesPage ? "bg-surface" : "bg-canvas"}`}>
       <div className="mx-auto grid w-full max-w-6xl gap-10 px-6 py-14 md:grid-cols-[1.5fr_1fr_1fr] md:px-8">
         <div className="max-w-xl">
           <Link href={getLocalizedPath(locale)} className="-ml-4 inline-block md:-ml-5">
@@ -43,7 +49,7 @@ export function Footer({ locale }: FooterProps) {
         <div>
           <p className="eyebrow">{copy.navigation}</p>
           <div className="mt-4 flex flex-col gap-3">
-            {mainNavigation.map((item) => (
+            {footerPrimaryNavigation.map((item) => (
               <Link key={item.href} href={getLocalizedPath(locale, item.href)} className="text-sm text-body-secondary transition-colors hover:text-brand-primary">{item.label[locale]}</Link>
             ))}
           </div>
@@ -62,5 +68,3 @@ export function Footer({ locale }: FooterProps) {
     </footer>
   );
 }
-
-

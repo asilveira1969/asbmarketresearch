@@ -1,11 +1,12 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { PdfDownloadCard } from "@/components/cards/pdf-download-card";
-import { PageHeader } from "@/components/ui/page-header";
 import { Section } from "@/components/ui/section";
 import { buildPageMetadata } from "@/lib/metadata";
 import { resolveLocale } from "@/lib/i18n";
+import { getLocalizedPath } from "@/lib/routes";
 import { serviceDetails } from "@/content/services";
 
 export function generateStaticParams() { return serviceDetails.map((service) => ({ slug: service.slug })); }
@@ -134,10 +135,16 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   return (
     <>
       <Section className="bg-canvas !py-3 md:!py-3"><Breadcrumbs locale={locale} items={[{ label: labels.services, href: "/services" }, { label: content.title }]} /></Section>
-      <PageHeader title={content.title} description="" />
-      <Section className="bg-surface">
+      <Section className="border-b border-line bg-canvas py-16 md:py-24">
+        <div className="max-w-3xl">
+          <p className="eyebrow">{labels.services}</p>
+          <h1 className="mt-1 text-display-sm text-brand-primary">{content.title}</h1>
+          <p className="mt-2 text-base leading-7 text-body-secondary md:text-lg md:leading-8">{service.locales[locale].summary}</p>
+        </div>
+      </Section>
+      <Section className="bg-surface py-16 md:py-24">
         {sampleReportPlaceholder ? (
-          <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+          <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
             <div><PdfDownloadCard title={sampleReportPlaceholder.title} description={sampleReportPlaceholder.description} label={sampleReportPlaceholder.label} /></div>
             <div className="grid gap-6">
               <div className="grid gap-5">{bodyParagraphs.map((paragraph) => <p key={paragraph} className="max-w-[42rem] text-[1.05rem] leading-[1.65] text-body-secondary">{paragraph}</p>)}</div>
@@ -155,22 +162,35 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 className="h-full min-h-80 w-full object-contain"
               />
             </div>
-            <div className="grid gap-10 text-left lg:grid-cols-[1fr_0.85fr] lg:items-start">
-              <div className="max-w-3xl">
-              <p className="eyebrow">{agenticWorkflow.eyebrow}</p>
-              <h2 className="mt-3 text-display-xs text-brand-primary">{agenticWorkflow.title}</h2>
-              {agenticWorkflow.body.map((paragraph) => (
-                <p key={paragraph} className="mt-5 text-[1.05rem] leading-[1.65] text-body-secondary">{paragraph}</p>
-              ))}
-              </div>
-              <div className="overflow-hidden rounded-[1.75rem] border border-line bg-canvas shadow-soft lg:mt-[6.75rem]">
-                <Image
-                  src="/media/agentic-workflow-programmer.png"
-                  alt="Technical consultant configuring a market intelligence workstation"
-                  width={1200}
-                  height={900}
-                  className="aspect-[4/5] w-full object-cover"
-                />
+            <div className="bg-canvas py-16 md:py-24">
+              <div className="grid gap-10 text-left lg:grid-cols-[1fr_0.85fr] lg:items-start">
+                <div className="max-w-3xl">
+                  <p className="eyebrow">{agenticWorkflow.eyebrow}</p>
+                  <h2 className="mt-3 text-display-xs text-brand-primary">{agenticWorkflow.title}</h2>
+                  {agenticWorkflow.body.map((paragraph) => (
+                    <p key={paragraph} className="mt-5 text-[1.05rem] leading-[1.65] text-body-secondary">
+                      {locale === "en" && paragraph.startsWith("Contact ASB Market Research") ? (
+                        <>
+                          <Link className="font-semibold text-brand-primary transition-colors hover:text-brand-secondary" href={getLocalizedPath(locale, "/contact")}>
+                            Contact
+                          </Link>{" "}
+                          ASB Market Research to request a quote and explore how this system can be installed and customized for your organization.
+                        </>
+                      ) : (
+                        paragraph
+                      )}
+                    </p>
+                  ))}
+                </div>
+                <div className="overflow-hidden rounded-[1.75rem] border border-line bg-canvas shadow-soft lg:mt-[6.75rem]">
+                  <Image
+                    src="/media/agentic-workflow-programmer.png"
+                    alt="Technical consultant configuring a market intelligence workstation"
+                    width={1200}
+                    height={900}
+                    className="aspect-[4/5] w-full object-cover"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -179,7 +199,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         )}
       </Section>
       {isAgenticSystem ? (
-        <Section className="bg-canvas">
+        <Section className="bg-surface py-16 md:py-24">
           <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div className="grid gap-6">
               <p className="eyebrow">{agenticPrimary.eyebrow}</p>
@@ -199,7 +219,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           </div>
         </Section>
       ) : null}
-      <Section className="bg-canvas"><PdfDownloadCard title={content.title} description={content.summary} href={service.brochureHref} label={labels.downloadPdf} /></Section>
+      <Section className="bg-canvas py-16 md:py-24"><PdfDownloadCard title={content.title} description={content.summary} href={service.brochureHref} label={labels.downloadPdf} /></Section>
     </>
   );
 }
