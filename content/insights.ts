@@ -46,8 +46,8 @@ export const insightArticles: InsightArticle[] = [
     categoryKey: "strategy",
     locales: {
       es: {
-        title: "Why Market Reports To Intelligence Systems Matters",
-        excerpt: "La IA y los sistemas agemticos hicieron posible que reportes e intelligence systems de mercado ya no sean un privilegio de multinacionales.",
+        title: "Por qué importan los reportes de mercado y los sistemas de inteligencia",
+        excerpt: "La IA y los sistemas agénticos hicieron posible que los reportes y sistemas de inteligencia de mercado ya no sean un privilegio de las multinacionales.",
         category: "Estrategia",
         body: [
           "ASB Market Research nacio a partir de una idea simple pero importante: la inteligencia de mercado ya no es un privilegio reservado a organizaciones multinacionales. Durante mucho tiempo, los reportes de investigacion y los sistemas de inteligencia continua fueron costosos, lentos y complejos de mantener, por lo que solo las empresas mas grandes podian acceder a ellos de forma sostenida.",
@@ -74,15 +74,15 @@ export const insightArticles: InsightArticle[] = [
         ],
       },
       pt: {
-        title: "Why Market Reports To Intelligence Systems Matters",
-        excerpt: "A IA e os sistemas agenticos tornaram relatórios e intelligence systems de mercado acessiveis para alem das multinacionais.",
-        category: "Estrategia",
+        title: "Por que relatórios de mercado e sistemas de inteligência importam",
+        excerpt: "A IA e os sistemas agênticos tornaram relatórios e sistemas de inteligência de mercado acessíveis para além das multinacionais.",
+        category: "Estratégia",
         body: [
           "A ASB Market Research nasceu a partir de uma ideia simples, mas importante: inteligencia de mercado ja nao e um privilegio reservado a organizacoes multinacionais. Durante muito tempo, relatorios de pesquisa e sistemas de inteligencia continua foram caros, lentos e dificeis de manter, o que fazia com que apenas as maiores empresas conseguissem acessa-los de forma consistente.",
-          "Isso esta mudando. A combinacao de inteligencia artificial e sistemas agenticos esta tornando possivel que capacidades antes concentradas em grandes estruturas corporativas passem a estar disponiveis para empresas de qualquer tamanho e de qualquer setor. Ja nao e necessario ser uma multinacional para trabalhar com relatorios de mercado, leitura competitiva e sistemas de inteligencia mais continuos e organizados.",
+          "Isso esta mudando. A combinacao de inteligencia artificial e sistemas agemticos esta tornando possivel que capacidades antes concentradas em grandes estruturas corporativas passem a estar disponiveis para empresas de qualquer tamanho e de qualquer setor. Ja nao e necessario ser uma multinacional para trabalhar com relatorios de mercado, leitura competitiva e sistemas de inteligencia mais continuos e organizados.",
           "A frase Market Reports To Intelligence Systems captura exatamente essa mudanca. A proposta nao e apenas produzir um relatorio pontual, mas evoluir para uma forma mais continua de ler o mercado. Um relatorio responde uma pergunta em um momento especifico. Um sistema de inteligencia organiza contexto, preserva aprendizados, detecta padroes e faz com que a proxima analise seja mais forte do que a anterior.",
           "Isso importa porque as decisoes de negocio raramente sao eventos isolados. Uma empresa pode precisar hoje de um relatorio de expansao, amanha de uma analise competitiva, depois de uma leitura de categoria e mais adiante de um briefing mais especifico. Se essas entregas vivem separadas, o conhecimento se perde. Se fazem parte de um sistema, cada nova pesquisa acumula valor.",
-          "Na pratica, a IA e os workflows agenticos reduzem friccao, aceleram a pesquisa e ajudam a estruturar melhor o trabalho. Mas seu valor real aparece quando sao combinados com contexto da empresa, criterios de analise e uma metodologia clara. Sem essa estrutura, o sistema produz volume. Com ela, produz inteligencia util para decidir.",
+          "Na pratica, a IA e os workflows agemticos reduzem friccao, aceleram a pesquisa e ajudam a estruturar melhor o trabalho. Mas seu valor real aparece quando sao combinados com contexto da empresa, criterios de analise e uma metodologia clara. Sem essa estrutura, o sistema produz volume. Com ela, produz inteligencia util para decidir.",
           "Por isso o projeto nao deve ser entendido apenas como uma fabrica de relatorios. Ele deve ser entendido como uma proposta para construir uma forma mais disciplinada de trabalhar com informacao, em que relatorios, briefs, workflows e analises recorrentes se conectam entre si.",
           "O que antes era limitado por custo, tempo e escala agora pode se tornar mais acessivel. Essa e uma das mudancas mais importantes do momento: a inteligencia de mercado profissional pode deixar de ser uma vantagem de poucos e passar a ser uma capacidade disponivel para muitas mais organizacoes.",
         ],
@@ -127,7 +127,7 @@ export const insightArticles: InsightArticle[] = [
       pt: {
         title: "Como Ler Um Mercado Novo Sem Perder Clareza",
         excerpt: "Ler um mercado novo nao consiste em acumular dados, mas em organizar sinais, comparar contextos e identificar o que realmente muda a decisao.",
-        category: "Estrategia",
+        category: "Estratégia",
         body: [
           "Ler um mercado novo e, antes de tudo, um exercicio de criterio. Muitas vezes o erro nao esta na falta de informacao, mas em tentar interpreta-la toda ao mesmo tempo. Um mercado pode parecer amplo, dinamico e cheio de dados, mas isso nao significa que ele ja esteja claro. A tarefa real e separar ruido de sinal e construir uma leitura que ajude a decidir.",
           "O primeiro passo e entender que tipo de decisao a analise precisa apoiar. Nao se le um mercado da mesma forma quando uma empresa avalia expansao, quando quer lancar uma nova categoria, quando analisa concorrencia ou quando busca entender precos e canais. A pergunta de negocio define o angulo da leitura. Sem essa pergunta, a analise se dispersa.",
@@ -199,7 +199,7 @@ export const insightArticles: InsightArticle[] = [
     categoryKey: "strategy",
     locales: {
       es: {
-        title: "Por QuÃ© El Contexto De La Empresa Es Clave En La Era De Los Agentes",
+        title: "Por qué el contexto de la empresa es clave en la era de los agentes",
         excerpt: "Los agentes pueden procesar informacion rapidamente, pero su valor real aparece cuando trabajan con contexto de empresa bien definido.",
         category: "Estrategia",
         body: [
@@ -227,9 +227,9 @@ export const insightArticles: InsightArticle[] = [
         ],
       },
       pt: {
-        title: "Por Que O Contexto Da Empresa E Fundamental Na Era Dos Agentes",
-        excerpt: "Agentes podem processar informacao rapidamente, mas seu valor real aparece quando trabalham com um contexto empresarial bem definido.",
-        category: "Estrategia",
+        title: "Por que o contexto da empresa é fundamental na era dos agentes",
+        excerpt: "Agentes podem processar informação rapidamente, mas seu valor real aparece quando trabalham com um contexto empresarial bem definido.",
+        category: "Estratégia",
         body: [
           "A chegada dos agentes esta mudando a forma como a inteligencia de mercado e produzida e organizada. O objetivo ja nao e apenas automatizar tarefas isoladas, mas construir sistemas capazes de pesquisar, comparar, sintetizar e priorizar informacoes com mais velocidade. Mas velocidade por si so nao garante qualidade. Em pesquisa e analise, o verdadeiro diferencial nao esta apenas em processar dados, e sim em interpreta-los dentro do contexto correto.",
           "Esse contexto inclui a realidade da empresa: seu modelo de negocio, mercado-alvo, nivel de maturidade, geografia prioritaria, categorias de interesse, concorrentes diretos e indiretos e o tipo de decisao que ela precisa tomar. Um agente que nao entende essa estrutura pode produzir resultados tecnicamente corretos, mas estrategicamente fracos. Ele pode detectar tendencias, resumir fontes e listar achados, mas nao necessariamente identificar o que realmente importa para aquela organizacao.",

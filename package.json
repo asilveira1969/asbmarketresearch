@@ -6,6 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "ensure:site": "powershell -ExecutionPolicy Bypass -File scripts/ensure-site.ps1",
+    "watch:site": "powershell -ExecutionPolicy Bypass -File scripts/site-watchdog.ps1",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "mcp:research": "node mcp/research-server.mjs",

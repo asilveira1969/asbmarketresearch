@@ -18,7 +18,7 @@ export function Footer({ locale }: FooterProps) {
     es: {
       navigation: "Navegación",
       description:
-        "ASB Market Research entrega inteligencia de mercado estructurada, soporte consultivo y research listo para decisiones ejecutivas, inversión y crecimiento.",
+        "ASB Market Research entrega inteligencia de mercado estructurada, soporte consultivo e investigación lista para decisiones ejecutivas, inversión y crecimiento.",
     },
     en: {
       navigation: "Navigation",
@@ -27,7 +27,7 @@ export function Footer({ locale }: FooterProps) {
     pt: {
       navigation: "Navegação",
       description:
-        "A ASB Market Research entrega inteligência de mercado estruturada, suporte consultivo e pesquisas prontas para decisões executivas, investimento e crescimento.",
+        "A ASB Market Research entrega inteligência de mercado estruturada, suporte consultivo e pesquisa pronta para decisões executivas, investimento e crescimento.",
     },
   }[locale];
 
@@ -50,7 +50,9 @@ export function Footer({ locale }: FooterProps) {
           <p className="eyebrow">{copy.navigation}</p>
           <div className="mt-4 flex flex-col gap-3">
             {footerPrimaryNavigation.map((item) => (
-              <Link key={item.href} href={getLocalizedPath(locale, item.href)} className="text-sm text-body-secondary transition-colors hover:text-brand-primary">{item.label[locale]}</Link>
+              <Link key={item.href} href={getLocalizedPath(locale, item.href)} className="text-sm text-body-secondary transition-colors hover:text-brand-primary">
+                {item.label[locale]}
+              </Link>
             ))}
           </div>
         </div>
@@ -58,10 +60,16 @@ export function Footer({ locale }: FooterProps) {
           <p className="eyebrow">Legal</p>
           <div className="mt-4 flex flex-col gap-3">
             {footerNavigation.map((item) => (
-              <Link key={item.href} href={getLocalizedPath(locale, item.href)} className="text-sm text-body-secondary transition-colors hover:text-brand-primary">{item.label[locale]}</Link>
+              <Link key={item.href} href={getLocalizedPath(locale, item.href)} className="text-sm text-body-secondary transition-colors hover:text-brand-primary">
+                {item.label[locale]}
+              </Link>
             ))}
-            <a href={siteConfig.linkedinUrl} target="_blank" rel="noreferrer" className="text-sm text-body-secondary transition-colors hover:text-brand-primary">LinkedIn</a>
-            <a href={`mailto:${siteConfig.email}`} className="text-sm text-body-secondary transition-colors hover:text-brand-primary">{siteConfig.email}</a>
+            <a href={siteConfig.linkedinUrl} target="_blank" rel="noreferrer" className="text-sm text-body-secondary transition-colors hover:text-brand-primary">
+              LinkedIn
+            </a>
+            <a href={`mailto:${siteConfig.email}`} className="text-sm text-body-secondary transition-colors hover:text-brand-primary">
+              {siteConfig.email}
+            </a>
           </div>
         </div>
       </div>

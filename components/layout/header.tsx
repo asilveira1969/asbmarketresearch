@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/config/locales";
 import { headerNavigation } from "@/config/navigation";
@@ -11,8 +11,8 @@ export function Header({ locale }: { locale: Locale }) {
   const copy = {
     es: {
       quote: "Solicita Cotización Gratis",
-      agentic: "Sistema Agentic de Inteligencia de Mercado",
-      badge: "Nuevo!",
+      agentic: "Sistema Agéntico de Inteligencia de Mercado",
+      badge: "Nuevo",
     },
     en: {
       quote: "Request Proposal",
@@ -21,8 +21,8 @@ export function Header({ locale }: { locale: Locale }) {
     },
     pt: {
       quote: "Solicite Cotação Grátis",
-      agentic: "Sistema Agentic de Inteligência de Mercado",
-      badge: "Novo!",
+      agentic: "Sistema Agêntico de Inteligência de Mercado",
+      badge: "Novo",
     },
   }[locale];
 
@@ -42,21 +42,24 @@ export function Header({ locale }: { locale: Locale }) {
               />
             </Link>
             <div className="hidden lg:flex lg:flex-1 lg:flex-col">
-              <nav className="flex items-center gap-4">
-                {headerNavigation.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={getLocalizedPath(locale, item.href)}
-                    className="text-sm font-medium text-body-secondary transition-colors hover:text-brand-primary"
-                  >
-                    {item.label[locale]}
-                  </Link>
-                ))}
-                <ContactMenu label={locale === "es" ? "Contacto" : locale === "pt" ? "Contato" : "Contact"} locale={locale} quoteLabel={copy.quote} />
-              </nav>
-              <div className="mt-6 grid w-full grid-cols-[auto_1fr_auto] items-center">
+              <div className="flex items-center gap-6">
+                <nav className="flex items-center gap-4">
+                  {headerNavigation.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={getLocalizedPath(locale, item.href)}
+                      className="text-sm font-medium text-body-secondary transition-colors hover:text-brand-primary"
+                    >
+                      {item.label[locale]}
+                    </Link>
+                  ))}
+                  <ContactMenu label={locale === "es" ? "Contacto" : locale === "pt" ? "Contato" : "Contact"} locale={locale} quoteLabel={copy.quote} />
+                </nav>
+                <LanguageSwitcher locale={locale} />
+              </div>
+              <div className="mt-6 flex w-full justify-center">
                 <a
-                  className="inline-flex items-center gap-1.5 justify-self-start"
+                  className="inline-flex items-center gap-1.5"
                   href={getLocalizedPath(locale, "/services/agentic-market-intelligence-system")}
                   target="_blank"
                   rel="noreferrer"
@@ -68,8 +71,6 @@ export function Header({ locale }: { locale: Locale }) {
                     {copy.badge}
                   </span>
                 </a>
-                <div />
-                <LanguageSwitcher locale={locale} />
               </div>
             </div>
           </div>
@@ -81,3 +82,4 @@ export function Header({ locale }: { locale: Locale }) {
     </header>
   );
 }
+

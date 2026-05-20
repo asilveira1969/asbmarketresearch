@@ -7,9 +7,57 @@ import { reportBudgetOptions, reportDepthOptions, reportTimelineOptions } from "
 
 type ReportRequestFormProps = { locale: Locale };
 const labels = {
-  es: { title: "Cotización", fullName: "Nombre completo", company: "Empresa", email: "Email", country: "País / mercado", industry: "Industria", objective: "Objetivo del reporte", competitors: "Competidores a analizar", depth: "Nivel de profundidad", timeline: "Plazo esperado", budget: "Presupuesto aproximado", notes: "Notas adicionales", submit: "Enviar solicitud", sending: "Enviando...", error: "Hubo un problema al enviar el formulario." },
-  en: { title: "Request for Custom Research Proposal", fullName: "Full name", company: "Company", email: "Email", country: "Country / market", industry: "Industry", objective: "Report objective", competitors: "Competitors to analyze", depth: "Desired depth", timeline: "Expected timeline", budget: "Approximate budget", notes: "Additional notes", submit: "Submit request", sending: "Submitting...", error: "There was a problem submitting the form." },
-  pt: { title: "Cotação", fullName: "Nome completo", company: "Empresa", email: "Email", country: "País / mercado", industry: "Indústria", objective: "Objetivo do relatório", competitors: "Concorrentes a analisar", depth: "Profundidade desejada", timeline: "Prazo esperado", budget: "Orçamento aproximado", notes: "Notas adicionais", submit: "Enviar solicitação", sending: "Enviando...", error: "Houve um problema ao enviar o formulário." },
+  es: {
+    title: "Cotización",
+    fullName: "Nombre completo",
+    company: "Empresa",
+    email: "Email",
+    country: "País / mercado",
+    industry: "Industria",
+    objective: "Objetivo del reporte",
+    competitors: "Competidores a analizar",
+    depth: "Nivel de profundidad",
+    timeline: "Plazo esperado",
+    budget: "Presupuesto aproximado",
+    notes: "Notas adicionales",
+    submit: "Enviar solicitud",
+    sending: "Enviando...",
+    error: "Hubo un problema al enviar el formulario.",
+  },
+  en: {
+    title: "Request for Custom Research Proposal",
+    fullName: "Full name",
+    company: "Company",
+    email: "Email",
+    country: "Country / market",
+    industry: "Industry",
+    objective: "Report objective",
+    competitors: "Competitors to analyze",
+    depth: "Desired depth",
+    timeline: "Expected timeline",
+    budget: "Approximate budget",
+    notes: "Additional notes",
+    submit: "Submit request",
+    sending: "Submitting...",
+    error: "There was a problem submitting the form.",
+  },
+  pt: {
+    title: "Cotação",
+    fullName: "Nome completo",
+    company: "Empresa",
+    email: "Email",
+    country: "País / mercado",
+    industry: "Indústria",
+    objective: "Objetivo do relatório",
+    competitors: "Concorrentes a analisar",
+    depth: "Profundidade desejada",
+    timeline: "Prazo esperado",
+    budget: "Orçamento aproximado",
+    notes: "Notas adicionais",
+    submit: "Enviar solicitação",
+    sending: "Enviando...",
+    error: "Houve um problema ao enviar o formulário.",
+  },
 } as const;
 
 export function ReportRequestForm({ locale }: ReportRequestFormProps) {
@@ -19,11 +67,19 @@ export function ReportRequestForm({ locale }: ReportRequestFormProps) {
   const copy = labels[locale];
 
   async function onSubmit(formData: FormData) {
-    setIsSubmitting(true); setError("");
+    setIsSubmitting(true);
+    setError("");
     const payload = Object.fromEntries(formData.entries());
-    const response = await fetch("/api/forms", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ formType: "report-request", locale, payload }) });
+    const response = await fetch("/api/forms", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ formType: "report-request", locale, payload }),
+    });
     setIsSubmitting(false);
-    if (!response.ok) { setError(copy.error); return; }
+    if (!response.ok) {
+      setError(copy.error);
+      return;
+    }
     router.push(`/${locale}/thank-you/report-request`);
   }
 

@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import Link from "next/link";
 import { NewsletterForm } from "@/components/forms/newsletter-form";
 import { CTABlock } from "@/components/ui/cta-block";
@@ -52,9 +52,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       </Section>
       <Section className="border-b border-line bg-surface py-16 md:py-24">
         <div className="mb-10 max-w-4xl">
-          <p className="eyebrow">New Service</p>
+          <p className="eyebrow">{locale === "es" ? "Nuevo servicio" : locale === "pt" ? "Novo serviço" : "New service"}</p>
           <h1 className="mt-3 text-display-xs text-brand-primary">
-            Workstation for the Agentic Market Intelligence System
+            {locale === "es" ? "Workstation para el Sistema Agéntico de Inteligencia de Mercado" : locale === "pt" ? "Workstation para o Sistema Agêntico de Inteligência de Mercado" : "Workstation for the Agentic Market Intelligence System"}
           </h1>
         </div>
         <div className="overflow-hidden rounded-[1.75rem] border border-line bg-canvas shadow-soft">
@@ -112,3 +112,4 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     </>
   );
 }
+

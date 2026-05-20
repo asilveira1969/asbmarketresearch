@@ -22,11 +22,11 @@ export const serviceDetails: ServiceDetail[] = [
     brochureHref: "/pdfs/services/industry-product-reports.pdf",
     locales: {
       es: {
-        title: "Reportes de Industria y Producto",
-        summary: "Inteligencia de mercado lista para usar sobre una industria, categoria de producto, pais u oportunidad especifica.",
+        title: "Reportes de industria y producto",
+        summary: "Inteligencia de mercado lista para usar sobre una industria, categoría de producto, país u oportunidad específica.",
         body: [
-          "Preparamos reportes profesionales que ayudan a comprender rapidamente una industria, categoria de producto, geografia u oportunidad comercial concreta.",
-          "Este servicio es ideal para clientes que necesitan un entregable claro y ejecutivo sin iniciar todavia un proceso consultivo profundo.",
+          "Preparamos reportes profesionales que ayudan a comprender rápidamente una industria, categoría de producto, geografía u oportunidad comercial concreta.",
+          "Este servicio es ideal para clientes que necesitan un entregable claro y ejecutivo sin iniciar todavía un proceso consultivo profundo.",
         ],
         deliverables: ["Reporte PDF", "Resumen ejecutivo", "Hallazgos clave", "Fuentes y anexos"],
       },
@@ -40,7 +40,7 @@ export const serviceDetails: ServiceDetail[] = [
         deliverables: ["PDF report", "Executive summary", "Key findings", "Sources and appendices"],
       },
       pt: {
-        title: "Relatórios de Indústria e Produto",
+        title: "Relatórios de indústria e produto",
         summary: "Inteligência de mercado pronta para uso sobre uma indústria, categoria de produto, país ou oportunidade específica.",
         body: [
           "Preparamos relatórios profissionais que ajudam empresas a compreender rapidamente uma indústria, categoria de produto, geografia ou oportunidade comercial concreta.",
@@ -56,13 +56,13 @@ export const serviceDetails: ServiceDetail[] = [
     brochureHref: "/pdfs/services/custom-research-studies.pdf",
     locales: {
       es: {
-        title: "Estudios de Research a Medida",
-        summary: "Investigacion a medida para una pregunta de negocio, decision de mercado, tema competitivo u oportunidad de crecimiento.",
+        title: "Estudios de investigación a medida",
+        summary: "Investigación a medida para una pregunta de negocio, decisión de mercado, tema competitivo u oportunidad de crecimiento.",
         body: [
-          "Disenamos estudios puntuales alrededor de una pregunta concreta del cliente, con alcance, fuentes y profundidad definidos segun la decision que se necesita apoyar.",
-          "Cada estudio transforma informacion dispersa en una lectura estructurada con implicancias, riesgos y recomendaciones practicas.",
+          "Diseñamos estudios puntuales alrededor de una pregunta concreta del cliente, con alcance, fuentes y profundidad definidos según la decisión que se necesita apoyar.",
+          "Cada estudio transforma información dispersa en una lectura estructurada con implicancias, riesgos y recomendaciones prácticas.",
         ],
-        deliverables: ["Brief de investigacion", "Analisis estructurado", "Mapa competitivo o de oportunidad", "Recomendaciones estrategicas"],
+        deliverables: ["Brief de investigación", "Análisis estructurado", "Mapa competitivo o de oportunidad", "Recomendaciones estratégicas"],
       },
       en: {
         title: "Custom Research Studies",
@@ -74,13 +74,13 @@ export const serviceDetails: ServiceDetail[] = [
         deliverables: ["Research brief", "Structured analysis", "Competitive or opportunity map", "Strategic recommendations"],
       },
       pt: {
-        title: "Estudos de Pesquisa sob Medida",
-        summary: "Pesquisa sob medida para uma pergunta de negocio, decisao de mercado, tema competitivo ou oportunidade de crescimento.",
+        title: "Estudos de pesquisa sob medida",
+        summary: "Pesquisa sob medida para uma pergunta de negócio, decisão de mercado, tema competitivo ou oportunidade de crescimento.",
         body: [
-          "Desenhamos estudos pontuais em torno de uma pergunta concreta do cliente, com escopo, fontes e profundidade definidos pela decisao que precisa de apoio.",
-          "Cada estudo transforma informacao dispersa em uma leitura estruturada com implicacoes, riscos e recomendacoes praticas.",
+          "Desenhamos estudos pontuais em torno de uma pergunta concreta do cliente, com escopo, fontes e profundidade definidos pela decisão que precisa de apoio.",
+          "Cada estudo transforma informação dispersa em uma leitura estruturada com implicações, riscos e recomendações práticas.",
         ],
-        deliverables: ["Brief de pesquisa", "Analise estruturada", "Mapa competitivo ou de oportunidade", "Recomendacoes estrategicas"],
+        deliverables: ["Brief de pesquisa", "Análise estruturada", "Mapa competitivo ou de oportunidade", "Recomendações estratégicas"],
       },
     },
   },
@@ -90,13 +90,13 @@ export const serviceDetails: ServiceDetail[] = [
     brochureHref: "/pdfs/services/monthly-market-briefings.pdf",
     locales: {
       es: {
-        title: "Briefings Mensuales de Mercado",
-        summary: "Actualizaciones recurrentes de inteligencia de mercado para seguir mercados, competidores, tendencias y senales estrategicas.",
+        title: "Briefings mensuales de mercado",
+        summary: "Actualizaciones recurrentes de inteligencia de mercado para seguir mercados, competidores, tendencias y señales estratégicas.",
         body: [
-          "Entregamos briefings mensuales para empresas que necesitan monitorear cambios de mercado, movimientos competitivos, tendencias emergentes y senales relevantes para la estrategia.",
-          "El objetivo es convertir la investigacion en un habito de seguimiento ejecutivo, no en un documento aislado.",
+          "Entregamos briefings mensuales para empresas que necesitan monitorear cambios de mercado, movimientos competitivos, tendencias emergentes y señales relevantes para la estrategia.",
+          "El objetivo es convertir la investigación en un hábito de seguimiento ejecutivo, no en un documento aislado.",
         ],
-        deliverables: ["Briefing mensual", "Actualizacion competitiva", "Senales de mercado", "Implicancias y proximos pasos"],
+        deliverables: ["Briefing mensual", "Actualización competitiva", "Señales de mercado", "Implicancias y próximos pasos"],
       },
       en: {
         title: "Monthly Market Briefings",
@@ -108,13 +108,13 @@ export const serviceDetails: ServiceDetail[] = [
         deliverables: ["Monthly briefing", "Competitor update", "Market signals", "Implications and next steps"],
       },
       pt: {
-        title: "Briefings Mensais de Mercado",
-        summary: "Atualizacoes recorrentes de inteligencia de mercado para acompanhar mercados, concorrentes, tendencias e sinais estrategicos.",
+        title: "Briefings mensais de mercado",
+        summary: "Atualizações recorrentes de inteligência de mercado para acompanhar mercados, concorrentes, tendências e sinais estratégicos.",
         body: [
-          "Entregamos briefings mensais para empresas que precisam monitorar mudancas de mercado, movimentos competitivos, tendencias emergentes e sinais relevantes para a estrategia.",
-          "O objetivo e transformar pesquisa em um habito recorrente de inteligencia executiva, nao em um documento isolado.",
+          "Entregamos briefings mensais para empresas que precisam monitorar mudanças de mercado, movimentos competitivos, tendências emergentes e sinais relevantes para a estratégia.",
+          "O objetivo é transformar a pesquisa em um hábito recorrente de inteligência executiva, não em um documento isolado.",
         ],
-        deliverables: ["Briefing mensal", "Atualizacao competitiva", "Sinais de mercado", "Implicacoes e proximos passos"],
+        deliverables: ["Briefing mensal", "Atualização competitiva", "Sinais de mercado", "Implicações e próximos passos"],
       },
     },
   },
@@ -124,13 +124,13 @@ export const serviceDetails: ServiceDetail[] = [
     brochureHref: "/pdfs/services/agentic-market-intelligence-system.pdf",
     locales: {
       es: {
-        title: "Sistema Agentic de Inteligencia de Mercado",
+        title: "Sistema Agéntico de Inteligencia de Mercado",
         summary: "Market Research Workstation para construir capacidad recurrente de inteligencia de mercado sin depender de un departamento interno completo.",
         body: [
-          "Implementamos o configuramos un workstation agent-powered para que la organizacion pueda generar, organizar, actualizar y reutilizar inteligencia de mercado de forma continua.",
-          "Este servicio esta pensado para empresas, camaras, asociaciones, equipos comerciales y consultores con necesidades recurrentes de research que quieren convertir preguntas de negocio en workflows y outputs estructurados.",
+          "Implementamos o configuramos un workstation impulsado por agentes para que la organización pueda generar, organizar, actualizar y reutilizar inteligencia de mercado de forma continua.",
+          "Este servicio está pensado para empresas, cámaras, asociaciones, equipos comerciales y consultores con necesidades recurrentes de investigación que quieren convertir preguntas de negocio en flujos de trabajo y entregables estructurados.",
         ],
-        deliverables: ["Market Research Workstation", "Workflow de inteligencia de mercado", "Configuracion de contexto de empresa", "Briefs, reportes y outputs reutilizables"],
+        deliverables: ["Market Research Workstation", "Flujo de trabajo de inteligencia de mercado", "Configuración de contexto de empresa", "Briefs, reportes y outputs reutilizables"],
       },
       en: {
         title: "Agentic Market Intelligence System",
@@ -142,13 +142,13 @@ export const serviceDetails: ServiceDetail[] = [
         deliverables: ["Market Research Workstation", "Market intelligence workflow", "Company context configuration", "Reusable briefs, reports, and outputs"],
       },
       pt: {
-        title: "Sistema Agentic de Inteligência de Mercado",
-        summary: "Market Research Workstation para construir capacidade recorrente de inteligencia de mercado sem depender de um departamento interno completo.",
+        title: "Sistema Agêntico de Inteligência de Mercado",
+        summary: "Market Research Workstation para construir capacidade recorrente de inteligência de mercado sem depender de um departamento interno completo.",
         body: [
-          "Implementamos ou configuramos um workstation agent-powered para que a organizacao possa gerar, organizar, atualizar e reutilizar inteligencia de mercado continuamente.",
-          "Este servico e indicado para empresas, camaras, associacoes, equipes comerciais e consultores com necessidades recorrentes de research que querem transformar perguntas de negocio em workflows repetiveis e outputs estruturados.",
+          "Implementamos ou configuramos um workstation com agentes para que a organização possa gerar, organizar, atualizar e reutilizar inteligência de mercado continuamente.",
+          "Este serviço é indicado para empresas, câmaras, associações, equipes comerciais e consultores com necessidades recorrentes de pesquisa que querem transformar perguntas de negócio em fluxos de trabalho repetíveis e entregáveis estruturados.",
         ],
-        deliverables: ["Market Research Workstation", "Workflow de inteligencia de mercado", "Configuracao de contexto da empresa", "Briefs, relatorios e outputs reutilizaveis"],
+        deliverables: ["Market Research Workstation", "Fluxo de trabalho de inteligência de mercado", "Configuração de contexto da empresa", "Briefs, relatórios e entregáveis reutilizáveis"],
       },
     },
   },

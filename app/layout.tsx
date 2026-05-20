@@ -1,16 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { cookies } from "next/headers";
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { defaultLocale, isLocale } from "@/config/locales";
 import { siteConfig } from "@/config/site";
 import "../styles/globals.css";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
@@ -32,7 +25,7 @@ export default async function RootLayout({
   const locale = isLocale(localeCookie) ? localeCookie : defaultLocale;
 
   return (
-    <html lang={locale} className={`${inter.variable} h-full`}>
+    <html lang={locale} className="h-full">
       <body className="min-h-full bg-canvas text-ink antialiased">
         <GoogleAnalytics />
         {children}

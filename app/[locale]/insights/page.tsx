@@ -45,7 +45,11 @@ export default async function InsightsPage({
 
   return (
     <>
-      <PageHeader title={page.title} description={page.description} eyebrow={locale === "es" ? "Editorial" : locale === "pt" ? "Editorial" : "Editorial"} />
+      <PageHeader
+        title={page.title}
+        description={page.description}
+        eyebrow={locale === "es" ? "Contenido editorial" : locale === "pt" ? "Conteúdo editorial" : "Editorial"}
+      />
       <Section className="bg-surface">
         <div className="mx-auto max-w-4xl">
           <div className="flex flex-wrap gap-3">
@@ -53,7 +57,7 @@ export default async function InsightsPage({
               className={`button-secondary ${selectedCategory === "all" ? "border-brand-primary bg-brand-primary text-white hover:bg-brand-secondary" : ""}`}
               href={getLocalizedPath(locale, "/insights")}
             >
-              {locale === "es" ? "Todo" : locale === "pt" ? "Tudo" : "All"}
+              {locale === "es" ? "Todos" : locale === "pt" ? "Todos" : "All"}
             </Link>
             {categoryOrder.map((category) => {
               const href = getLocalizedPath(locale, `/insights?category=${category}`);
@@ -104,9 +108,9 @@ export default async function InsightsPage({
         ) : (
           <p className="max-w-2xl text-lg leading-8 text-body-secondary">
             {locale === "es"
-              ? "No hay articulos para esta categoria."
+              ? "No hay artículos para esta categoría."
               : locale === "pt"
-                ? "Nao ha artigos para esta categoria."
+                ? "Não há artigos para esta categoria."
                 : "There are no articles in this category."}
           </p>
         )}

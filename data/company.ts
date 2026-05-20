@@ -1,4 +1,4 @@
-﻿import type { Locale } from "@/config/locales";
+import type { Locale } from "@/config/locales";
 import { siteConfig } from "@/config/site";
 
 export const founderProfile = {
@@ -16,19 +16,19 @@ export const founderProfile = {
     pt: "Os pesquisadores de mercado são os olhos e os ouvidos das empresas. Identificamos e tornamos visíveis as oportunidades e as ameaças. A partir do contexto do cliente e da coleta de informações, elaboramos relatórios que articulam achados-chave, permitindo ao cliente traçar seu próprio plano de ação com base em evidência.",
   } satisfies Record<Locale, string>,
   credentialsHeading: {
-    es: "Academic & Professional Background",
+    es: "Formación académica y profesional",
     en: "Academic & Professional Background",
-    pt: "Academic & Professional Background",
+    pt: "Formação acadêmica e profissional",
   } satisfies Record<Locale, string>,
   educationLabel: {
-    es: "Business Education",
+    es: "Formación empresarial",
     en: "Business Education",
-    pt: "Business Education",
+    pt: "Formação empresarial",
   } satisfies Record<Locale, string>,
   experienceLabel: {
-    es: "Market Research Experience",
+    es: "Experiencia en investigación de mercado",
     en: "Market Research Experience",
-    pt: "Market Research Experience",
+    pt: "Experiência em pesquisa de mercado",
   } satisfies Record<Locale, string>,
   education: [
     {
@@ -51,4 +51,3 @@ export const founderProfile = {
     },
   ],
 };
-

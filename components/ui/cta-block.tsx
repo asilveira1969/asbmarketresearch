@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import type { Locale } from "@/config/locales";
 import { getLocalizedPath } from "@/lib/routes";
 import { Section } from "@/components/ui/section";
@@ -6,9 +6,9 @@ import { Section } from "@/components/ui/section";
 type CTABlockProps = { locale: Locale; title: string; body: string };
 
 export function CTABlock({ locale, title, body }: CTABlockProps) {
-  const eyebrow = locale === "es" ? "Siguiente paso" : locale === "pt" ? "Proximo passo" : "Next step";
-  const contact = locale === "es" ? "Solicitar consultoria" : locale === "pt" ? "Solicitar consultoria" : "Request Consultation";
-  const services = locale === "es" ? "Ver Workstation" : locale === "pt" ? "Ver Workstation" : "Explore Workstation";
+  const eyebrow = locale === "es" ? "Siguiente paso" : locale === "pt" ? "Próximo passo" : "Next step";
+  const contact = locale === "es" ? "Solicitar consultoría" : locale === "pt" ? "Solicitar consultoria" : "Request consultation";
+  const services = locale === "es" ? "Ver sistema" : locale === "pt" ? "Ver sistema" : "Explore workstation";
 
   return (
     <Section className="bg-brand-primary text-white">
@@ -19,8 +19,12 @@ export function CTABlock({ locale, title, body }: CTABlockProps) {
           <p className="mt-4 text-base leading-8 text-white/80">{body}</p>
         </div>
         <div className="flex flex-wrap gap-4">
-          <Link className="button-primary bg-white text-brand-primary hover:bg-white/90" href={getLocalizedPath(locale, "/quotation")}>{contact}</Link>
-          <Link className="button-secondary border-white/25 text-white hover:bg-white/8" href={getLocalizedPath(locale, "/services/agentic-market-intelligence-system")}>{services}</Link>
+          <Link className="button-primary bg-white text-brand-primary hover:bg-white/90" href={getLocalizedPath(locale, "/quotation")}>
+            {contact}
+          </Link>
+          <Link className="button-secondary border-white/25 text-white hover:bg-white/8" href={getLocalizedPath(locale, "/services/agentic-market-intelligence-system")}>
+            {services}
+          </Link>
         </div>
       </div>
     </Section>

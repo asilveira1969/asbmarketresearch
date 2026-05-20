@@ -71,7 +71,7 @@ export default async function InsightDetailPage({ params }: { params: Promise<{ 
         <div className="mx-auto mb-10 max-w-3xl">
           <p className="eyebrow">{locale === "es" ? "Lecturas relacionadas" : locale === "pt" ? "Leituras relacionadas" : "Related reading"}</p>
           <h2 className="mt-3 text-display-sm text-brand-primary">
-            {locale === "es" ? "Mas insights editoriales" : locale === "pt" ? "Mais insights editoriais" : "More editorial insights"}
+            {locale === "es" ? "Más contenidos editoriales" : locale === "pt" ? "Mais conteúdos editoriais" : "More editorial insights"}
           </h2>
         </div>
         <div className="grid gap-6 md:grid-cols-2">
