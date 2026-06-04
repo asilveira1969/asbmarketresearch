@@ -6,9 +6,11 @@ import type { Locale } from "@/config/locales";
 import { reportBudgetOptions, reportDepthOptions, reportTimelineOptions } from "@/config/forms";
 
 type ReportRequestFormProps = { locale: Locale };
+
 const labels = {
   es: {
-    title: "Cotización",
+    title: "Solicita una cotización o contáctanos",
+    intro: "Llámanos o escríbenos por WhatsApp al +1 305 784 0514. Nos dará mucho gusto conversar sobre tus necesidades de investigación.",
     fullName: "Nombre completo",
     company: "Empresa",
     email: "Email",
@@ -25,7 +27,8 @@ const labels = {
     error: "Hubo un problema al enviar el formulario.",
   },
   en: {
-    title: "Request for Custom Research Proposal",
+    title: "Request a Quote",
+    intro: "Call or WhatsApp us at +1 305 784 0514. We would be pleased to discuss your research needs.",
     fullName: "Full name",
     company: "Company",
     email: "Email",
@@ -42,7 +45,8 @@ const labels = {
     error: "There was a problem submitting the form.",
   },
   pt: {
-    title: "Cotação",
+    title: "Solicite uma cotação ou fale conosco",
+    intro: "Ligue ou envie uma mensagem no WhatsApp para +1 305 784 0514. Teremos prazer em conversar sobre suas necessidades de pesquisa.",
     fullName: "Nome completo",
     company: "Empresa",
     email: "Email",
@@ -87,20 +91,82 @@ export function ReportRequestForm({ locale }: ReportRequestFormProps) {
     <form action={onSubmit} className="surface-card grid gap-5">
       <h2 className="text-2xl font-semibold text-brand-primary">{copy.title}</h2>
       <div className="grid gap-5 md:grid-cols-2">
-        <label className="grid gap-2"><span className="form-label">{copy.fullName}</span><input className="form-input" name="fullName" required /></label>
-        <label className="grid gap-2"><span className="form-label">{copy.company}</span><input className="form-input" name="company" required /></label>
-        <label className="grid gap-2"><span className="form-label">{copy.email}</span><input className="form-input" name="email" type="email" required /></label>
-        <label className="grid gap-2"><span className="form-label">{copy.country}</span><input className="form-input" name="country" required /></label>
-        <label className="grid gap-2"><span className="form-label">{copy.industry}</span><input className="form-input" name="industry" required /></label>
-        <label className="grid gap-2"><span className="form-label">{copy.depth}</span><select className="form-input" name="depth" required defaultValue=""><option value="" disabled>-</option>{reportDepthOptions[locale].map((option) => <option key={option} value={option}>{option}</option>)}</select></label>
-        <label className="grid gap-2 md:col-span-2"><span className="form-label">{copy.objective}</span><textarea className="form-textarea" name="objective" rows={4} required /></label>
-        <label className="grid gap-2 md:col-span-2"><span className="form-label">{copy.competitors}</span><textarea className="form-textarea" name="competitors" rows={3} /></label>
-        <label className="grid gap-2"><span className="form-label">{copy.timeline}</span><select className="form-input" name="timeline" required defaultValue=""><option value="" disabled>-</option>{reportTimelineOptions[locale].map((option) => <option key={option} value={option}>{option}</option>)}</select></label>
-        <label className="grid gap-2"><span className="form-label">{copy.budget}</span><select className="form-input" name="budget" required defaultValue=""><option value="" disabled>-</option>{reportBudgetOptions[locale].map((option) => <option key={option} value={option}>{option}</option>)}</select></label>
-        <label className="grid gap-2 md:col-span-2"><span className="form-label">{copy.notes}</span><textarea className="form-textarea" name="notes" rows={4} /></label>
+        <label className="grid gap-2">
+          <span className="form-label">{copy.fullName}</span>
+          <input className="form-input" name="fullName" required />
+        </label>
+        <label className="grid gap-2">
+          <span className="form-label">{copy.company}</span>
+          <input className="form-input" name="company" required />
+        </label>
+        <label className="grid gap-2">
+          <span className="form-label">{copy.email}</span>
+          <input className="form-input" name="email" type="email" required />
+        </label>
+        <label className="grid gap-2">
+          <span className="form-label">{copy.country}</span>
+          <input className="form-input" name="country" required />
+        </label>
+        <label className="grid gap-2">
+          <span className="form-label">{copy.industry}</span>
+          <input className="form-input" name="industry" required />
+        </label>
+        <label className="grid gap-2">
+          <span className="form-label">{copy.depth}</span>
+          <select className="form-input" name="depth" required defaultValue="">
+            <option value="" disabled>
+              -
+            </option>
+            {reportDepthOptions[locale].map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="grid gap-2 md:col-span-2">
+          <span className="form-label">{copy.objective}</span>
+          <textarea className="form-textarea" name="objective" rows={4} required />
+        </label>
+        <label className="grid gap-2 md:col-span-2">
+          <span className="form-label">{copy.competitors}</span>
+          <textarea className="form-textarea" name="competitors" rows={3} />
+        </label>
+        <label className="grid gap-2">
+          <span className="form-label">{copy.timeline}</span>
+          <select className="form-input" name="timeline" required defaultValue="">
+            <option value="" disabled>
+              -
+            </option>
+            {reportTimelineOptions[locale].map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="grid gap-2">
+          <span className="form-label">{copy.budget}</span>
+          <select className="form-input" name="budget" required defaultValue="">
+            <option value="" disabled>
+              -
+            </option>
+            {reportBudgetOptions[locale].map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="grid gap-2 md:col-span-2">
+          <span className="form-label">{copy.notes}</span>
+          <textarea className="form-textarea" name="notes" rows={4} />
+        </label>
       </div>
       {error ? <p className="text-sm text-red-700">{error}</p> : null}
-      <button className="button-primary w-fit" type="submit" disabled={isSubmitting}>{isSubmitting ? copy.sending : copy.submit}</button>
+      <button className="button-primary w-fit" type="submit" disabled={isSubmitting}>
+        {isSubmitting ? copy.sending : copy.submit}
+      </button>
     </form>
   );
 }

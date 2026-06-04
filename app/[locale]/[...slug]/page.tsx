@@ -290,19 +290,24 @@ export default async function StaticPageRouter({
   }
 
   if (key === "contact") {
-    const proposalLabel = locale === "es" ? "Solicitar propuesta" : locale === "pt" ? "Solicitar proposta" : "Request Proposal";
+    const contactNote =
+      locale === "es"
+        ? "También puedes llamarnos o escribirnos por WhatsApp al +1 305 784 0514. Estaremos encantados de conversar sobre tus necesidades de investigación."
+        : locale === "pt"
+          ? "Você também pode ligar ou nos chamar no WhatsApp pelo +1 305 784 0514. Teremos prazer em conversar sobre suas necessidades de pesquisa."
+          : "You can also call or WhatsApp us at +1 (305) 784-0514. We would be pleased to discuss your research needs.";
 
     return (
       <>
-        <PageHeader title={page.title} description={page.description} eyebrow={labels.leadGeneration} />
+        <PageHeader title={page.title} description="" eyebrow={labels.leadGeneration} />
         <Section className="bg-surface">
-          <div className="max-w-3xl">
+          <div className="grid gap-8">
+            <div className="surface-card max-w-3xl">
+              <p className="text-lg font-semibold leading-8 text-brand-primary">{contactNote}</p>
+            </div>
+            <div className="max-w-3xl">
             <ContactForm locale={locale} />
-          </div>
-          <div className="mt-10">
-            <Link className="button-primary" href={getLocalizedPath(locale, "/quotation")}>
-              {proposalLabel}
-            </Link>
+            </div>
           </div>
         </Section>
       </>
@@ -310,7 +315,28 @@ export default async function StaticPageRouter({
   }
 
   if (key === "quotation") {
-    return <><PageHeader title={page.title} description={page.description} eyebrow={labels.briefing} /><Section className="bg-surface"><div className="max-w-4xl"><ReportRequestForm locale={locale} /></div></Section></>;
+    const quoteNote =
+      locale === "es"
+        ? "Llámanos o escríbenos por WhatsApp al +1 305 784 0514. Nos dará mucho gusto conversar sobre tus necesidades de investigación."
+        : locale === "pt"
+          ? "Ligue ou envie uma mensagem no WhatsApp para +1 305 784 0514. Teremos prazer em conversar sobre suas necessidades de pesquisa."
+          : "You can also call or WhatsApp us at +1 (305) 784-0514. We would be pleased to discuss your research needs.";
+
+    return (
+      <>
+        <PageHeader title={page.title} description={page.description} eyebrow={labels.briefing} />
+        <Section className="bg-surface">
+          <div className="grid gap-8">
+            <div className="surface-card max-w-4xl">
+              <p className="text-lg font-semibold leading-8 text-brand-primary">{quoteNote}</p>
+            </div>
+            <div className="max-w-4xl">
+              <ReportRequestForm locale={locale} />
+            </div>
+          </div>
+        </Section>
+      </>
+    );
   }
 
   if (key === "newsletter") {

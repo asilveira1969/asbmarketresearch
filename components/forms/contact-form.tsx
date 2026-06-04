@@ -6,9 +6,9 @@ import type { Locale } from "@/config/locales";
 
 type ContactFormProps = { locale: Locale };
 const labels = {
-  es: { title: "Formulario de contacto", name: "Nombre completo", email: "Email", company: "Empresa", message: "Mensaje", submit: "Enviar consulta", sending: "Enviando...", error: "Hubo un problema al enviar el formulario." },
-  en: { title: "Contact form", name: "Full name", email: "Email", company: "Company", message: "Message", submit: "Send inquiry", sending: "Sending...", error: "There was a problem submitting the form." },
-  pt: { title: "Formulário de contato", name: "Nome completo", email: "Email", company: "Empresa", message: "Mensagem", submit: "Enviar consulta", sending: "Enviando...", error: "Houve um problema ao enviar o formulário." },
+  es: { title: "Formulario de contacto", name: "Nombre completo", email: "Email", phone: "Número de teléfono", company: "Empresa", message: "Mensaje", submit: "Enviar consulta", sending: "Enviando...", error: "Hubo un problema al enviar el formulario." },
+  en: { title: "Contact form", name: "Full name", email: "Email", phone: "Phone number", company: "Company", message: "Message", submit: "Send inquiry", sending: "Sending...", error: "There was a problem submitting the form." },
+  pt: { title: "Formulário de contato", name: "Nome completo", email: "Email", phone: "Número de telefone", company: "Empresa", message: "Mensagem", submit: "Enviar consulta", sending: "Enviando...", error: "Houve um problema ao enviar o formulário." },
 } as const;
 
 export function ContactForm({ locale }: ContactFormProps) {
@@ -31,7 +31,10 @@ export function ContactForm({ locale }: ContactFormProps) {
     <form action={onSubmit} className="surface-card grid gap-5">
       <h2 className="text-2xl font-semibold text-brand-primary">{copy.title}</h2>
       <label className="grid gap-2"><span className="form-label">{copy.name}</span><input className="form-input" name="fullName" required /></label>
-      <label className="grid gap-2"><span className="form-label">{copy.email}</span><input className="form-input" name="email" type="email" required /></label>
+      <div className="grid gap-5 md:grid-cols-2">
+        <label className="grid gap-2"><span className="form-label">{copy.email}</span><input className="form-input" name="email" type="email" required /></label>
+        <label className="grid gap-2"><span className="form-label">{copy.phone}</span><input className="form-input" name="phone" type="tel" /></label>
+      </div>
       <label className="grid gap-2"><span className="form-label">{copy.company}</span><input className="form-input" name="company" /></label>
       <label className="grid gap-2"><span className="form-label">{copy.message}</span><textarea className="form-textarea" name="message" rows={5} required /></label>
       {error ? <p className="text-sm text-red-700">{error}</p> : null}

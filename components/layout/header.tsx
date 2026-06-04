@@ -5,20 +5,17 @@ import { headerNavigation } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
 import { getLocalizedPath } from "@/lib/routes";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
-import { ContactMenu } from "@/components/layout/contact-menu";
+import { QuoteCta } from "@/components/layout/quote-cta";
 
 export function Header({ locale }: { locale: Locale }) {
   const copy = {
     es: {
-      quote: "Solicita Cotización Gratis",
       workstation: "Sistema Agéntico de Inteligencia de Mercado",
     },
     en: {
-      quote: "Request Proposal",
       workstation: "Agentic Research Workstation",
     },
     pt: {
-      quote: "Solicite Cotação Grátis",
       workstation: "Sistema Agêntico de Inteligência de Mercado",
     },
   }[locale];
@@ -50,9 +47,13 @@ export function Header({ locale }: { locale: Locale }) {
                       {item.label[locale]}
                     </Link>
                   ))}
-                  <ContactMenu label={locale === "es" ? "Contacto" : locale === "pt" ? "Contato" : "Contact"} locale={locale} quoteLabel={copy.quote} />
+                  <Link
+                    href={getLocalizedPath(locale, "/contact")}
+                    className="text-sm font-medium text-body-secondary transition-colors hover:text-brand-primary"
+                  >
+                    {locale === "es" ? "Contacto" : locale === "pt" ? "Contato" : "Contact"}
+                  </Link>
                 </nav>
-                <LanguageSwitcher locale={locale} />
               </div>
               <div className="mt-4 flex justify-center">
                 <Link
@@ -67,7 +68,8 @@ export function Header({ locale }: { locale: Locale }) {
               </div>
             </div>
           </div>
-          <div className="hidden md:block lg:hidden">
+          <div className="hidden md:flex items-center gap-3">
+            <QuoteCta locale={locale} />
             <LanguageSwitcher locale={locale} />
           </div>
         </div>

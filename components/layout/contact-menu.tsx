@@ -8,10 +8,9 @@ import { getLocalizedPath } from "@/lib/routes";
 type ContactMenuProps = {
   label: string;
   locale: Locale;
-  quoteLabel: string;
 };
 
-export function ContactMenu({ label, locale, quoteLabel }: ContactMenuProps) {
+export function ContactMenu({ label, locale }: ContactMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const contactLabel = locale === "es" ? "Contacto" : locale === "pt" ? "Contato" : "Contact";
@@ -58,13 +57,6 @@ export function ContactMenu({ label, locale, quoteLabel }: ContactMenuProps) {
               onClick={() => setIsOpen(false)}
             >
               {contactLabel}
-            </Link>
-            <Link
-              href={getLocalizedPath(locale, "/quotation")}
-              className="inline-flex min-h-[2.125rem] items-center justify-center rounded-full bg-brand-primary px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-brand-secondary"
-              onClick={() => setIsOpen(false)}
-            >
-              {quoteLabel}
             </Link>
           </div>
         </div>

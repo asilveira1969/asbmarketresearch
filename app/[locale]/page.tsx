@@ -84,7 +84,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         title="Research. Intelligence. Decisions."
         description="A practical framework for making market research useful across the organization."
       />
-      <Section className="border-b border-line bg-surface pt-10 pb-16 md:pt-14 md:pb-24">
+      <Section className="bg-surface pt-10 pb-16 md:pt-14 md:pb-24">
         <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
           <div className="max-w-3xl">
             <div className="grid gap-5 text-[1.05rem] leading-[1.7] text-body-secondary md:text-lg md:leading-8">

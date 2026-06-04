@@ -19,9 +19,6 @@ export function CTABlock({ locale, title, body }: CTABlockProps) {
           <p className="mt-4 text-base leading-8 text-white/80">{body}</p>
         </div>
         <div className="flex flex-wrap gap-4">
-          <Link className="button-primary bg-white text-brand-primary hover:bg-white/90" href={getLocalizedPath(locale, "/quotation")}>
-            {contact}
-          </Link>
           <Link className="button-secondary border-white/25 text-white hover:bg-white/8" href={getLocalizedPath(locale, "/services")}>
             {services}
           </Link>
