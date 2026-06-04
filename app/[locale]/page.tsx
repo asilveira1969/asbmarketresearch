@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { Locale } from "@/config/locales";
+import { NewsletterForm } from "@/components/forms/newsletter-form";
 import { PageHeader } from "@/components/ui/page-header";
 import { buildPageMetadata } from "@/lib/metadata";
 import { resolveLocale } from "@/lib/i18n";
@@ -83,7 +84,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         title="Research. Intelligence. Decisions."
         description="A practical framework for making market research useful across the organization."
       />
-      <Section className="border-b border-line bg-canvas py-16 md:py-24">
+      <Section className="border-b border-line bg-surface pt-10 pb-16 md:pt-14 md:pb-24">
         <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
           <div className="max-w-3xl">
             <div className="grid gap-5 text-[1.05rem] leading-[1.7] text-body-secondary md:text-lg md:leading-8">
@@ -104,6 +105,11 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               />
             </div>
           </div>
+        </div>
+      </Section>
+      <Section className="bg-canvas">
+        <div className="mx-auto max-w-3xl">
+          <NewsletterForm locale={locale} />
         </div>
       </Section>
     </>

@@ -18,7 +18,7 @@ const labels = {
     error: "Hubo un problema al enviar el formulario.",
   },
   en: {
-    title: "Subscription",
+    title: "Newsletter Subscription",
     name: "Name",
     email: "Email",
     industryLabel: "INDUSTRY",
