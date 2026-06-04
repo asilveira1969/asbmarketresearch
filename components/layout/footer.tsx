@@ -37,7 +37,7 @@ export function Footer({ locale }: FooterProps) {
         <div className="max-w-xl">
           <Link href={getLocalizedPath(locale)} className="-ml-4 inline-block md:-ml-5">
             <Image
-              src="/media/asb-logo-primary.png"
+              src="/media/asb-logo-horizontal.png"
               alt={siteConfig.name}
               width={1120}
               height={630}

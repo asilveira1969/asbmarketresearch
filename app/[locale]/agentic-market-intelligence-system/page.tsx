@@ -23,10 +23,27 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function AgenticMarketIntelligenceSystemPage({ params }: { params: Promise<{ locale: string }> }) {
   const locale = resolveLocale((await params).locale);
   const content = workstationHomeContent[locale];
+  const introDescription =
+    locale === "en" ? "Building market research capabilities through AI-powered research workflows" : content.description;
+  const newServiceHero =
+    locale === "es"
+      ? {
+          eyebrow: "Nuevo servicio",
+          title: "Workstation para el Sistema Agéntico de Inteligencia de Mercado",
+        }
+      : locale === "pt"
+        ? {
+            eyebrow: "Novo serviço",
+            title: "Workstation para o Sistema Agêntico de Inteligência de Mercado",
+          }
+        : {
+            eyebrow: "New Service",
+            title: "Workstation for the Agentic Market Intelligence System",
+          };
   const newsletterLink = getLocalizedPath(locale, "/newsletter");
   const labels = {
     es: {
-      methodology: "Metodología",
+      methodology: "MetodologÃ­a",
       newsletter: "Newsletter",
       viewServices: "Ver servicios",
     },
@@ -38,23 +55,61 @@ export default async function AgenticMarketIntelligenceSystemPage({ params }: { 
     pt: {
       methodology: "Metodologia",
       newsletter: "Newsletter",
-      viewServices: "Ver serviços",
+      viewServices: "Ver serviÃ§os",
     },
   }[locale];
 
   return (
     <>
-      <PageHeader eyebrow={content.eyebrow} title={content.title} description={content.description} />
-      <Section className="border-b border-line bg-surface py-16 md:py-24">
+      <PageHeader eyebrow={content.eyebrow} title={content.title} description={introDescription} />
+      <Section className="border-b border-line bg-surface pt-12 md:pt-16">
+        <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+          <div>
+            <p className="mt-5 max-w-3xl text-base leading-8 text-body-secondary md:text-lg">
+              ASB Market Research supports organizations in building structured market intelligence capabilities through AI-powered research workflows, specialized agents, connected data sources, and business-oriented reporting systems.
+            </p>
+            <p className="mt-5 max-w-3xl text-base leading-8 text-body-secondary md:text-lg">{content.heroDetail}</p>
+            {content.heroParagraphs.slice(0, 2).map((paragraph, index) =>
+              index === 0 ? (
+                <div key={paragraph} className="mt-5 max-w-3xl">
+                  <p className="text-base leading-8 text-body-secondary md:text-lg">Instead of isolated prompts and generic outputs, the platform combines:</p>
+                  <ul className="mt-4 grid gap-2 text-base leading-7 text-body-secondary md:text-lg">
+                    {[
+                      "Specialized research agents",
+                      "Separated research methodologies",
+                      "Structured workflows",
+                      "Connected internal and external data sources",
+                      "Recurring intelligence processes",
+                      "Decision-ready business deliverables",
+                    ].map((item) => (
+                      <li key={item} className="border-l-2 border-brand-primary pl-4">
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : (
+                <p key={paragraph} className="mt-5 max-w-3xl text-base leading-8 text-body-secondary md:text-lg">
+                  {paragraph}
+                </p>
+              ),
+            )}
+          </div>
+          <div className="overflow-hidden rounded-[1.75rem] border border-line bg-canvas shadow-soft">
+            <Image
+              src="/media/hero-boardroom-asb.png"
+              alt="ASB Market Research executive boardroom discussion"
+              width={1200}
+              height={1500}
+              className="aspect-[4/5] w-full object-cover"
+            />
+          </div>
+        </div>
+      </Section>
+      <Section className="border-b border-line bg-canvas pb-12 pt-18 md:pb-14 md:pt-24">
         <div className="mb-10 max-w-4xl">
-          <p className="eyebrow">{locale === "es" ? "Nuevo servicio" : locale === "pt" ? "Novo serviço" : "New service"}</p>
-          <h1 className="mt-3 text-display-xs text-brand-primary">
-            {locale === "es"
-              ? "Workstation para el Sistema Agéntico de Inteligencia de Mercado"
-              : locale === "pt"
-                ? "Workstation para o Sistema Agêntico de Inteligência de Mercado"
-                : "Workstation for the Agentic Market Intelligence System"}
-          </h1>
+          <p className="eyebrow">{newServiceHero.eyebrow}</p>
+          <h1 className="mt-3 text-display-xs text-brand-primary">{newServiceHero.title}</h1>
         </div>
         <div className="overflow-hidden rounded-[1.75rem] border border-line bg-canvas shadow-soft">
           <Image

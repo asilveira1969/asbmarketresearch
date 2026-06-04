@@ -30,7 +30,7 @@ export function Header({ locale }: { locale: Locale }) {
           <div className="flex items-center gap-6 md:gap-8">
             <Link href={getLocalizedPath(locale)} className="shrink-0 overflow-hidden rounded-2xl border-2 border-brand-primary bg-canvas shadow-soft w-[280px] md:w-[360px]">
               <Image
-                src="/media/asb-logo-primary.png"
+                src="/media/asb-logo-horizontal.png"
                 alt={siteConfig.name}
                 width={1120}
                 height={630}

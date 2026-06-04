@@ -18,7 +18,6 @@ import { sampleReports } from "@/content/reports";
 import { founderProfile } from "@/data/company";
 import { siteConfig } from "@/config/site";
 import { serviceDetails } from "@/content/services";
-import { workstationHomeContent } from "@/content/workstation-home";
 import { getLocalizedPath } from "@/lib/routes";
 
 const thankYouContent = {
@@ -221,25 +220,10 @@ export default async function StaticPageRouter({
   }
 
   if (key === "services") {
-    const servicesIntro = locale === "es"
-      ? []
-      : locale === "pt"
-        ? []
-        : [];
-    const workstation = workstationHomeContent[locale];
-    const servicesHeroParagraphs = workstation.heroParagraphs.slice(0, 2);
-
     return (
       <>
         <PageHeader title={page.title} description={page.description} eyebrow={labels.capabilities} />
         <Section className="bg-surface !pt-2 md:!pt-3">
-          <div className="max-w-4xl">
-            <div className="grid gap-5 text-lg leading-8 text-body-secondary">
-              {servicesIntro.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-            </div>
-          </div>
           <div className="mt-10 grid gap-5">
             {serviceDetails.map((service) => (
               <article key={service.slug} className="surface-card grid gap-5 md:grid-cols-[4rem_1fr_auto] md:items-center">
@@ -253,48 +237,6 @@ export default async function StaticPageRouter({
                 </Link>
               </article>
             ))}
-          </div>
-        </Section>
-        <Section className="border-b border-line bg-canvas pt-12 md:pt-16">
-          <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
-            <div>
-              <p className="eyebrow">{workstation.eyebrow}</p>
-              <h1 className="mt-6 max-w-3xl text-display-xs text-brand-primary">{workstation.title}</h1>
-              <p className="mt-5 max-w-3xl text-base leading-8 text-body-secondary md:text-lg">{workstation.description}</p>
-              <p className="mt-5 max-w-3xl text-base leading-8 text-body-secondary md:text-lg">{workstation.heroDetail}</p>
-              {servicesHeroParagraphs.map((paragraph) =>
-                paragraph.includes(";") ? (
-                  <div key={paragraph} className="mt-5 max-w-3xl">
-                    <p className="text-base leading-8 text-body-secondary md:text-lg">Instead of isolated prompts and generic outputs, the platform combines:</p>
-                    <ul className="mt-4 grid gap-2 text-base leading-7 text-body-secondary md:text-lg">
-                      {[
-                        "Specialized research agents",
-                        "Separated research methodologies",
-                        "Structured workflows",
-                        "Connected internal and external data sources",
-                        "Recurring intelligence processes",
-                        "Decision-ready business deliverables",
-                      ].map((item) => (
-                        <li key={item} className="border-l-2 border-brand-primary pl-4">{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                ) : (
-                  <p key={paragraph} className="mt-5 max-w-3xl text-base leading-8 text-body-secondary md:text-lg">
-                    {paragraph}
-                  </p>
-                ),
-              )}
-            </div>
-            <div className="overflow-hidden rounded-[1.75rem] border border-line bg-canvas shadow-soft">
-              <Image
-                src="/media/hero-boardroom-asb.png"
-                alt="ASB Market Research executive boardroom discussion"
-                width={1200}
-                height={1500}
-                className="aspect-[4/5] w-full object-cover"
-              />
-            </div>
           </div>
         </Section>
       </>
