@@ -6,9 +6,39 @@ import type { Locale } from "@/config/locales";
 
 type NewsletterFormProps = { locale: Locale };
 const labels = {
-  es: { title: "Suscripción", name: "Nombre", email: "Email", consent: "Acepto recibir novedades y comunicaciones relacionadas.", submit: "Suscribirme", sending: "Enviando...", error: "Hubo un problema al enviar el formulario." },
-  en: { title: "Subscription", name: "Name", email: "Email", consent: "I agree to receive updates and related communications.", submit: "Subscribe", sending: "Submitting...", error: "There was a problem submitting the form." },
-  pt: { title: "Inscrição", name: "Nome", email: "Email", consent: "Concordo em receber novidades e comunicações relacionadas.", submit: "Inscrever-me", sending: "Enviando...", error: "Houve um problema ao enviar o formulário." },
+  es: {
+    title: "Suscripción",
+    name: "Nombre",
+    email: "Email",
+    industryLabel: "INDUSTRIA",
+    industryPlaceholder: "Industria que le interesa",
+    consent: "Acepto recibir novedades y comunicaciones relacionadas.",
+    submit: "Suscribirme",
+    sending: "Enviando...",
+    error: "Hubo un problema al enviar el formulario.",
+  },
+  en: {
+    title: "Subscription",
+    name: "Name",
+    email: "Email",
+    industryLabel: "INDUSTRY",
+    industryPlaceholder: "Industry you are interested in",
+    consent: "I agree to receive updates and related communications.",
+    submit: "Subscribe",
+    sending: "Submitting...",
+    error: "There was a problem submitting the form.",
+  },
+  pt: {
+    title: "Inscrição",
+    name: "Nome",
+    email: "Email",
+    industryLabel: "SETOR",
+    industryPlaceholder: "Setor de interesse",
+    consent: "Concordo em receber novidades e comunicações relacionadas.",
+    submit: "Inscrever-me",
+    sending: "Enviando...",
+    error: "Houve um problema ao enviar o formulário.",
+  },
 } as const;
 
 export function NewsletterForm({ locale }: NewsletterFormProps) {
@@ -27,10 +57,11 @@ export function NewsletterForm({ locale }: NewsletterFormProps) {
   }
 
   return (
-    <form action={onSubmit} className="surface-card grid gap-5">
+      <form action={onSubmit} className="surface-card grid gap-5">
       <h2 className="text-2xl font-semibold text-brand-primary">{copy.title}</h2>
       <label className="grid gap-2"><span className="form-label">{copy.name}</span><input className="form-input" name="name" required /></label>
       <label className="grid gap-2"><span className="form-label">{copy.email}</span><input className="form-input" name="email" type="email" required /></label>
+      <label className="grid gap-2"><span className="form-label">{copy.industryLabel}</span><input className="form-input" name="industry" type="text" placeholder={copy.industryPlaceholder} /></label>
       <label className="flex items-start gap-3 text-sm text-body-secondary"><input className="mt-1" name="consent" type="checkbox" required /><span>{copy.consent}</span></label>
       {error ? <p className="text-sm text-red-700">{error}</p> : null}
       <button className="button-primary w-fit" type="submit" disabled={isSubmitting}>{isSubmitting ? copy.sending : copy.submit}</button>

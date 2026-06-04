@@ -3,6 +3,7 @@ import { siteConfig } from "@/config/site";
 
 export const founderProfile = {
   name: siteConfig.founderName,
+  linkedinUrl: "https://www.linkedin.com/in/anastaciosilveira/",
   role: {
     es: "Fundador y director de consultoría",
     en: "Founder and consulting director",
@@ -12,7 +13,7 @@ export const founderProfile = {
   resumeUrl: "/pdfs/company/asb-founder-resume.pdf",
   biography: {
     es: "Los investigadores de mercado somos los ojos y oídos de las empresas. Identificamos y hacemos visibles las oportunidades y las amenazas. A partir del contexto del cliente y la recopilación de información, elaboramos reportes que articulan hallazgos clave, permitiendo al cliente trazar su propio plan de acción con base en evidencia.",
-    en: "Market researchers are the eyes and ears of a business. We identify and make visible both opportunities and threats. Based on the client context and the information gathered, we develop reports that articulate key findings, enabling each client to define its own course of action on an evidence-based foundation.",
+    en: "I view market researchers as the eyes and ears of an organization. Our role is to identify opportunities, uncover risks, and make relevant market information visible to decision-makers.\n\nResearch becomes valuable when it is interpreted within the context of the organization. By combining company-specific realities with market intelligence and structured analysis, we transform information into actionable insights that help organizations evaluate alternatives, reduce uncertainty, and make better strategic decisions.\n\nUltimately, market research is not about delivering data-it is about providing clarity for decision-making.",
     pt: "Os pesquisadores de mercado são os olhos e os ouvidos das empresas. Identificamos e tornamos visíveis as oportunidades e as ameaças. A partir do contexto do cliente e da coleta de informações, elaboramos relatórios que articulam achados-chave, permitindo ao cliente traçar seu próprio plano de ação com base em evidência.",
   } satisfies Record<Locale, string>,
   credentialsHeading: {

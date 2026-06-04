@@ -15,10 +15,12 @@ export async function POST(request: Request) {
   }
 
   const sourceUrl = request.headers.get("referer") || "";
+  const userAgent = request.headers.get("user-agent") || "";
+  const notificationEmail = process.env.FORM_NOTIFICATION_EMAIL || "";
   const response = await fetch(webhookUrl, {
     method: "POST",
     headers: { "Content-Type": "text/plain;charset=utf-8" },
-    body: JSON.stringify({ ...body, sourceUrl }),
+    body: JSON.stringify({ ...body, sourceUrl, userAgent, notificationEmail }),
   });
 
   if (!response.ok) {

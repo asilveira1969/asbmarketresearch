@@ -43,14 +43,14 @@ export function AgenticWorkflowSection({ locale }: AgenticWorkflowSectionProps) 
           };
 
   return (
-    <section className="border-b border-line bg-surface py-16 md:py-24">
-      <div className="mx-auto grid max-w-5xl gap-8 px-6 text-center md:px-8">
-        <div className="grid gap-10 text-left lg:grid-cols-[1fr_0.85fr] lg:items-start">
+    <section className="border-b border-line bg-surface py-10 md:py-14">
+      <div className="mx-auto grid max-w-5xl gap-4 px-6 text-center md:px-8">
+        <div className="grid gap-6 text-left lg:grid-cols-[1fr_0.85fr] lg:items-start">
           <div className="max-w-3xl">
             <p className="eyebrow">{content.eyebrow}</p>
             <h2 className="mt-3 text-display-sm text-brand-primary md:text-display-xs">{content.title}</h2>
             {content.body.map((paragraph) => (
-              <p key={paragraph} className="mt-5 text-[1.05rem] leading-[1.65] text-body-secondary">
+              <p key={paragraph} className="mt-3 text-[1.05rem] leading-[1.62] text-body-secondary">
                 {locale === "en" && paragraph.startsWith("Contact ASB Market Research") ? (
                   <>
                     <Link className="font-semibold text-brand-primary transition-colors hover:text-brand-secondary" href={getLocalizedPath(locale, "/contact")}>
@@ -64,7 +64,7 @@ export function AgenticWorkflowSection({ locale }: AgenticWorkflowSectionProps) 
               </p>
             ))}
           </div>
-          <div className="overflow-hidden rounded-[1.75rem] border border-line bg-canvas shadow-soft lg:mt-[6.75rem]">
+          <div className="overflow-hidden rounded-[1.75rem] border border-line bg-canvas shadow-soft lg:mt-6">
             <Image
               src="/media/agentic-workflow-programmer.png"
               alt="Technical consultant configuring a customizable market research workstation"

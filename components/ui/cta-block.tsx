@@ -8,7 +8,7 @@ type CTABlockProps = { locale: Locale; title: string; body: string };
 export function CTABlock({ locale, title, body }: CTABlockProps) {
   const eyebrow = locale === "es" ? "Siguiente paso" : locale === "pt" ? "Próximo passo" : "Next step";
   const contact = locale === "es" ? "Solicitar consultoría" : locale === "pt" ? "Solicitar consultoria" : "Request consultation";
-  const services = locale === "es" ? "Ver sistema" : locale === "pt" ? "Ver sistema" : "Explore workstation";
+  const services = locale === "es" ? "Ver servicios" : locale === "pt" ? "Ver serviços" : "Explore services";
 
   return (
     <Section className="bg-brand-primary text-white">
@@ -22,7 +22,7 @@ export function CTABlock({ locale, title, body }: CTABlockProps) {
           <Link className="button-primary bg-white text-brand-primary hover:bg-white/90" href={getLocalizedPath(locale, "/quotation")}>
             {contact}
           </Link>
-          <Link className="button-secondary border-white/25 text-white hover:bg-white/8" href={getLocalizedPath(locale, "/services/agentic-market-intelligence-system")}>
+          <Link className="button-secondary border-white/25 text-white hover:bg-white/8" href={getLocalizedPath(locale, "/services")}>
             {services}
           </Link>
         </div>

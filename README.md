@@ -72,6 +72,14 @@ Copy `.env.example` to `.env.local` and set:
 
 - `NEXT_PUBLIC_SITE_URL`
 - `NEXT_PUBLIC_GA_MEASUREMENT_ID`
+- `FORM_WEBHOOK_URL`
+- `FORM_NOTIFICATION_EMAIL`
+
+## Form delivery
+
+Form submissions are forwarded through `POST /api/forms` to the webhook in `FORM_WEBHOOK_URL`.
+
+For newsletter and contact delivery, the repo includes a Google Apps Script sample in [integrations/google-apps-script-newsletter.gs](/f:/WORK/ASB%20Market%20Research/integrations/google-apps-script-newsletter.gs). Set `FORM_NOTIFICATION_EMAIL` to the inbox that should receive the notification, deploy the script as a web app, and paste the deployment URL into `FORM_WEBHOOK_URL`.
 
 ## Verification
 

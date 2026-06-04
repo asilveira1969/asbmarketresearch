@@ -25,7 +25,7 @@ export default async function RootLayout({
   const locale = isLocale(localeCookie) ? localeCookie : defaultLocale;
 
   return (
-    <html lang={locale} className="h-full">
+    <html lang={locale} className="h-full" suppressHydrationWarning>
       <body className="min-h-full bg-canvas text-ink antialiased">
         <GoogleAnalytics />
         {children}

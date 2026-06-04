@@ -1,6 +1,8 @@
 ﻿import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ArticleCard } from "@/components/cards/article-card";
+import { PdfDownloadCard } from "@/components/cards/pdf-download-card";
 import { PageHeader } from "@/components/ui/page-header";
 import { Section } from "@/components/ui/section";
 import { ContactForm } from "@/components/forms/contact-form";
@@ -11,6 +13,8 @@ import { FAQBlock } from "@/components/content/faq-block";
 import { buildPageMetadata } from "@/lib/metadata";
 import { resolveLocale } from "@/lib/i18n";
 import { faqContent, staticPages } from "@/content/site";
+import { insightArticles, insightCategoryLabels, type InsightCategoryKey } from "@/content/insights";
+import { sampleReports } from "@/content/reports";
 import { founderProfile } from "@/data/company";
 import { siteConfig } from "@/config/site";
 import { serviceDetails } from "@/content/services";
@@ -44,10 +48,7 @@ const pageLabels = {
     process: "Proceso",
     leadGeneration: "Generación de leads",
     briefing: "Briefing",
-    crm: "CRM",
     legal: "Legal",
-    whatToExpect: "Qué recibir",
-    newsletterItems: ["Notas de investigación y alertas de artículos", "Actualizaciones de reportes de muestra", "Hallazgos ejecutivos seleccionados"],
   },
   en: {
     confirmation: "Confirmation",
@@ -57,10 +58,7 @@ const pageLabels = {
     process: "Process",
     leadGeneration: "Contact form",
     briefing: "Briefing",
-    crm: "CRM",
     legal: "Legal",
-    whatToExpect: "What to expect",
-    newsletterItems: ["Research notes and article alerts", "Sample report updates", "Selected executive insights"],
   },
   pt: {
     confirmation: "Confirmação",
@@ -70,12 +68,11 @@ const pageLabels = {
     process: "Processo",
     leadGeneration: "Geração de leads",
     briefing: "Briefing",
-    crm: "CRM",
     legal: "Legal",
-    whatToExpect: "O que receber",
-    newsletterItems: ["Notas de pesquisa e alertas de artigos", "Atualizações de relatórios de amostra", "Insights executivos selecionados"],
   },
 } as const;
+
+const insightCategoryOrder: InsightCategoryKey[] = ["strategy", "competition", "briefing"];
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string[] }> }) {
   const { locale: localeParam, slug } = await params;
@@ -89,10 +86,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return buildPageMetadata({ locale, pathname: `/${slug[0]}`, title: page.title, description: page.description });
 }
 
-export default async function StaticPageRouter({ params }: { params: Promise<{ locale: string; slug: string[] }> }) {
+export default async function StaticPageRouter({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ locale: string; slug: string[] }>;
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
+}) {
   const { locale: localeParam, slug } = await params;
   const locale = resolveLocale(localeParam);
   const labels = pageLabels[locale];
+  const resolvedSearchParams = searchParams ? await searchParams : undefined;
 
   if (slug[0] === "thank-you" && slug[1] && slug[1] in thankYouContent) {
     const entry = thankYouContent[slug[1] as keyof typeof thankYouContent][locale];
@@ -104,6 +108,8 @@ export default async function StaticPageRouter({ params }: { params: Promise<{ l
   const page = staticPages[locale][key];
 
   if (key === "about") {
+    const biographyParagraphs = founderProfile.biography[locale].split("\n\n");
+
     return (
       <>
         <PageHeader title={page.title} description={page.description} />
@@ -115,7 +121,13 @@ export default async function StaticPageRouter({ params }: { params: Promise<{ l
             <div>
               <p className="eyebrow">{founderProfile.role[locale]}</p>
               <h2 className="mt-3 text-display-sm text-brand-primary">{founderProfile.name}</h2>
-              <p className="mt-5 text-lg leading-8 text-body-secondary">{founderProfile.biography[locale]}</p>
+              <div className="mt-5 grid gap-5">
+                {biographyParagraphs.map((paragraph) => (
+                  <p key={paragraph} className="text-lg leading-8 text-body-secondary">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
               <div className="mt-8 surface-panel">
                 <p className="eyebrow">{founderProfile.credentialsHeading[locale]}</p>
                 <div className="mt-5 grid gap-6 md:grid-cols-2">
@@ -147,7 +159,7 @@ export default async function StaticPageRouter({ params }: { params: Promise<{ l
                 <a className="button-secondary w-fit" href={founderProfile.resumeUrl} download>
                   {locale === "es" ? "Descargar CV" : locale === "pt" ? "Baixar CV" : "Download resume"}
                 </a>
-                <a className="button-secondary w-fit" href={siteConfig.linkedinUrl} target="_blank" rel="noreferrer">
+                <a className="button-secondary w-fit" href={founderProfile.linkedinUrl} target="_blank" rel="noreferrer">
                   LinkedIn
                 </a>
               </div>
@@ -360,13 +372,146 @@ export default async function StaticPageRouter({ params }: { params: Promise<{ l
   }
 
   if (key === "newsletter") {
-    return <><PageHeader title={page.title} description="" eyebrow={labels.crm} /><Section className="bg-surface"><div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]"><div className="surface-panel"><p className="eyebrow">{labels.whatToExpect}</p><ul className="mt-5 grid gap-4 text-body-secondary">{labels.newsletterItems.map((item) => <li key={item}>{item}</li>)}</ul></div><NewsletterForm locale={locale} /></div></Section></>;
+    return <><PageHeader title={page.title} description="" /><Section className="bg-surface"><div className="max-w-3xl"><NewsletterForm locale={locale} /></div></Section></>;
+  }
+
+  if (key === "sample-reports") {
+    const previewReportSlugs = new Set([
+      "latam-b2b-software-expansion-snapshot",
+      "premium-food-category-benchmark",
+      "investor-market-scoping-note",
+    ]);
+
+    return (
+      <>
+        <PageHeader title={page.title} description={page.description} eyebrow={locale === "es" ? "Biblioteca" : locale === "pt" ? "Biblioteca" : "Library"} />
+        <Section className="bg-surface">
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {sampleReports.map((report) => (
+              <div key={report.slug} className="grid gap-4">
+                <PdfDownloadCard
+                  title={report.locales[locale].title}
+                  description={report.locales[locale].excerpt}
+                  href={report.pdfHref}
+                  previewHref={previewReportSlugs.has(report.slug) ? report.pdfHref : undefined}
+                  label={
+                    report.pdfHref
+                      ? locale === "es"
+                        ? "Descargar PDF"
+                        : locale === "pt"
+                          ? "Baixar PDF"
+                          : "Download PDF"
+                      : locale === "es"
+                        ? "Disponible a pedido"
+                        : locale === "pt"
+                          ? "Disponivel sob consulta"
+                          : "Available on request"
+                  }
+                />
+                <Link
+                  href={getLocalizedPath(locale, `/sample-reports/${report.slug}`)}
+                  className="text-sm font-semibold text-accent transition-colors hover:text-brand-primary"
+                >
+                  {locale === "es" ? "Ver ficha" : locale === "pt" ? "Ver ficha" : "View overview"}
+                </Link>
+              </div>
+            ))}
+          </div>
+        </Section>
+      </>
+    );
+  }
+
+  if (key === "insights") {
+    const requestedCategory = typeof resolvedSearchParams?.category === "string" ? resolvedSearchParams.category : undefined;
+    const selectedCategory =
+      requestedCategory === "strategy" || requestedCategory === "competition" || requestedCategory === "briefing"
+        ? requestedCategory
+        : "all";
+    const filteredArticles =
+      selectedCategory === "all"
+        ? insightArticles
+        : insightArticles.filter((article) => article.categoryKey === selectedCategory);
+    const featuredArticle = filteredArticles[0];
+    const listArticles = filteredArticles.slice(1);
+
+    return (
+      <>
+        <PageHeader
+          title={page.title}
+          description={page.description}
+          eyebrow={locale === "es" ? "Contenido editorial" : locale === "pt" ? "Conteudo editorial" : "Editorial"}
+        />
+        <Section className="bg-surface">
+          <div className="mx-auto max-w-4xl">
+            <div className="flex flex-wrap gap-3">
+              <Link
+                className={`button-secondary ${selectedCategory === "all" ? "border-brand-primary bg-brand-primary text-white hover:bg-brand-secondary" : ""}`}
+                href={getLocalizedPath(locale, "/insights")}
+              >
+                {locale === "es" ? "Todos" : locale === "pt" ? "Todos" : "All"}
+              </Link>
+              {insightCategoryOrder.map((category) => {
+                const href = getLocalizedPath(locale, `/insights?category=${category}`);
+                const active = selectedCategory === category;
+                return (
+                  <Link
+                    key={category}
+                    className={`button-secondary ${active ? "border-brand-primary bg-brand-primary text-white hover:bg-brand-secondary" : ""}`}
+                    href={href}
+                  >
+                    {insightCategoryLabels[category][locale]}
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </Section>
+        <Section className="bg-surface !pt-0">
+          {featuredArticle ? (
+            <div className="mb-8">
+              <ArticleCard
+                locale={locale}
+                slug={featuredArticle.slug}
+                title={featuredArticle.locales[locale].title}
+                excerpt={featuredArticle.locales[locale].excerpt}
+                category={featuredArticle.locales[locale].category}
+                publishedAt={featuredArticle.publishedAt}
+                readingTimeMinutes={featuredArticle.readingTimeMinutes}
+                featured
+              />
+            </div>
+          ) : null}
+          {listArticles.length > 0 ? (
+            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+              {listArticles.map((article) => (
+                <ArticleCard
+                  key={article.slug}
+                  locale={locale}
+                  slug={article.slug}
+                  title={article.locales[locale].title}
+                  excerpt={article.locales[locale].excerpt}
+                  category={article.locales[locale].category}
+                  publishedAt={article.publishedAt}
+                  readingTimeMinutes={article.readingTimeMinutes}
+                />
+              ))}
+            </div>
+          ) : (
+            <p className="max-w-2xl text-lg leading-8 text-body-secondary">
+              {locale === "es"
+                ? "No hay articulos para esta categoria."
+                : locale === "pt"
+                  ? "Nao ha artigos para esta categoria."
+                  : "There are no articles in this category."}
+            </p>
+          )}
+        </Section>
+      </>
+    );
   }
 
   const paragraphs = key === "privacy-policy" ? (locale === "es" ? ["Esta pagina constituye una base inicial. Debe adaptarse con revision legal antes del lanzamiento publico.", "ASB Market Research puede recopilar datos enviados voluntariamente mediante formularios de contacto, newsletter y solicitudes de reportes.", "La informacion sera utilizada para responder consultas, enviar comunicaciones autorizadas y mejorar la experiencia comercial."] : locale === "pt" ? ["Esta pagina e uma base inicial. Deve ser ajustada com revisao juridica antes do lancamento publico.", "A ASB Market Research pode coletar dados enviados voluntariamente por formularios de contato, newsletter e solicitacoes de relatorio.", "As informacoes podem ser utilizadas para responder consultas, enviar comunicacoes autorizadas e melhorar a experiencia comercial."] : ["This page is an initial base. It should be adapted with legal review before public launch.", "ASB Market Research may collect information voluntarily submitted through contact, newsletter, and report request forms.", "The information may be used to answer inquiries, send authorized communications, and improve the commercial experience."]) : (locale === "es" ? ["Este sitio ofrece informacion institucional y contenidos profesionales de ASB Market Research.", "El material publicado tiene caracter informativo y no reemplaza asesoramiento legal, financiero o de inversion.", "Los formularios y descargas no implican una relacion contractual automatica; toda contratacion requerira acuerdo posterior."] : locale === "pt" ? ["Este site oferece informacoes institucionais e conteudo profissional da ASB Market Research.", "Os materiais publicados sao informativos e nao substituem assessoria juridica, financeira ou de investimento.", "Formularios e downloads nao criam relacao contratual automatica; qualquer contratacao exigira acordo posterior."] : ["This website provides institutional information and professional content from ASB Market Research.", "Published materials are informational and do not replace legal, financial, or investment advice.", "Forms and downloads do not create an automatic contractual relationship; any engagement requires a separate agreement."]);
 
   return <><PageHeader title={page.title} description="" eyebrow={labels.legal} /><Section className="bg-surface"><div className="mx-auto max-w-3xl grid gap-6">{paragraphs.map((paragraph) => <p key={paragraph} className="text-lg leading-8 text-body-secondary">{paragraph}</p>)}</div></Section></>;
 }
-
-
-
