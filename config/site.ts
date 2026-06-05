@@ -8,8 +8,8 @@ export const siteConfig = {
   locales,
   defaultDescription:
     "ASB Market Research provides an agentic market intelligence workstation for companies, associations, consultants, and strategy teams that need structured research workflows and decision-ready reports.",
-  email: "contact@asbmarketresearch.com",
-  linkedinUrl: "https://www.linkedin.com/company/asb-market-research",
+  email: "asb.marketresearch@gmail.com",
+  linkedinUrl: "https://www.linkedin.com/company/asb-market-research/",
   founderName: "Anastacio Silveira",
   legalName: "ASB Market Research",
   analyticsId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "",

@@ -113,8 +113,8 @@ export default async function StaticPageRouter({
       <>
         <PageHeader title={page.title} description={page.description} />
         <Section className="bg-surface">
-          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-            <div className="surface-card">
+          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+            <div className="surface-card self-start">
               <Image src={founderProfile.image} alt={founderProfile.name} width={640} height={800} className="w-full rounded-2xl border border-line object-cover" />
             </div>
             <div>
@@ -154,11 +154,22 @@ export default async function StaticPageRouter({
                   </div>
                 </div>
               </div>
-              <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                <a className="button-secondary w-fit" href={founderProfile.resumeUrl} download>
-                  {locale === "es" ? "Descargar CV" : locale === "pt" ? "Baixar CV" : "Download resume"}
-                </a>
-                <a className="button-secondary w-fit" href={founderProfile.linkedinUrl} target="_blank" rel="noreferrer">
+              <div className="mt-8">
+                <a
+                  className="button-secondary w-fit gap-2"
+                  href={founderProfile.linkedinUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="ASB Market Research on LinkedIn"
+                  aria-label="Visit ASB Market Research on LinkedIn"
+                >
+                  <Image
+                    src="/media/linkedin-logo.svg"
+                    alt="ASB Market Research LinkedIn profile"
+                    width={20}
+                    height={20}
+                    className="h-5 w-5 shrink-0"
+                  />
                   LinkedIn
                 </a>
               </div>
@@ -206,14 +217,10 @@ export default async function StaticPageRouter({
             </div>
           </div>
         </Section>
-        <Section className="bg-surface">
-          <EmbedContentBlock
-            type="reference"
-            locale={locale}
-            title={locale === "es" ? "Currículum y credenciales" : locale === "pt" ? "Currículo e credenciais" : "Resume and credentials"}
-            href={founderProfile.resumeUrl}
-            description={locale === "es" ? "Coloque aquí el PDF final del CV, certificaciones o credenciales profesionales." : locale === "pt" ? "Coloque aqui o PDF final do currículo, certificações ou credenciais profissionais." : "Place the final PDF resume, certifications, or credentials here."}
-          />
+        <Section className="bg-white">
+          <div className="mx-auto max-w-3xl">
+            <NewsletterForm locale={locale} />
+          </div>
         </Section>
       </>
     );

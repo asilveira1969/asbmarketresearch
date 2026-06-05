@@ -16,6 +16,7 @@ export function Footer({ locale }: FooterProps) {
   const isServicesPage = pathname === servicesPath;
   const visiblePrimaryLinks = footerPrimaryNavigation.filter((item) => item.href !== "/methodology" && item.href !== "/quotation");
   const visibleLegalLinks = footerNavigation.filter((item) => item.href !== "/methodology" && item.href !== "/newsletter");
+  const currentYear = new Date().getFullYear();
 
   const copy = {
     es: { navigation: "Navegacion" },
@@ -25,7 +26,7 @@ export function Footer({ locale }: FooterProps) {
 
   return (
     <footer className="border-t border-line bg-canvas">
-      <div className="mx-auto grid w-full max-w-6xl gap-10 px-6 py-14 md:grid-cols-[1.5fr_1fr_1fr] md:px-8">
+      <div className="mx-auto grid w-full max-w-6xl gap-10 px-6 py-14 md:grid-cols-[1.05fr_0.95fr_1fr_1fr] md:items-start md:px-8">
         <div className="max-w-xl">
           <Link
             href={getLocalizedPath(locale)}
@@ -39,6 +40,47 @@ export function Footer({ locale }: FooterProps) {
               className="h-[92px] w-full object-contain mix-blend-multiply md:h-[112px]"
             />
           </Link>
+        </div>
+        <div className="max-w-xs">
+          <address className="space-y-0.5 not-italic text-xs leading-5 text-body-secondary">
+            <p>Navarrete 472</p>
+            <p>Melo, Cerro Largo 37000, Uruguay</p>
+            <p className="leading-5">
+              <a className="transition-colors hover:text-brand-primary" href="tel:+59897285929">
+                +598 (97) 285 929
+              </a>
+            </p>
+            <p className="leading-5">
+              <a className="transition-colors hover:text-brand-primary" href="tel:+13057840514">
+                +1 (305) 784 0514
+              </a>
+            </p>
+            <p className="leading-5">
+              <a className="transition-colors hover:text-brand-primary" href={`mailto:${siteConfig.email}`}>
+                {siteConfig.email}
+              </a>
+            </p>
+          </address>
+          <a
+            href="https://www.linkedin.com/company/asb-market-research/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Visit ASB Market Research on LinkedIn"
+            title="ASB Market Research on LinkedIn"
+            className="mt-3 inline-flex items-center gap-2 rounded-full border border-line bg-canvas px-2.5 py-1.5 text-xs text-body-secondary transition-colors hover:border-brand-primary hover:text-brand-primary"
+          >
+            <Image
+              src="/media/linkedin-logo.svg"
+              alt="ASB Market Research LinkedIn profile"
+              width={20}
+              height={20}
+              className="h-4 w-4"
+            />
+            <span>LinkedIn</span>
+          </a>
+          <p className="mt-3 text-[0.7rem] leading-5 text-body-secondary">
+            Copyright {currentYear} ASB Market Research
+          </p>
         </div>
         <div>
           <p className="eyebrow">{copy.navigation}</p>
