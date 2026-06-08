@@ -21,6 +21,9 @@ export default async function SampleReportsPage({ params }: { params: Promise<{ 
     "latam-b2b-software-expansion-snapshot",
     "premium-food-category-benchmark",
     "investor-market-scoping-note",
+    "consumer-sentiment-template",
+    "competitive-benchmark-template",
+    "country-market-template",
   ]);
 
   return (

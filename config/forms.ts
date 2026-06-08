@@ -1,11 +1,5 @@
 import type { Locale } from "@/config/locales";
 
-export const reportDepthOptions: Record<Locale, string[]> = {
-  es: ["Resumen ejecutivo", "Análisis intermedio", "Profundidad completa"],
-  en: ["Executive summary", "Intermediate analysis", "Full depth"],
-  pt: ["Resumo executivo", "Análise intermediária", "Profundidade completa"],
-};
-
 export const reportTimelineOptions: Record<Locale, string[]> = {
   es: ["1-2 semanas", "3-4 semanas", "5+ semanas"],
   en: ["1-2 weeks", "3-4 weeks", "5+ weeks"],

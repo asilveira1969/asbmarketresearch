@@ -7,7 +7,11 @@ param(
 
 $ErrorActionPreference = "Stop"
 $repoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
-$healthUrl = "http://$BindHost`:$Port/es"
+$healthUrl = "http://$BindHost`:$Port/en"
+$runNext = Join-Path $PSScriptRoot "run-next.ps1"
+$logsDir = Join-Path $repoRoot "logs"
+$stdoutLog = Join-Path $logsDir "site-$Mode-$Port.out.log"
+$stderrLog = Join-Path $logsDir "site-$Mode-$Port.err.log"
 
 function Test-SiteHealthy {
   try {
@@ -19,14 +23,20 @@ function Test-SiteHealthy {
 }
 
 function Start-SiteProcess {
-    $command =
-    if ($Mode -eq "dev") {
-      "npm run dev -- --hostname $BindHost --port $Port"
-    } else {
-      "npm run start -- --hostname $BindHost --port $Port"
-    }
+  if (-not (Test-Path $logsDir)) {
+    New-Item -ItemType Directory -Path $logsDir | Out-Null
+  }
 
-  Start-Process -WindowStyle Hidden -FilePath "cmd.exe" -ArgumentList "/c", "cd /d `"$repoRoot`" && $command" | Out-Null
+  $powershellExe = Join-Path $env:WINDIR "System32\WindowsPowerShell\v1.0\powershell.exe"
+  $argumentList = "-NoProfile -ExecutionPolicy Bypass -File `"$runNext`" -Mode $Mode -BindHost $BindHost -Port $Port"
+
+  Start-Process `
+    -WindowStyle Hidden `
+    -FilePath $powershellExe `
+    -ArgumentList $argumentList `
+    -WorkingDirectory $repoRoot `
+    -RedirectStandardOutput $stdoutLog `
+    -RedirectStandardError $stderrLog | Out-Null
 }
 
 if (Test-SiteHealthy) {

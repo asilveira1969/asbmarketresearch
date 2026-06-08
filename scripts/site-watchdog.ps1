@@ -8,10 +8,11 @@ param(
 
 $ErrorActionPreference = "Continue"
 $ensureSite = Join-Path $PSScriptRoot "ensure-site.ps1"
+$powershellExe = Join-Path $env:WINDIR "System32\WindowsPowerShell\v1.0\powershell.exe"
 
 while ($true) {
   try {
-    & powershell -ExecutionPolicy Bypass -File $ensureSite -Mode $Mode -BindHost $BindHost -Port $Port | Out-Null
+    & $powershellExe -NoProfile -ExecutionPolicy Bypass -File $ensureSite -Mode $Mode -BindHost $BindHost -Port $Port | Out-Null
   } catch {
     Start-Sleep -Seconds 5
   }

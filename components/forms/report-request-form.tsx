@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import type { Locale } from "@/config/locales";
-import { reportBudgetOptions, reportDepthOptions, reportTimelineOptions } from "@/config/forms";
+import { reportBudgetOptions, reportTimelineOptions } from "@/config/forms";
 
 type ReportRequestFormProps = { locale: Locale };
 
@@ -14,11 +14,11 @@ const labels = {
     fullName: "Nombre completo",
     company: "Empresa",
     email: "Email",
+    phone: "Teléfono",
     country: "País / mercado",
     industry: "Industria",
     objective: "Objetivo del reporte",
     competitors: "Competidores a analizar",
-    depth: "Nivel de profundidad",
     timeline: "Plazo esperado",
     budget: "Presupuesto aproximado",
     notes: "Notas adicionales",
@@ -32,11 +32,11 @@ const labels = {
     fullName: "Full name",
     company: "Company",
     email: "Email",
+    phone: "Phone number",
     country: "Country / market",
     industry: "Industry",
     objective: "Report objective",
     competitors: "Competitors to analyze",
-    depth: "Desired depth",
     timeline: "Expected timeline",
     budget: "Approximate budget",
     notes: "Additional notes",
@@ -50,11 +50,11 @@ const labels = {
     fullName: "Nome completo",
     company: "Empresa",
     email: "Email",
+    phone: "Número de telefone",
     country: "País / mercado",
     industry: "Indústria",
     objective: "Objetivo do relatório",
     competitors: "Concorrentes a analisar",
-    depth: "Profundidade desejada",
     timeline: "Prazo esperado",
     budget: "Orçamento aproximado",
     notes: "Notas adicionais",
@@ -104,25 +104,16 @@ export function ReportRequestForm({ locale }: ReportRequestFormProps) {
           <input className="form-input" name="email" type="email" required />
         </label>
         <label className="grid gap-2">
-          <span className="form-label">{copy.country}</span>
-          <input className="form-input" name="country" required />
+          <span className="form-label">{copy.phone}</span>
+          <input className="form-input" name="phoneNumber" type="tel" inputMode="tel" autoComplete="tel" required />
         </label>
         <label className="grid gap-2">
           <span className="form-label">{copy.industry}</span>
           <input className="form-input" name="industry" required />
         </label>
         <label className="grid gap-2">
-          <span className="form-label">{copy.depth}</span>
-          <select className="form-input" name="depth" required defaultValue="">
-            <option value="" disabled>
-              -
-            </option>
-            {reportDepthOptions[locale].map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
+          <span className="form-label">{copy.country}</span>
+          <input className="form-input" name="country" required />
         </label>
         <label className="grid gap-2 md:col-span-2">
           <span className="form-label">{copy.objective}</span>

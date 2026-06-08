@@ -12,10 +12,17 @@ import { AgenticWorkflowSection } from "@/sections-archive/agentic-workflow-sect
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const locale = resolveLocale((await params).locale);
+  const metadataTitle =
+    locale === "es"
+      ? "Sistema Agéntico de Inteligencia de Mercado"
+      : locale === "pt"
+        ? "Sistema Agêntico de Inteligência de Mercado"
+        : "Agentic Market Intelligence System";
   return buildPageMetadata({
     locale,
     pathname: "/agentic-market-intelligence-system",
-    title: "Agentic Market Intelligence System | ASB Market Research",
+    title: metadataTitle,
+    absoluteTitle: `${metadataTitle} | ASB Market Research`,
     description: workstationHomeContent[locale].description,
   });
 }

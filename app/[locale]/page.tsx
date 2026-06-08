@@ -68,7 +68,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return buildPageMetadata({
     locale,
     pathname: "",
-    title: `${siteConfig.name} | ${content.title}`,
+    title: content.title,
+    absoluteTitle: `${siteConfig.name} | ${content.title}`,
     description: content.paragraphs[0],
   });
 }

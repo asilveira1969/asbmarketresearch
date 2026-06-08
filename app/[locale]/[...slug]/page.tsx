@@ -8,6 +8,7 @@ import { Section } from "@/components/ui/section";
 import { ContactForm } from "@/components/forms/contact-form";
 import { NewsletterForm } from "@/components/forms/newsletter-form";
 import { ReportRequestForm } from "@/components/forms/report-request-form";
+import { ContactCalloutCard } from "@/components/content/contact-callout-card";
 import { EmbedContentBlock } from "@/components/content/embed-content-block";
 import { FAQBlock } from "@/components/content/faq-block";
 import { buildPageMetadata } from "@/lib/metadata";
@@ -82,7 +83,21 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   }
   if (slug.length !== 1 || !(slug[0] in staticPages[locale])) return {};
   const page = staticPages[locale][slug[0] as keyof typeof staticPages[typeof locale]];
-  return buildPageMetadata({ locale, pathname: `/${slug[0]}`, title: page.title, description: page.description });
+  const metadataTitle =
+    slug[0] === "newsletter"
+      ? locale === "es"
+        ? "Boletín"
+        : locale === "pt"
+          ? "Boletim"
+          : page.title
+      : page.title;
+  return buildPageMetadata({
+    locale,
+    pathname: `/${slug[0]}`,
+    title: metadataTitle,
+    absoluteTitle: `${metadataTitle} | ASB Market Research`,
+    description: page.description,
+  });
 }
 
 export default async function StaticPageRouter({
@@ -297,23 +312,14 @@ export default async function StaticPageRouter({
   }
 
   if (key === "contact") {
-    const contactNote =
-      locale === "es"
-        ? "También puedes llamarnos o escribirnos por WhatsApp al +1 305 784 0514. Estaremos encantados de conversar sobre tus necesidades de investigación."
-        : locale === "pt"
-          ? "Você também pode ligar ou nos chamar no WhatsApp pelo +1 305 784 0514. Teremos prazer em conversar sobre suas necessidades de pesquisa."
-          : "You can also call or WhatsApp us at +1 (305) 784-0514. We would be pleased to discuss your research needs.";
-
     return (
       <>
         <PageHeader title={page.title} description="" eyebrow={labels.leadGeneration} />
         <Section className="bg-surface">
           <div className="grid gap-8">
-            <div className="surface-card max-w-3xl">
-              <p className="text-lg font-semibold leading-8 text-brand-primary">{contactNote}</p>
-            </div>
+            <ContactCalloutCard locale={locale} className="max-w-3xl" />
             <div className="max-w-3xl">
-            <ContactForm locale={locale} />
+              <ContactForm locale={locale} />
             </div>
           </div>
         </Section>
@@ -322,21 +328,12 @@ export default async function StaticPageRouter({
   }
 
   if (key === "quotation") {
-    const quoteNote =
-      locale === "es"
-        ? "Llámanos o escríbenos por WhatsApp al +1 305 784 0514. Nos dará mucho gusto conversar sobre tus necesidades de investigación."
-        : locale === "pt"
-          ? "Ligue ou envie uma mensagem no WhatsApp para +1 305 784 0514. Teremos prazer em conversar sobre suas necessidades de pesquisa."
-          : "You can also call or WhatsApp us at +1 (305) 784-0514. We would be pleased to discuss your research needs.";
-
     return (
       <>
         <PageHeader title={page.title} description={page.description} eyebrow={labels.briefing} />
         <Section className="bg-surface">
           <div className="grid gap-8">
-            <div className="surface-card max-w-4xl">
-              <p className="text-lg font-semibold leading-8 text-brand-primary">{quoteNote}</p>
-            </div>
+            <ContactCalloutCard locale={locale} className="max-w-4xl" />
             <div className="max-w-4xl">
               <ReportRequestForm locale={locale} />
             </div>

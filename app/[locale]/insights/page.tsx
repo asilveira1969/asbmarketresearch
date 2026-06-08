@@ -18,7 +18,14 @@ function getCategoryLabel(locale: Locale, category: InsightCategoryKey) {
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const locale = resolveLocale((await params).locale);
   const page = staticPages[locale].insights;
-  return buildPageMetadata({ locale, pathname: "/insights", title: page.title, description: page.description });
+  const metadataTitle = locale === "es" ? "Insights editoriales" : locale === "pt" ? "Insights editoriais" : page.title;
+  return buildPageMetadata({
+    locale,
+    pathname: "/insights",
+    title: metadataTitle,
+    absoluteTitle: `${metadataTitle} | ASB Market Research`,
+    description: page.description,
+  });
 }
 
 export default async function InsightsPage({

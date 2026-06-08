@@ -15,7 +15,21 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const locale = resolveLocale(localeParam);
   const service = serviceDetails.find((item) => item.slug === slug);
   if (!service) return {};
-  return buildPageMetadata({ locale, pathname: `/services/${service.slug}`, title: service.locales[locale].title, description: service.locales[locale].summary });
+  const metadataTitle =
+    service.slug === "agentic-research-workstation"
+      ? locale === "es"
+        ? "Workstation agéntica de investigación"
+        : locale === "pt"
+          ? "Workstation agêntica de pesquisa"
+          : service.locales[locale].title
+      : service.locales[locale].title;
+  return buildPageMetadata({
+    locale,
+    pathname: `/services/${service.slug}`,
+    title: metadataTitle,
+    absoluteTitle: `${metadataTitle} | ASB Market Research`,
+    description: service.locales[locale].summary,
+  });
 }
 
 export default async function ServiceDetailPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {

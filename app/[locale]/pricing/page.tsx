@@ -197,7 +197,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return buildPageMetadata({
     locale,
     pathname: "/pricing",
-    title: `${content.title} | ASB Market Research`,
+    title: content.title,
+    absoluteTitle: `${content.title} | ASB Market Research`,
     description: content.description,
   });
 }
