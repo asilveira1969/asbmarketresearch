@@ -4,6 +4,8 @@ export type ServiceDetail = {
   slug: string;
   icon: string;
   brochureHref?: string;
+  samplePdfHref?: string;
+  samplePrice?: Record<Locale, { label: string; amount: string; note: string }>;
   locales: Record<
     Locale,
     {
@@ -20,6 +22,24 @@ export const serviceDetails: ServiceDetail[] = [
     slug: "industry-product-reports",
     icon: "01",
     brochureHref: "/pdfs/services/industry-product-reports.pdf",
+    samplePdfHref: "/pdfs/services/connecticut-craft-beer-market-landscape.pdf",
+    samplePrice: {
+      es: {
+        label: "Precio inicial",
+        amount: "USD 490",
+        note: "El precio final puede variar según alcance, geografía y plazo de entrega.",
+      },
+      en: {
+        label: "Starting at",
+        amount: "USD 490",
+        note: "Final price may vary by scope, geography, and delivery time.",
+      },
+      pt: {
+        label: "Preço inicial",
+        amount: "USD 490",
+        note: "O preço final pode variar conforme escopo, geografia e prazo de entrega.",
+      },
+    },
     locales: {
       es: {
         title: "Reportes de industria y producto",
@@ -121,6 +141,24 @@ export const serviceDetails: ServiceDetail[] = [
   {
     slug: "agentic-research-workstation",
     icon: "04",
+    brochureHref: "/pdfs/services/agentic-market-intelligence-workstation-flyer.pdf",
+    samplePrice: {
+      es: {
+        label: "Desde",
+        amount: "$1490",
+        note: "El precio final depende de la cantidad de agentes, workflows, complejidad del setup y el nivel de soporte requerido.",
+      },
+      en: {
+        label: "Starting at",
+        amount: "$1490",
+        note: "Final pricing depends on the number of agents, workflows, setup complexity, and the support required for implementation.",
+      },
+      pt: {
+        label: "A partir de",
+        amount: "$1490",
+        note: "O preço final depende da quantidade de agentes, workflows, complexidade do setup e do nível de suporte necessário.",
+      },
+    },
     locales: {
       es: {
         title: "Agentic Research Workstation",

@@ -69,18 +69,18 @@ export default async function AgenticMarketIntelligenceSystemPage({ params }: { 
   return (
     <>
       <PageHeader eyebrow={content.eyebrow} title={content.title} description={introDescription} />
-      <Section className="border-b border-line bg-surface pt-12 md:pt-16">
+      <Section className="border-b border-line bg-surface py-10 md:py-12">
         <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
           <div>
-            <p className="mt-5 max-w-3xl text-base leading-8 text-body-secondary md:text-lg">
+            <p className="mt-3 max-w-3xl text-base leading-7 text-body-secondary md:text-lg md:leading-8">
               ASB Market Research supports organizations in building structured market intelligence capabilities through AI-powered research workflows, specialized agents, connected data sources, and business-oriented reporting systems.
             </p>
-            <p className="mt-5 max-w-3xl text-base leading-8 text-body-secondary md:text-lg">{content.heroDetail}</p>
+            <p className="mt-3 max-w-3xl text-base leading-7 text-body-secondary md:text-lg md:leading-8">{content.heroDetail}</p>
             {content.heroParagraphs.slice(0, 2).map((paragraph, index) =>
               index === 0 ? (
-                <div key={paragraph} className="mt-5 max-w-3xl">
-                  <p className="text-base leading-8 text-body-secondary md:text-lg">Instead of isolated prompts and generic outputs, the platform combines:</p>
-                  <ul className="mt-4 grid gap-2 text-base leading-7 text-body-secondary md:text-lg">
+                <div key={paragraph} className="mt-3 max-w-3xl">
+                  <p className="text-base leading-7 text-body-secondary md:text-lg md:leading-8">Instead of isolated prompts and generic outputs, the platform combines:</p>
+                  <ul className="mt-3 grid gap-1.5 text-base leading-7 text-body-secondary md:text-lg md:gap-2">
                     {[
                       "Specialized research agents",
                       "Separated research methodologies",
@@ -96,7 +96,7 @@ export default async function AgenticMarketIntelligenceSystemPage({ params }: { 
                   </ul>
                 </div>
               ) : (
-                <p key={paragraph} className="mt-5 max-w-3xl text-base leading-8 text-body-secondary md:text-lg">
+                <p key={paragraph} className="mt-3 max-w-3xl text-base leading-7 text-body-secondary md:text-lg md:leading-8">
                   {paragraph}
                 </p>
               ),
@@ -113,8 +113,8 @@ export default async function AgenticMarketIntelligenceSystemPage({ params }: { 
           </div>
         </div>
       </Section>
-      <Section className="border-b border-line bg-canvas pb-12 pt-18 md:pb-14 md:pt-24">
-        <div className="mb-10 max-w-4xl">
+      <Section className="border-b border-line bg-canvas py-8 md:py-10">
+        <div className="mb-6 max-w-4xl">
           <p className="eyebrow">{newServiceHero.eyebrow}</p>
           <h1 className="mt-3 text-display-xs text-brand-primary">{newServiceHero.title}</h1>
         </div>
