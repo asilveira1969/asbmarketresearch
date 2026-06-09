@@ -22,7 +22,7 @@ export const sampleReports: SampleReport[] = [
     locales: {
       es: { title: "Benchmark de categoria premium food", excerpt: "Reporte de muestra para comparar posicionamiento, pricing y canales.", market: "Alimentos", highlights: ["Mapa de marcas", "Rangos de precio", "Canales de distribucion"] },
       en: { title: "World Bank Research Studies", excerpt: "Uruguay Economic Profile 2024 - 2025", market: "Food", highlights: ["Brand map", "Price ranges", "Channel structure"] },
-      pt: { title: "Benchmark de categoria premium food", excerpt: "Relatorio de amostra para comparar posicionamento, precos e canais.", market: "Alimentos", highlights: ["Mapa de marcas", "Faixas de preco", "Estrutura de canais"] }
+      pt: { title: "Benchmark da categoria premium food", excerpt: "Relatorio de amostra para comparar posicionamento, precos e canais.", market: "Alimentos", highlights: ["Mapa de marcas", "Faixas de preco", "Estrutura de canais"] }
     }
   },
   {

@@ -15,16 +15,19 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const locale = resolveLocale(localeParam);
   const report = sampleReports.find((item) => item.slug === slug);
   if (!report) return {};
-  const metadataTitle =
-    report.slug === "premium-food-category-benchmark" && locale === "pt"
-      ? "Benchmark da categoria premium food"
-      : report.locales[locale].title;
+  const metadataTitle = `${report.locales[locale].title} — ${report.locales[locale].market}`;
+  const metadataDescription =
+    locale === "es"
+      ? `${report.locales[locale].excerpt} Aspectos clave: ${report.locales[locale].highlights.join(", ")}.`
+      : locale === "pt"
+        ? `${report.locales[locale].excerpt} Aspectos-chave: ${report.locales[locale].highlights.join(", ")}.`
+        : `${report.locales[locale].excerpt} Highlights: ${report.locales[locale].highlights.join(", ")}.`;
   return buildPageMetadata({
     locale,
     pathname: `/sample-reports/${report.slug}`,
     title: metadataTitle,
     absoluteTitle: `${metadataTitle} | ASB Market Research`,
-    description: report.locales[locale].excerpt,
+    description: metadataDescription,
   });
 }
 

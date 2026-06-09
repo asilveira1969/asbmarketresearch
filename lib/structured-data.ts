@@ -2,6 +2,7 @@ import type { Locale } from "@/config/locales";
 import { siteConfig } from "@/config/site";
 
 export function getOrganizationJsonLd(locale: Locale) {
+  const availableLanguage = Array.from(new Set([locale, "en", "es", "pt"]));
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -12,7 +13,7 @@ export function getOrganizationJsonLd(locale: Locale) {
       "@type": "ContactPoint",
       contactType: "sales",
       email: siteConfig.email,
-      availableLanguage: [locale, "en", "es", "pt"],
+      availableLanguage,
     },
   };
 }
