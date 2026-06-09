@@ -45,7 +45,7 @@ export const workstationHomeContent: Record<Locale, WorkstationHomeContent> = {
     eyebrow: "Sistema Agéntico de Inteligencia de Mercado",
     title: "Workstation de investigación agéntica",
     description:
-      "ASB Market Research ayuda a las organizaciones a construir capacidades estructuradas de inteligencia de mercado mediante workflows de investigación impulsados por IA, agentes especializados, fuentes de datos conectadas y sistemas de reporting orientados al negocio.",
+      "ASB Market Research ayuda a las organizaciones a construir capacidades estructuradas de inteligencia de mercado mediante flujos de trabajo de investigación impulsados por IA, agentes especializados, fuentes de datos conectadas y sistemas de reportes orientados al negocio.",
     heroDetail:
       "La workstation fue diseñada para empresas que necesitan algo más que herramientas de IA basadas en conversación.",
     heroParagraphs: [
@@ -105,7 +105,7 @@ export const workstationHomeContent: Record<Locale, WorkstationHomeContent> = {
       },
       {
         title: "Configurar contexto y fuentes",
-        body: "Se ordenan datos internos, fuentes públicas, competidores, mercados prioritarios y criterios de lectura para cada organización.",
+        body: "Se ordenan datos internos, fuentes públicas, competidores, mercados prioritarios y criterios de análisis para cada organización.",
       },
       {
         title: "Producir briefs y reportes",
@@ -252,12 +252,12 @@ export const workstationHomeContent: Record<Locale, WorkstationHomeContent> = {
     eyebrow: "Sistema agêntico de inteligência de mercado",
     title: "Workstation de pesquisa agêntica",
     description:
-      "A ASB Market Research ajuda organizações a construir capacidades estruturadas de inteligência de mercado por meio de workflows de pesquisa impulsionados por IA, agentes especializados, fontes de dados conectadas e sistemas de relatórios orientados para negócios.",
+      "A ASB Market Research ajuda organizações a construir capacidades estruturadas de inteligência de mercado por meio de fluxos de trabalho de pesquisa impulsionados por IA, agentes especializados, fontes de dados conectadas e sistemas de relatórios orientados para negócios.",
     heroDetail:
       "A workstation foi projetada para empresas que precisam de mais do que ferramentas de IA baseadas em conversa.",
     heroParagraphs: [
-      "Em vez de prompts isolados e resultados genéricos, a plataforma combina agentes de pesquisa especializados, metodologias de pesquisa separadas, workflows estruturados, fontes de dados internas e externas conectadas, processos recorrentes de inteligência e entregáveis empresariais prontos para decisão.",
-      "O ambiente oferece suporte a pesquisa secundária, pesquisa qualitativa, análise quantitativa, bases de dados empresariais, monitoramento de mercado, acompanhamento de concorrentes e workflows de relatórios impulsionados por IA dentro de uma única infraestrutura de pesquisa unificada.",
+      "Em vez de prompts isolados e resultados genéricos, a plataforma combina agentes de pesquisa especializados, metodologias de pesquisa separadas, fluxos de trabalho estruturados, fontes de dados internas e externas conectadas, processos recorrentes de inteligência e entregáveis empresariais prontos para decisão.",
+      "O ambiente oferece suporte a pesquisa secundária, pesquisa qualitativa, análise quantitativa, bases de dados empresariais, monitoramento de mercado, acompanhamento de concorrentes e fluxos de relatórios impulsionados por IA dentro de uma única infraestrutura de pesquisa unificada.",
       "As organizações podem transformar perguntas recorrentes de negócio em operações de inteligência reutilizáveis capazes de produzir resumos executivos, briefings estratégicos, relatórios de mercado, monitoramento setorial, análise de oportunidades e suporte estruturado à tomada de decisão.",
       "Os serviços tradicionais de pesquisa continuam disponíveis, mas agora operam como parte de um sistema de inteligência de mercado mais escalável, repetível e contínuo.",
     ],
@@ -301,7 +301,7 @@ export const workstationHomeContent: Record<Locale, WorkstationHomeContent> = {
     serviceBody:
       "A oferta se organiza como uma escada: relatórios de indústria e produto, estudos sob medida, briefings mensais e o Market Research Workstation como sistema agêntico de inteligência de mercado.",
     serviceClosing:
-      "Uma empresa pode começar com um entregável pontual e evoluir para um fluxo de trabalho contínuo que preserve conhecimento, melhore velocidade e reduza improvisação em decisões de mercado.",
+      "Uma empresa pode começar com um entregável pontual e evoluir para um fluxo de trabalho contínuo que preserve conhecimento, melhore velocidade e reduza a improvisação em decisões de mercado.",
     methodologyTitle: "Como o Workstation funciona",
     methodologyBody:
       "A implementação mantém o estilo consultivo da ASB: definir a decisão, mapear fontes e contexto, desenhar fluxos de trabalho e produzir inteligência útil para agir.",

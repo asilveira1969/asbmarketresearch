@@ -18,14 +18,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const locale = resolveLocale(localeParam);
   const service = serviceDetails.find((item) => item.slug === slug);
   if (!service) return {};
-  const metadataTitle =
-    service.slug === "agentic-research-workstation"
-      ? locale === "es"
-        ? "Workstation agÃ©ntica de investigaciÃ³n"
-        : locale === "pt"
-          ? "Workstation agÃªntica de pesquisa"
-          : service.locales[locale].title
-      : service.locales[locale].title;
+
+  const metadataTitle = service.locales[locale].title;
+
   return buildPageMetadata({
     locale,
     pathname: `/services/${service.slug}`,
@@ -44,16 +39,18 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   const content = service.locales[locale];
   const bodyParagraphs = [content.summary, ...content.body];
   const samplePrice = service.samplePrice?.[locale];
+  const requestQuoteLabel = locale === "es" ? "Solicitar cotización" : locale === "pt" ? "Solicitar cotação" : "Request a Quote";
+  const requestDemoLabel = locale === "es" ? "Solicitar demo" : locale === "pt" ? "Solicitar demo" : "Request a Demo";
   const workstationWorkflowImageAlt = {
     es: "Diagrama del flujo de trabajo del workstation de inteligencia de mercado",
     en: "Workflow diagram showing how the market research workstation works",
-    pt: "Diagrama do fluxo de trabalho do workstation de inteligencia de mercado",
+    pt: "Diagrama do fluxo de trabalho da workstation de inteligência de mercado",
   }[locale];
 
   const labels = {
     es: { services: "Servicios", deliverables: "Entregables", downloadPdf: "Descargar PDF" },
     en: { services: "Services", deliverables: "Deliverables", downloadPdf: "Download PDF" },
-    pt: { services: "ServiÃ§os", deliverables: "EntregÃ¡veis", downloadPdf: "Baixar PDF" },
+    pt: { services: "Serviços", deliverables: "Entregáveis", downloadPdf: "Baixar PDF" },
   }[locale];
 
   const sampleReportPlaceholder =
@@ -62,20 +59,20 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           title:
             service.slug === "monthly-market-briefings"
               ? locale === "es"
-                ? "Briefing mensual de muestra"
+                ? "Muestra de briefing mensual"
                 : locale === "pt"
-                  ? "Briefing mensal de amostra"
+                  ? "Amostra de briefing mensal"
                   : "Monthly Market Briefing Sample"
               : service.slug === "custom-research-studies"
                 ? locale === "es"
-                  ? "Estudio de investigaciÃ³n de muestra"
+                  ? "Estudio de investigación de muestra"
                   : locale === "pt"
                     ? "Estudo de pesquisa de amostra"
                     : "Custom Research Sample - Context Aware Analysis"
                 : locale === "es"
                   ? "Reporte de muestra de industria o producto"
                   : locale === "pt"
-                    ? "RelatÃ³rio de amostra de indÃºstria ou produto"
+                    ? "Relatório de amostra de indústria ou produto"
                     : "Industry or Product Sample Report",
           description:
             service.slug === "industry-product-reports"
@@ -85,18 +82,12 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                   ? "Panorama do mercado de cerveja artesanal de Connecticut"
                   : "Connecticut Craft Beer Market Landscape"
               : service.slug === "monthly-market-briefings"
-                ? locale === "es"
-                  ? "Monthly Brief on Gold"
+                ? "Monthly Brief on Gold"
+                : locale === "es"
+                  ? "Análisis y recomendaciones con contexto por la agente Maria, nuestra estratega senior de investigación."
                   : locale === "pt"
-                    ? "Monthly Brief on Gold"
-                    : "Monthly Brief on Gold"
-              : locale === "es"
-                ? "Espacio preparado para incorporar un PDF de muestra de este tipo de servicio."
-                : locale === "pt"
-                  ? "EspaÃ§o preparado para incorporar um PDF de amostra deste tipo de serviÃ§o."
-                  : service.slug === "custom-research-studies"
-                    ? "Context Aware Analysis and Recommendations by Agent Maria, our Strategic Senior Researcher"
-                    : "Placeholder prepared for uploading a sample PDF for this service type.",
+                    ? "Análise e recomendações com contexto pela agente Maria, nossa estrategista sênior de pesquisa."
+                    : "Context Aware Analysis and Recommendations by Agent Maria, our Strategic Senior Researcher",
           label:
             service.slug === "industry-product-reports" || service.slug === "custom-research-studies"
               ? labels.downloadPdf
@@ -156,11 +147,11 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     service.slug === "agentic-research-workstation" ? (
                       <div className="flex flex-col gap-3 md:self-start">
                         <a className="button-primary inline-flex w-fit min-w-max items-center justify-center whitespace-nowrap text-center" href="#request-a-quote-form">
-                          {locale === "es" ? "Solicitar cotización" : locale === "pt" ? "Solicitar cotação" : "Request a Quote"}
+                          {requestQuoteLabel}
                         </a>
                         {service.slug === "agentic-research-workstation" ? (
                           <a className="button-secondary inline-flex w-fit min-w-max items-center justify-center whitespace-nowrap text-center" href="#request-a-quote-form">
-                            {locale === "es" ? "Solicitar demo" : locale === "pt" ? "Solicitar demo" : "Request a Demo"}
+                            {requestDemoLabel}
                           </a>
                         ) : null}
                       </div>
@@ -210,10 +201,10 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     {service.slug === "agentic-research-workstation" ? (
                       <div className="flex flex-col gap-3 md:self-start">
                         <a className="button-primary inline-flex w-fit min-w-max items-center justify-center whitespace-nowrap text-center" href="#request-a-quote-form">
-                          {locale === "es" ? "Solicitar cotización" : locale === "pt" ? "Solicitar cotação" : "Request a Quote"}
+                          {requestQuoteLabel}
                         </a>
                         <a className="button-secondary inline-flex w-fit min-w-max items-center justify-center whitespace-nowrap text-center" href="#request-a-quote-form">
-                          {locale === "es" ? "Solicitar demo" : locale === "pt" ? "Solicitar demo" : "Request a Demo"}
+                          {requestDemoLabel}
                         </a>
                       </div>
                     ) : null}
@@ -288,5 +279,3 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     </>
   );
 }
-
-

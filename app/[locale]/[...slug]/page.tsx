@@ -123,6 +123,56 @@ export default async function StaticPageRouter({
 
   if (key === "about") {
     const biographyParagraphs = founderProfile.biography[locale].split("\n\n");
+    const aboutCopy = {
+      es: {
+        eyebrow: "SOBRE NOSOTROS",
+        title: "De reportes de mercado a sistemas de inteligencia",
+        intro:
+          "ASB Market Research es una iniciativa independiente de inteligencia de mercado fundada por Anastacio Silveira, que combina la metodología tradicional de investigación de mercado con flujos de trabajo de investigación emergentes asistidos por IA y por agentes.",
+        body:
+          "A partir de la experiencia previa en investigación de mercado, estrategia de negocios, emprendimiento y entornos corporativos multinacionales, la iniciativa explora cómo las tecnologías modernas pueden hacer que las capacidades estructuradas de inteligencia de mercado sean más accesibles y escalables para organizaciones de distintos tamaños.",
+        listIntro: "ASB Market Research se enfoca principalmente en:",
+        bullets: [
+          "investigación secundaria;",
+          "análisis cualitativo de mercado;",
+          "interpretación estratégica;",
+          "reportes de inteligencia de mercado;",
+          "y flujos de trabajo de investigación asistidos por IA.",
+        ],
+        closing:
+          "La visión más amplia detrás del proyecto es explorar cómo las metodologías estructuradas, el contexto organizacional y los sistemas modernos asistidos por IA pueden trabajar juntos para crear un enfoque más continuo, escalable y orientado a la decisión para la inteligencia de mercado.",
+      },
+      pt: {
+        eyebrow: "SOBRE NÓS",
+        title: "De relatórios de mercado a sistemas de inteligência",
+        intro:
+          "A ASB Market Research é uma iniciativa independente de inteligência de mercado fundada por Anastacio Silveira, que combina a metodologia tradicional de pesquisa de mercado com fluxos de trabalho de pesquisa emergentes assistidos por IA e por agentes.",
+        body:
+          "A partir da experiência prévia em pesquisa de mercado, estratégia de negócios, empreendedorismo e ambientes corporativos multinacionais, a iniciativa explora como as tecnologias modernas podem tornar as capacidades estruturadas de inteligência de mercado mais acessíveis e escaláveis para organizações de diferentes portes.",
+        listIntro: "A ASB Market Research se concentra principalmente em:",
+        bullets: [
+          "pesquisa secundária;",
+          "análise qualitativa de mercado;",
+          "interpretação estratégica;",
+          "relatórios de inteligência de mercado;",
+          "e fluxos de trabalho de pesquisa assistidos por IA.",
+        ],
+        closing:
+          "A visão mais ampla por trás do projeto é explorar como metodologias estruturadas, contexto organizacional e sistemas modernos assistidos por IA podem trabalhar juntos para criar uma abordagem mais contínua, escalável e orientada à decisão para a inteligência de mercado.",
+      },
+      en: {
+        eyebrow: "ABOUT",
+        title: "Market Reports to Intelligence Systems",
+        intro:
+          "ASB Market Research is an independent market intelligence initiative founded by Anastacio Silveira, combining traditional market research methodology with emerging AI-assisted and agent-powered research workflows.",
+        body:
+          "Drawing from prior experience in market research, business strategy, entrepreneurship, and multinational corporate environments, the initiative explores how modern technologies can make structured market intelligence capabilities more accessible and scalable across organizations of different sizes.",
+        listIntro: "ASB Market Research focuses primarily on:",
+        bullets: ["secondary research;", "qualitative market analysis;", "strategic interpretation;", "market intelligence reporting;", "and AI-assisted research workflows."],
+        closing:
+          "The broader vision behind the project is to explore how structured methodologies, organizational context, and modern AI-assisted systems can work together to create a more continuous, scalable, and decision-oriented approach to market intelligence.",
+      },
+    }[locale];
 
     return (
       <>
@@ -194,32 +244,19 @@ export default async function StaticPageRouter({
         <Section className="bg-canvas">
           <div className="grid gap-10 lg:grid-cols-[1fr_0.95fr] lg:items-start">
             <div className="max-w-4xl">
-              <p className="eyebrow">ABOUT</p>
-              <h2 className="mt-3 text-display-sm text-brand-primary">Market Reports to Intelligence Systems</h2>
-              <p className="mt-5 text-lg leading-8 text-body-secondary">
-                ASB Market Research is an independent market intelligence initiative founded by Anastacio Silveira,
-                combining traditional market research methodology with emerging AI-assisted and agent-powered research workflows.
-              </p>
-              <p className="mt-5 text-lg leading-8 text-body-secondary">
-                Drawing from prior experience in market research, business strategy, entrepreneurship, and multinational
-                corporate environments, the initiative explores how modern technologies can make structured market intelligence
-                capabilities more accessible and scalable across organizations of different sizes.
-              </p>
+              <p className="eyebrow">{aboutCopy.eyebrow}</p>
+              <h2 className="mt-3 text-display-sm text-brand-primary">{aboutCopy.title}</h2>
+              <p className="mt-5 text-lg leading-8 text-body-secondary">{aboutCopy.intro}</p>
+              <p className="mt-5 text-lg leading-8 text-body-secondary">{aboutCopy.body}</p>
               <div className="mt-6">
-                <p className="text-lg leading-8 text-body-secondary">ASB Market Research focuses primarily on:</p>
+                <p className="text-lg leading-8 text-body-secondary">{aboutCopy.listIntro}</p>
                 <ul className="mt-4 grid gap-3 pl-5 text-lg leading-8 text-body-secondary list-disc">
-                  <li>secondary research;</li>
-                  <li>qualitative market analysis;</li>
-                  <li>strategic interpretation;</li>
-                  <li>market intelligence reporting;</li>
-                  <li>and AI-assisted research workflows.</li>
+                  {aboutCopy.bullets.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
                 </ul>
               </div>
-              <p className="mt-6 text-lg leading-8 text-body-secondary">
-                The broader vision behind the project is to explore how structured methodologies, organizational context, and
-                modern AI-assisted systems can work together to create a more continuous, scalable, and decision-oriented
-                approach to market intelligence.
-              </p>
+              <p className="mt-6 text-lg leading-8 text-body-secondary">{aboutCopy.closing}</p>
             </div>
             <div className="overflow-hidden rounded-[1.75rem] border border-line bg-canvas shadow-soft">
               <Image

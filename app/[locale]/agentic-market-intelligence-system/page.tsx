@@ -50,7 +50,7 @@ export default async function AgenticMarketIntelligenceSystemPage({ params }: { 
   const newsletterLink = getLocalizedPath(locale, "/newsletter");
   const labels = {
     es: {
-      methodology: "MetodologÃ­a",
+      methodology: "Metodología",
       newsletter: "Newsletter",
       viewServices: "Ver servicios",
     },
@@ -62,7 +62,7 @@ export default async function AgenticMarketIntelligenceSystemPage({ params }: { 
     pt: {
       methodology: "Metodologia",
       newsletter: "Newsletter",
-      viewServices: "Ver serviÃ§os",
+      viewServices: "Ver serviços",
     },
   }[locale];
 
