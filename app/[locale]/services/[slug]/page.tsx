@@ -1,7 +1,9 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
+import { ContactCalloutCard } from "@/components/content/contact-callout-card";
 import { PdfDownloadCard } from "@/components/cards/pdf-download-card";
+import { ReportRequestForm } from "@/components/forms/report-request-form";
 import { Section } from "@/components/ui/section";
 import { buildPageMetadata } from "@/lib/metadata";
 import { resolveLocale } from "@/lib/i18n";
@@ -19,9 +21,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const metadataTitle =
     service.slug === "agentic-research-workstation"
       ? locale === "es"
-        ? "Workstation agéntica de investigación"
+        ? "Workstation agÃ©ntica de investigaciÃ³n"
         : locale === "pt"
-          ? "Workstation agêntica de pesquisa"
+          ? "Workstation agÃªntica de pesquisa"
           : service.locales[locale].title
       : service.locales[locale].title;
   return buildPageMetadata({
@@ -51,7 +53,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   const labels = {
     es: { services: "Servicios", deliverables: "Entregables", downloadPdf: "Descargar PDF" },
     en: { services: "Services", deliverables: "Deliverables", downloadPdf: "Download PDF" },
-    pt: { services: "Serviços", deliverables: "Entregáveis", downloadPdf: "Baixar PDF" },
+    pt: { services: "ServiÃ§os", deliverables: "EntregÃ¡veis", downloadPdf: "Baixar PDF" },
   }[locale];
 
   const sampleReportPlaceholder =
@@ -66,14 +68,14 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                   : "Monthly Market Briefing Sample"
               : service.slug === "custom-research-studies"
                 ? locale === "es"
-                  ? "Estudio de investigación de muestra"
+                  ? "Estudio de investigaciÃ³n de muestra"
                   : locale === "pt"
                     ? "Estudo de pesquisa de amostra"
-                    : "Custom Research Study Sample"
+                    : "Custom Research Sample - Context Aware Analysis"
                 : locale === "es"
                   ? "Reporte de muestra de industria o producto"
                   : locale === "pt"
-                    ? "Relatório de amostra de indústria ou produto"
+                    ? "RelatÃ³rio de amostra de indÃºstria ou produto"
                     : "Industry or Product Sample Report",
           description:
             service.slug === "industry-product-reports"
@@ -91,16 +93,18 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               : locale === "es"
                 ? "Espacio preparado para incorporar un PDF de muestra de este tipo de servicio."
                 : locale === "pt"
-                  ? "Espaço preparado para incorporar um PDF de amostra deste tipo de serviço."
-                  : "Placeholder prepared for uploading a sample PDF for this service type.",
+                  ? "EspaÃ§o preparado para incorporar um PDF de amostra deste tipo de serviÃ§o."
+                  : service.slug === "custom-research-studies"
+                    ? "Context Aware Analysis and Recommendations by Agent Maria, our Strategic Senior Researcher"
+                    : "Placeholder prepared for uploading a sample PDF for this service type.",
           label:
-            service.slug === "industry-product-reports"
+            service.slug === "industry-product-reports" || service.slug === "custom-research-studies"
               ? labels.downloadPdf
               : locale === "es"
                 ? "PDF de muestra pendiente"
                 : locale === "pt"
                   ? "PDF de amostra pendente"
-                  : "Sample PDF pending",
+                  : "Sample PDF Download",
           href: service.samplePdfHref,
           previewHref: service.samplePdfHref,
         }
@@ -140,9 +144,28 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               </div>
               {samplePrice ? (
                 <div className="rounded-2xl border border-line bg-canvas px-5 py-4 shadow-soft">
-                  <p className="eyebrow">{samplePrice.label}</p>
-                  <p className="mt-3 text-3xl font-semibold tracking-tight text-brand-primary md:text-4xl">{samplePrice.amount}</p>
-                  <p className="mt-2 max-w-md text-sm leading-6 text-body-secondary">{samplePrice.note}</p>
+                  <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+                    <div>
+                      <p className="eyebrow">{samplePrice.label}</p>
+                      <p className="mt-3 text-3xl font-semibold tracking-tight text-brand-primary md:text-4xl">{samplePrice.amount}</p>
+                      <p className="mt-2 max-w-md text-sm leading-6 text-body-secondary">{samplePrice.note}</p>
+                    </div>
+                    {service.slug === "industry-product-reports" ||
+                    service.slug === "custom-research-studies" ||
+                    service.slug === "monthly-market-briefings" ||
+                    service.slug === "agentic-research-workstation" ? (
+                      <div className="flex flex-col gap-3 md:self-start">
+                        <a className="button-primary inline-flex w-fit min-w-max items-center justify-center whitespace-nowrap text-center" href="#request-a-quote-form">
+                          {locale === "es" ? "Solicitar cotización" : locale === "pt" ? "Solicitar cotação" : "Request a Quote"}
+                        </a>
+                        {service.slug === "agentic-research-workstation" ? (
+                          <a className="button-secondary inline-flex w-fit min-w-max items-center justify-center whitespace-nowrap text-center" href="#request-a-quote-form">
+                            {locale === "es" ? "Solicitar demo" : locale === "pt" ? "Solicitar demo" : "Request a Demo"}
+                          </a>
+                        ) : null}
+                      </div>
+                    ) : null}
+                  </div>
                 </div>
               ) : null}
               <div className="surface-panel">
@@ -178,9 +201,23 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             <div className="grid gap-6">
               {samplePrice ? (
                 <div className="rounded-2xl border border-line bg-canvas px-5 py-4 shadow-soft">
-                  <p className="eyebrow">{samplePrice.label}</p>
-                  <p className="mt-3 text-3xl font-semibold tracking-tight text-brand-primary md:text-4xl">{samplePrice.amount}</p>
-                  <p className="mt-2 max-w-md text-sm leading-6 text-body-secondary">{samplePrice.note}</p>
+                  <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+                    <div>
+                      <p className="eyebrow">{samplePrice.label}</p>
+                      <p className="mt-3 text-3xl font-semibold tracking-tight text-brand-primary md:text-4xl">{samplePrice.amount}</p>
+                      <p className="mt-2 max-w-md text-sm leading-6 text-body-secondary">{samplePrice.note}</p>
+                    </div>
+                    {service.slug === "agentic-research-workstation" ? (
+                      <div className="flex flex-col gap-3 md:self-start">
+                        <a className="button-primary inline-flex w-fit min-w-max items-center justify-center whitespace-nowrap text-center" href="#request-a-quote-form">
+                          {locale === "es" ? "Solicitar cotización" : locale === "pt" ? "Solicitar cotação" : "Request a Quote"}
+                        </a>
+                        <a className="button-secondary inline-flex w-fit min-w-max items-center justify-center whitespace-nowrap text-center" href="#request-a-quote-form">
+                          {locale === "es" ? "Solicitar demo" : locale === "pt" ? "Solicitar demo" : "Request a Demo"}
+                        </a>
+                      </div>
+                    ) : null}
+                  </div>
                 </div>
               ) : null}
               <div className="surface-panel">
@@ -196,14 +233,60 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         )}
       </Section>
       <Section className="bg-canvas py-12 md:py-16">
-        <PdfDownloadCard
-          title={content.title}
-          description={content.summary}
-          href={service.brochureHref}
-          previewHref={service.slug === "agentic-research-workstation" ? service.brochureHref : undefined}
-          label={labels.downloadPdf}
-        />
+        {service.slug === "industry-product-reports" ? (
+          <div id="request-a-quote-form" className="mx-auto grid max-w-4xl gap-8 scroll-mt-28 md:scroll-mt-32">
+            <ContactCalloutCard locale={locale} />
+            <ReportRequestForm locale={locale} />
+          </div>
+        ) : service.slug === "custom-research-studies" ? (
+          <div className="mx-auto grid max-w-4xl gap-8">
+            <PdfDownloadCard
+              title={content.title}
+              description={content.summary}
+              href={service.brochureHref}
+              previewHref={service.brochureHref}
+              label={labels.downloadPdf}
+            />
+            <div id="request-a-quote-form" className="grid gap-8 scroll-mt-28 md:scroll-mt-32">
+              <ContactCalloutCard locale={locale} />
+              <ReportRequestForm locale={locale} />
+            </div>
+          </div>
+        ) : service.slug === "monthly-market-briefings" ? (
+          <div id="request-a-quote-form" className="mx-auto grid max-w-4xl gap-8 scroll-mt-28 md:scroll-mt-32">
+            <ContactCalloutCard locale={locale} />
+            <ReportRequestForm locale={locale} />
+          </div>
+        ) : service.slug === "agentic-research-workstation" ? (
+          <div className="mx-auto grid max-w-4xl gap-8">
+            <PdfDownloadCard
+              title={content.title}
+              description={content.summary}
+              href={service.brochureHref}
+              previewHref={service.brochureHref}
+              label={labels.downloadPdf}
+            />
+            <div id="request-a-quote-form" className="grid gap-8 scroll-mt-28 md:scroll-mt-32">
+              <ContactCalloutCard locale={locale} />
+              <ReportRequestForm locale={locale} />
+            </div>
+          </div>
+        ) : (
+          <PdfDownloadCard
+            title={content.title}
+            description={content.summary}
+            href={service.brochureHref}
+            previewHref={
+              service.slug === "agentic-research-workstation" || service.slug === "custom-research-studies"
+                ? service.brochureHref
+                : undefined
+            }
+            label={labels.downloadPdf}
+          />
+        )}
       </Section>
     </>
   );
 }
+
+

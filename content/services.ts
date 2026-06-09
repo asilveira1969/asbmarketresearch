@@ -73,7 +73,25 @@ export const serviceDetails: ServiceDetail[] = [
   {
     slug: "custom-research-studies",
     icon: "02",
-    brochureHref: "/pdfs/services/custom-research-studies.pdf",
+    brochureHref: "/pdfs/services/uruguay-wine-exports.pdf",
+    samplePdfHref: "/pdfs/services/custom-research-context-aware-analisis.pdf",
+    samplePrice: {
+      es: {
+        label: "Precio inicial",
+        amount: "USD 990",
+        note: "El precio final puede variar según alcance, fuentes, geografía y plazo de entrega.",
+      },
+      en: {
+        label: "Starting at",
+        amount: "USD 990",
+        note: "Final price may vary by scope, sources, geography, and delivery time.",
+      },
+      pt: {
+        label: "Preço inicial",
+        amount: "USD 990",
+        note: "O preço final pode variar conforme escopo, fontes, geografia e prazo de entrega.",
+      },
+    },
     locales: {
       es: {
         title: "Estudios de investigaciÃ³n a medida",
@@ -91,7 +109,13 @@ export const serviceDetails: ServiceDetail[] = [
           "We design focused studies around a concrete client question, with scope, sources, and depth defined by the decision that needs support.",
           "Each study turns dispersed information into a structured reading with implications, risks, and practical recommendations.",
         ],
-        deliverables: ["Research brief", "Structured analysis", "Competitive or opportunity map", "Strategic recommendations"],
+        deliverables: [
+          "Context Aware Analysis (Document 1 of 2)",
+          "Research Work (Document 2 of 2)",
+          "Structured analysis",
+          "Competitive or opportunity map",
+          "Strategic recommendations",
+        ],
       },
       pt: {
         title: "Estudos de pesquisa sob medida",
