@@ -108,6 +108,24 @@ export const serviceDetails: ServiceDetail[] = [
     slug: "monthly-market-briefings",
     icon: "03",
     brochureHref: "/pdfs/services/monthly-market-briefings.pdf",
+    samplePdfHref: "/pdfs/services/monthly-brief-on-gold.pdf",
+    samplePrice: {
+      es: {
+        label: "Precio inicial",
+        amount: "USD 490",
+        note: "El precio final puede variar según alcance, geografía y plazo de entrega.",
+      },
+      en: {
+        label: "Starting at",
+        amount: "USD 490",
+        note: "Final price may vary by scope, geography, and delivery time.",
+      },
+      pt: {
+        label: "Preço inicial",
+        amount: "USD 490",
+        note: "O preço final pode variar conforme escopo, geografia e prazo de entrega.",
+      },
+    },
     locales: {
       es: {
         title: "Briefings mensuales de mercado",
