@@ -13,7 +13,11 @@ export const metadata: Metadata = {
   },
   description: siteConfig.defaultDescription,
   applicationName: siteConfig.name,
-};
+  verification: {
+    google: "rP9uSG__9-NVBuhNbvVEX4CR4vINX90V2JpvyS1KPvE",
+  },
+  };
+  
 
 export default async function RootLayout({
   children,
