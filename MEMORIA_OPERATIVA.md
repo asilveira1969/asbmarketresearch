@@ -15,7 +15,7 @@
 
 ## 3) Repositorio y despliegue
 - GitHub remoto: `https://github.com/asilveira1969/asbmarketresearch`
-- Vercel producción: `https://asb-market-research.vercel.app`
+- Vercel producción: `https://www.asbmarketresearch.com`
 - Vercel project: `https://vercel.com/anastacios-projects-481225da/asb-market-research`
 - El repo local está vinculado a Vercel mediante `.vercel/project.json`
 

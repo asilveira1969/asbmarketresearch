@@ -3,7 +3,7 @@ import { defaultLocale, locales } from "@/config/locales";
 export const siteConfig = {
   name: "ASB Market Research",
   tagline: "Structured Insights for Better Decisions",
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://www.asbmarketresearch.com",
+  siteUrl: "https://www.asbmarketresearch.com",
   defaultLocale,
   locales,
   defaultDescription:

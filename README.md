@@ -2,7 +2,7 @@
 
 Professional multilingual website scaffold for `ASB Market Research`, built with Next.js App Router, TypeScript, and Tailwind CSS.
 
-Live site: https://asb-market-research.vercel.app
+Live site: https://www.asbmarketresearch.com
 
 ## Local development
 
