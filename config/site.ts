@@ -12,5 +12,5 @@ export const siteConfig = {
   linkedinUrl: "https://www.linkedin.com/company/asb-market-research/",
   founderName: "Anastacio Silveira",
   legalName: "ASB Market Research",
-  analyticsId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "",
+  analyticsId: "G-LLRN3KE2QK",
 } as const;

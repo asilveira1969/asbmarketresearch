@@ -71,9 +71,10 @@ Reference guide:
 Copy `.env.example` to `.env.local` and set:
 
 - `NEXT_PUBLIC_SITE_URL`
-- `NEXT_PUBLIC_GA_MEASUREMENT_ID`
 - `FORM_WEBHOOK_URL`
 - `FORM_NOTIFICATION_EMAIL`
+
+Google Analytics is configured in [config/site.ts](/f:/WORK/ASB%20Market%20Research/config/site.ts) with Measurement ID `G-LLRN3KE2QK`.
 
 ## Form delivery
 
