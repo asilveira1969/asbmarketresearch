@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
+import { Analytics } from "@vercel/analytics/react";
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { defaultLocale, isLocale } from "@/config/locales";
 import { siteConfig } from "@/config/site";
@@ -33,6 +34,7 @@ export default async function RootLayout({
       <body className="min-h-full bg-canvas text-ink antialiased">
         <GoogleAnalytics />
         {children}
+        <Analytics />
       </body>
     </html>
   );
