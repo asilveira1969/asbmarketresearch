@@ -11,9 +11,9 @@ type QuoteCtaProps = {
 };
 
 const quoteLabels: Record<Locale, string> = {
-  es: "Detailed Project Brief",
-  en: "Detailed Project Brief",
-  pt: "Detailed Project Brief",
+  es: "Request a Quote",
+  en: "Request a Quote",
+  pt: "Request a Quote",
 };
 
 export function QuoteCta({ locale, className }: QuoteCtaProps) {
@@ -23,7 +23,7 @@ export function QuoteCta({ locale, className }: QuoteCtaProps) {
         "inline-flex items-center rounded-full bg-brand-primary px-4 py-2 text-xs font-semibold text-white shadow-soft transition-colors hover:bg-brand-secondary whitespace-nowrap",
         className,
       )}
-      href={getLocalizedPath(locale, "/quotation")}
+      href={getLocalizedPath(locale, "/contact")}
     >
       {quoteLabels[locale]}
     </Link>
