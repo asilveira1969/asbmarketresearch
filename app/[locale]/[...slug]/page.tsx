@@ -9,7 +9,6 @@ import { ContactForm } from "@/components/forms/contact-form";
 import { NewsletterForm } from "@/components/forms/newsletter-form";
 import { ReportRequestForm } from "@/components/forms/report-request-form";
 import { ContactCalloutCard } from "@/components/content/contact-callout-card";
-import { RequestReceivedActions } from "@/components/content/request-received-actions";
 import { EmbedContentBlock } from "@/components/content/embed-content-block";
 import { FAQBlock } from "@/components/content/faq-block";
 import { buildPageMetadata } from "@/lib/metadata";
@@ -37,6 +36,39 @@ const thankYouContent = {
     es: { title: "Detailed Project Brief received", description: "El detailed project brief fue enviado y esta estructura ya soporta respuestas futuras por email o automatización." },
     en: { title: "Detailed Project Brief received", description: "The Detailed Project Brief was submitted and this structure can later connect to email or automation workflows." },
     pt: { title: "Detailed Project Brief received", description: "O Detailed Project Brief foi enviado e esta estrutura pode depois se conectar a email ou automações." },
+  },
+} as const;
+
+const requestReceivedContent = {
+  es: {
+    body: [
+      "Hemos recibido su solicitud.",
+      "Agradecemos su interés en ASB Market Research.",
+      "Nuestro equipo revisará su consulta y responderá dentro de las próximas 24 horas respecto a sus necesidades de información e investigación.",
+      "Gracias por brindarnos la oportunidad de asistirle.",
+      "Equipo de ASB Market Research",
+      "Research. Intelligence. Decisions.",
+    ],
+  },
+  en: {
+    body: [
+      "Your request has been received.",
+      "We appreciate your interest in ASB Market Research.",
+      "Our team will review your inquiry and respond within the next 24 hours regarding your information and research needs.",
+      "Thank you for the opportunity to assist you.",
+      "ASB Market Research Team",
+      "Research. Intelligence. Decisions.",
+    ],
+  },
+  pt: {
+    body: [
+      "Recebemos sua solicitação.",
+      "Agradecemos seu interesse na ASB Market Research.",
+      "Nossa equipe analisará sua consulta e responderá dentro das próximas 24 horas sobre suas necessidades de informação e pesquisa.",
+      "Obrigado pela oportunidade de ajudá-lo.",
+      "Equipe ASB Market Research",
+      "Research. Intelligence. Decisions.",
+    ],
   },
 } as const;
 
@@ -71,12 +103,6 @@ const pageLabels = {
     briefing: "Detailed Project Brief",
     legal: "Legal",
   },
-} as const;
-
-const requestReceivedContactNotes = {
-  es: "Si prefieres hablar primero, llámanos o escríbenos por WhatsApp y coordinaremos los siguientes pasos por correo electrónico.",
-  en: "Prefer to speak first? Call or WhatsApp us and we'll coordinate the next steps by email.",
-  pt: "Se preferir falar primeiro, ligue ou envie uma mensagem no WhatsApp e coordenaremos os próximos passos por e-mail.",
 } as const;
 
 const insightCategoryOrder: InsightCategoryKey[] = ["strategy", "competition", "briefing"];
@@ -372,13 +398,25 @@ export default async function StaticPageRouter({
   }
 
   if (key === "request-received") {
+    const copy = requestReceivedContent[locale];
     return (
       <>
-        <PageHeader title={page.title} description={page.description} eyebrow={labels.confirmation} />
-        <Section className="bg-surface">
-          <div className="grid gap-8">
-            <RequestReceivedActions locale={locale} />
-            <ContactCalloutCard locale={locale} note={requestReceivedContactNotes[locale]} />
+        <Section className="bg-canvas !py-20 md:!py-28">
+          <div className="mx-auto max-w-3xl">
+            <div className="rounded-[1.5rem] border border-line bg-surface px-6 py-12 shadow-soft md:px-10 md:py-16">
+              <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
+                <h1 className="text-display-sm text-brand-primary">{page.title}</h1>
+                <div className="mt-8 grid gap-5 text-lg leading-8 text-body-secondary md:text-xl md:leading-9">
+                  {copy.body.slice(0, 4).map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                </div>
+                <div className="mt-8 grid gap-3">
+                  <p className="text-lg font-medium text-brand-primary">{copy.body[4]}</p>
+                  <p className="text-sm leading-6 text-body-secondary md:text-base md:leading-7">{copy.body[5]}</p>
+                </div>
+              </div>
+            </div>
           </div>
         </Section>
       </>

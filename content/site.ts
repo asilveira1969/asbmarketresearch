@@ -29,8 +29,8 @@ export const staticPages = {
       description: "Completa un Detailed Project Brief para reportes de mercado, briefings recurrentes o un sistema agéntico de inteligencia de mercado.",
     },
     "request-received": {
-      title: "Thank You",
-      description: "Hemos recibido tu solicitud. Elige la opción que mejor te convenga.",
+      title: "Gracias",
+      description: "Hemos recibido su solicitud y responderemos dentro de 24 horas.",
     },
     newsletter: { title: "Newsletter", description: "Captación de suscriptores para actualizaciones, notas de investigación y futuras publicaciones." },
     "privacy-policy": { title: "Política de privacidad", description: "Texto base listo para revisión legal final antes del lanzamiento." },
@@ -52,7 +52,7 @@ export const staticPages = {
     },
     "request-received": {
       title: "Thank You",
-      description: "We have received your request. Choose the option that works best for you.",
+      description: "Your request has been received and we will respond within 24 hours.",
     },
     newsletter: { title: "Newsletter", description: "Subscriber capture for updates, research notes, and future publications." },
     "privacy-policy": { title: "Privacy Policy", description: "Base privacy copy ready for final legal review before launch." },
@@ -73,8 +73,8 @@ export const staticPages = {
       description: "Complete um Detailed Project Brief para relatórios de mercado, briefings recorrentes ou um sistema agêntico de inteligência de mercado personalizado.",
     },
     "request-received": {
-      title: "Thank You",
-      description: "Recebemos sua solicitação. Escolha a opção que funciona melhor para você.",
+      title: "Obrigado",
+      description: "Recebemos sua solicitação e responderemos dentro de 24 horas.",
     },
     newsletter: { title: "Newsletter", description: "Captação de assinantes para atualizações, notas de pesquisa e futuras publicações." },
     "privacy-policy": { title: "Política de privacidade", description: "Texto base pronto para revisão jurídica final antes do lançamento." },
