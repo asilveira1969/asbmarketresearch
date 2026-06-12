@@ -9,37 +9,43 @@ type ContactFormProps = { locale: Locale };
 
 const labels = {
   es: {
-    title: "Formulario de contacto",
+    title: "Contacte a ASB Market Research",
+    subtitle: "Solicite una cotización, haga una pregunta o converse sobre sus necesidades de investigación.",
     fullName: "Nombre completo",
     company: "Empresa / startup / proyecto",
     email: "Email",
     phone: "Número de teléfono (opcional)",
     message: "¿Qué información o investigación necesitas?",
-    submit: "Request a Quote",
+    submit: "Enviar solicitud",
     sending: "Enviando...",
     error: "Hubo un problema al enviar el formulario.",
+    confirmation: "Le responderemos dentro de las 24 horas posteriores a recibir su solicitud. Gracias por contactar a ASB Market Research.",
   },
   en: {
-    title: "Contact form",
+    title: "Contact ASB Market Research",
+    subtitle: "Request a quote, ask a question, or discuss your research needs.",
     fullName: "Full name",
     company: "Company / Startup / Project Name",
     email: "Email",
     phone: "Phone number (optional)",
     message: "What information or research do you need?",
-    submit: "Request a Quote",
+    submit: "Send Request",
     sending: "Sending...",
     error: "There was a problem submitting the form.",
+    confirmation: "We will respond within 24 hours of receiving your request. Thank you for contacting ASB Market Research.",
   },
   pt: {
-    title: "Formulário de contato",
+    title: "Entre em contato com a ASB Market Research",
+    subtitle: "Solicite um orçamento, faça uma pergunta ou discuta suas necessidades de pesquisa.",
     fullName: "Nome completo",
     company: "Empresa / startup / projeto",
     email: "Email",
     phone: "Número de telefone (opcional)",
     message: "Que informações ou pesquisa você precisa?",
-    submit: "Request a Quote",
+    submit: "Enviar solicitação",
     sending: "Enviando...",
     error: "Houve um problema ao enviar o formulário.",
+    confirmation: "Responderemos dentro de 24 horas após receber sua solicitação. Obrigado por entrar em contato com a ASB Market Research.",
   },
 } as const;
 
@@ -69,6 +75,7 @@ export function ContactForm({ locale }: ContactFormProps) {
   return (
     <form action={onSubmit} className="surface-card grid gap-5">
       <h2 className="text-2xl font-semibold text-brand-primary">{copy.title}</h2>
+      <p className="text-sm leading-6 text-body-secondary">{copy.subtitle}</p>
       <label className="grid gap-2">
         <span className="form-label">{copy.fullName}</span>
         <input className="form-input" name="fullName" autoComplete="name" required />
@@ -95,6 +102,7 @@ export function ContactForm({ locale }: ContactFormProps) {
       <button className="button-primary w-fit" type="submit" disabled={isSubmitting}>
         {isSubmitting ? copy.sending : copy.submit}
       </button>
+      <p className="text-sm leading-6 text-body-secondary">{copy.confirmation}</p>
     </form>
   );
 }
