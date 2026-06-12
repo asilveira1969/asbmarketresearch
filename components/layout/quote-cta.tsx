@@ -11,9 +11,9 @@ type QuoteCtaProps = {
 };
 
 const quoteLabels: Record<Locale, string> = {
-  es: "Request a Quote",
-  en: "Request a Quote",
-  pt: "Request a Quote",
+  es: "Detailed Project Brief",
+  en: "Detailed Project Brief",
+  pt: "Detailed Project Brief",
 };
 
 export function QuoteCta({ locale, className }: QuoteCtaProps) {

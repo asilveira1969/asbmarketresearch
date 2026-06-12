@@ -9,6 +9,7 @@ import { ContactForm } from "@/components/forms/contact-form";
 import { NewsletterForm } from "@/components/forms/newsletter-form";
 import { ReportRequestForm } from "@/components/forms/report-request-form";
 import { ContactCalloutCard } from "@/components/content/contact-callout-card";
+import { RequestReceivedActions } from "@/components/content/request-received-actions";
 import { EmbedContentBlock } from "@/components/content/embed-content-block";
 import { FAQBlock } from "@/components/content/faq-block";
 import { buildPageMetadata } from "@/lib/metadata";
@@ -33,9 +34,9 @@ const thankYouContent = {
     pt: { title: "Inscrição confirmada", description: "A arquitetura está pronta para integrar seu provedor de email marketing." },
   },
   "report-request": {
-    es: { title: "Solicitud recibida", description: "El brief fue enviado y esta estructura ya soporta respuestas futuras por email o automatización." },
-    en: { title: "Request received", description: "The brief was submitted and this structure can later connect to email or automation workflows." },
-    pt: { title: "Solicitação recebida", description: "O brief foi enviado e esta estrutura pode depois se conectar a email ou automações." },
+    es: { title: "Detailed Project Brief received", description: "El detailed project brief fue enviado y esta estructura ya soporta respuestas futuras por email o automatización." },
+    en: { title: "Detailed Project Brief received", description: "The Detailed Project Brief was submitted and this structure can later connect to email or automation workflows." },
+    pt: { title: "Detailed Project Brief received", description: "O Detailed Project Brief foi enviado e esta estrutura pode depois se conectar a email ou automações." },
   },
 } as const;
 
@@ -47,7 +48,7 @@ const pageLabels = {
     pdfDownloads: "Descargas PDF",
     process: "Proceso",
     leadGeneration: "Generación de leads",
-    briefing: "Briefing",
+    briefing: "Detailed Project Brief",
     legal: "Legal",
   },
   en: {
@@ -57,7 +58,7 @@ const pageLabels = {
     pdfDownloads: "PDF Downloads",
     process: "Process",
     leadGeneration: "Contact form",
-    briefing: "Briefing",
+    briefing: "Detailed Project Brief",
     legal: "Legal",
   },
   pt: {
@@ -67,9 +68,15 @@ const pageLabels = {
     pdfDownloads: "Downloads PDF",
     process: "Processo",
     leadGeneration: "Geração de leads",
-    briefing: "Briefing",
+    briefing: "Detailed Project Brief",
     legal: "Legal",
   },
+} as const;
+
+const requestReceivedContactNotes = {
+  es: "Si prefieres hablar primero, llámanos o escríbenos por WhatsApp y coordinaremos los siguientes pasos por correo electrónico.",
+  en: "Prefer to speak first? Call or WhatsApp us and we'll coordinate the next steps by email.",
+  pt: "Se preferir falar primeiro, ligue ou envie uma mensagem no WhatsApp e coordenaremos os próximos passos por e-mail.",
 } as const;
 
 const insightCategoryOrder: InsightCategoryKey[] = ["strategy", "competition", "briefing"];
@@ -358,6 +365,20 @@ export default async function StaticPageRouter({
             <div className="max-w-3xl">
               <ContactForm locale={locale} />
             </div>
+          </div>
+        </Section>
+      </>
+    );
+  }
+
+  if (key === "request-received") {
+    return (
+      <>
+        <PageHeader title={page.title} description={page.description} eyebrow={labels.confirmation} />
+        <Section className="bg-surface">
+          <div className="grid gap-8">
+            <RequestReceivedActions locale={locale} />
+            <ContactCalloutCard locale={locale} note={requestReceivedContactNotes[locale]} />
           </div>
         </Section>
       </>

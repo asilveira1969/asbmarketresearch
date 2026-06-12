@@ -12,6 +12,7 @@ type ContactLink = {
 type ContactCalloutCardProps = {
   locale: Locale;
   className?: string;
+  note?: string;
 };
 
 const labels = {
@@ -127,8 +128,9 @@ function ContactMethod({
   );
 }
 
-export function ContactCalloutCard({ locale, className }: ContactCalloutCardProps) {
+export function ContactCalloutCard({ locale, className, note: customNote }: ContactCalloutCardProps) {
   const copy = labels[locale];
+  const note = customNote ?? copy.note;
 
   return (
     <div className={cn("surface-card w-full !p-6 md:!p-8", className)}>
@@ -137,7 +139,7 @@ export function ContactCalloutCard({ locale, className }: ContactCalloutCardProp
         <div className="hidden md:block self-stretch bg-line" aria-hidden="true" />
         <ContactMethod icon={<MessageIcon />} title={copy.whatsappTitle} links={whatsappLinks} />
       </div>
-      <p className="mt-6 max-w-4xl text-base font-normal leading-7 text-ink md:text-lg md:leading-8">{copy.note}</p>
+      <p className="mt-6 max-w-4xl text-base font-normal leading-7 text-ink md:text-lg md:leading-8">{note}</p>
     </div>
   );
 }

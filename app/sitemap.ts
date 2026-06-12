@@ -5,7 +5,7 @@ import { insightArticles } from "@/content/insights";
 import { sampleReports } from "@/content/reports";
 import { serviceDetails } from "@/content/services";
 
-const staticPaths = ["", "/about", "/services", "/methodology", "/sample-reports", "/pricing", "/insights", "/contact", "/quotation", "/newsletter", "/privacy-policy", "/terms", "/thank-you/contact", "/thank-you/newsletter", "/thank-you/report-request", "/agentic-market-intelligence-system"];
+const staticPaths = ["", "/about", "/services", "/methodology", "/sample-reports", "/pricing", "/insights", "/contact", "/quotation", "/request-received", "/newsletter", "/privacy-policy", "/terms", "/thank-you/contact", "/thank-you/newsletter", "/thank-you/report-request", "/agentic-market-intelligence-system"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { ContactCalloutCard } from "@/components/content/contact-callout-card";
 import { PdfDownloadCard } from "@/components/cards/pdf-download-card";
-import { ReportRequestForm } from "@/components/forms/report-request-form";
+import { ContactForm } from "@/components/forms/contact-form";
 import { Section } from "@/components/ui/section";
 import type { Locale } from "@/config/locales";
 import { buildPageMetadata } from "@/lib/metadata";
@@ -59,7 +59,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   const content = service.locales[locale];
   const bodyParagraphs = [content.summary, ...content.body];
   const hasQuoteCard = Boolean(service.samplePrice?.[locale]);
-  const requestQuoteLabel = locale === "es" ? "Solicitar cotización" : locale === "pt" ? "Solicitar cotação" : "Request a Quote";
+  const requestQuoteLabel = "Request a Quote";
   const quoteCardNote = quoteCardNotes[locale];
   const workstationWorkflowImageAlt = {
     es: "Diagrama del flujo de trabajo del workstation de inteligencia de mercado",
@@ -206,7 +206,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         {service.slug === "industry-product-reports" ? (
           <div id="request-a-quote-form" className="mx-auto grid max-w-4xl gap-8 scroll-mt-28 md:scroll-mt-32">
             <ContactCalloutCard locale={locale} />
-            <ReportRequestForm locale={locale} />
+            <ContactForm locale={locale} />
           </div>
         ) : service.slug === "custom-research-studies" ? (
           <div className="mx-auto grid max-w-4xl gap-8">
@@ -219,13 +219,13 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             />
             <div id="request-a-quote-form" className="grid gap-8 scroll-mt-28 md:scroll-mt-32">
               <ContactCalloutCard locale={locale} />
-              <ReportRequestForm locale={locale} />
+              <ContactForm locale={locale} />
             </div>
           </div>
         ) : service.slug === "monthly-market-briefings" ? (
           <div id="request-a-quote-form" className="mx-auto grid max-w-4xl gap-8 scroll-mt-28 md:scroll-mt-32">
             <ContactCalloutCard locale={locale} />
-            <ReportRequestForm locale={locale} />
+            <ContactForm locale={locale} />
           </div>
         ) : service.slug === "agentic-research-workstation" ? (
           <div className="mx-auto grid max-w-4xl gap-8">
@@ -238,7 +238,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             />
             <div id="request-a-quote-form" className="grid gap-8 scroll-mt-28 md:scroll-mt-32">
               <ContactCalloutCard locale={locale} />
-              <ReportRequestForm locale={locale} />
+              <ContactForm locale={locale} />
             </div>
           </div>
         ) : (

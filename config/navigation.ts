@@ -19,7 +19,7 @@ export const footerPrimaryNavigation: NavigationItem[] = [
   { href: "/insights", label: { es: "Insights", en: "Insights", pt: "Insights" } },
   { href: "/about", label: { es: "Nosotros", en: "About Us", pt: "Sobre" } },
   { href: "/contact", label: { es: "Contacto", en: "Contact", pt: "Contato" } },
-  { href: "/quotation", label: { es: "Cotización", en: "Quotation", pt: "Cotação" } },
+  { href: "/quotation", label: { es: "Detailed Project Brief", en: "Detailed Project Brief", pt: "Detailed Project Brief" } },
 ];
 
 export const footerNavigation: NavigationItem[] = [

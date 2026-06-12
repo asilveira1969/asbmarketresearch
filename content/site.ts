@@ -8,6 +8,7 @@ export type StaticPageKey =
   | "insights"
   | "contact"
   | "quotation"
+  | "request-received"
   | "newsletter"
   | "privacy-policy"
   | "terms";
@@ -23,7 +24,14 @@ export const staticPages = {
       title: "Contacto",
       description: "Llámanos o escríbenos por WhatsApp al +1 305 784 0514. Nos dará mucho gusto conversar sobre tus necesidades de investigación.",
     },
-    quotation: { title: "Cotización", description: "Solicita una cotización para reportes de mercado, briefings recurrentes o un sistema agéntico de inteligencia de mercado." },
+    quotation: {
+      title: "Detailed Project Brief",
+      description: "Completa un Detailed Project Brief para reportes de mercado, briefings recurrentes o un sistema agéntico de inteligencia de mercado.",
+    },
+    "request-received": {
+      title: "Thank You",
+      description: "Hemos recibido tu solicitud. Elige la opción que mejor te convenga.",
+    },
     newsletter: { title: "Newsletter", description: "Captación de suscriptores para actualizaciones, notas de investigación y futuras publicaciones." },
     "privacy-policy": { title: "Política de privacidad", description: "Texto base listo para revisión legal final antes del lanzamiento." },
     terms: { title: "Términos", description: "Base de términos para el uso del sitio, acceso a contenidos y envío de formularios." },
@@ -39,8 +47,12 @@ export const staticPages = {
       description: "Call or WhatsApp us at +1 305 784 0514. We would be pleased to discuss your research needs.",
     },
     quotation: {
-      title: "Request a Quote",
-      description: "Request a quotation for market reports, recurring briefings, or a customized agentic market intelligence system.",
+      title: "Detailed Project Brief",
+      description: "Complete a Detailed Project Brief for market reports, recurring briefings, or a customized agentic market intelligence system.",
+    },
+    "request-received": {
+      title: "Thank You",
+      description: "We have received your request. Choose the option that works best for you.",
     },
     newsletter: { title: "Newsletter", description: "Subscriber capture for updates, research notes, and future publications." },
     "privacy-policy": { title: "Privacy Policy", description: "Base privacy copy ready for final legal review before launch." },
@@ -56,7 +68,14 @@ export const staticPages = {
       title: "Contato",
       description: "Ligue ou envie uma mensagem no WhatsApp para +1 305 784 0514. Teremos prazer em conversar sobre suas necessidades de pesquisa.",
     },
-    quotation: { title: "Cotação", description: "Solicite uma cotação para relatórios de mercado, briefings recorrentes ou um sistema agêntico de inteligência de mercado personalizado." },
+    quotation: {
+      title: "Detailed Project Brief",
+      description: "Complete um Detailed Project Brief para relatórios de mercado, briefings recorrentes ou um sistema agêntico de inteligência de mercado personalizado.",
+    },
+    "request-received": {
+      title: "Thank You",
+      description: "Recebemos sua solicitação. Escolha a opção que funciona melhor para você.",
+    },
     newsletter: { title: "Newsletter", description: "Captação de assinantes para atualizações, notas de pesquisa e futuras publicações." },
     "privacy-policy": { title: "Política de privacidade", description: "Texto base pronto para revisão jurídica final antes do lançamento." },
     terms: { title: "Termos", description: "Base de termos para uso do site, acesso a conteúdos e envio de formulários." },

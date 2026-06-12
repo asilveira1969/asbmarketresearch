@@ -64,8 +64,8 @@ const pricingContent = {
         cta: "Solicitar cotización del sistema",
       },
     ],
-    closing: "Solicita una cotización para evaluar la configuración adecuada para tu organización.",
-    customQuote: "Solicitar cotización personalizada",
+    closing: "Completa un Detailed Project Brief para evaluar la configuración adecuada para tu organización.",
+    customQuote: "Detailed Project Brief",
   },
   en: {
     eyebrow: "Pricing & Services",
@@ -125,8 +125,8 @@ const pricingContent = {
         cta: "Request System Quotation",
       },
     ],
-    closing: "Request a quotation to evaluate the right configuration for your organization.",
-    customQuote: "Request a Custom Quote",
+    closing: "Complete a Detailed Project Brief to evaluate the right configuration for your organization.",
+    customQuote: "Detailed Project Brief",
   },
   pt: {
     eyebrow: "Preços e serviços",
@@ -186,8 +186,8 @@ const pricingContent = {
         cta: "Solicitar cotação do sistema",
       },
     ],
-    closing: "Solicite uma cotação para avaliar a configuração adequada para a sua organização.",
-    customQuote: "Solicitar cotação personalizada",
+    closing: "Complete um Detailed Project Brief para avaliar a configuração adequada para a sua organização.",
+    customQuote: "Detailed Project Brief",
   },
 } as const;
 

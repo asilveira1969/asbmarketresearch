@@ -4,61 +4,62 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import type { Locale } from "@/config/locales";
 import { reportBudgetOptions, reportTimelineOptions } from "@/config/forms";
+import { getLocalizedPath } from "@/lib/routes";
 
 type ReportRequestFormProps = { locale: Locale };
 
 const labels = {
   es: {
-    title: "Solicita una cotización o contáctanos",
-    intro: "Llámanos o escríbenos por WhatsApp al +1 305 784 0514. Nos dará mucho gusto conversar sobre tus necesidades de investigación.",
+    title: "Detailed Project Brief",
+    intro: "Comparte los detalles de tu proyecto para que podamos preparar una propuesta más precisa y definir los siguientes pasos.",
     fullName: "Nombre completo",
     company: "Empresa",
     email: "Email",
     phone: "Teléfono",
     country: "País / mercado",
     industry: "Industria",
-    objective: "Objetivo del reporte",
+    objective: "Objetivo del proyecto",
     competitors: "Competidores a analizar",
     timeline: "Plazo esperado",
     budget: "Presupuesto aproximado",
     notes: "Notas adicionales",
-    submit: "Enviar solicitud",
+    submit: "Submit Detailed Brief",
     sending: "Enviando...",
     error: "Hubo un problema al enviar el formulario.",
   },
   en: {
-    title: "Request a Quote",
-    intro: "Call or WhatsApp us at +1 305 784 0514. We would be pleased to discuss your research needs.",
+    title: "Detailed Project Brief",
+    intro: "Share the details of your project so we can prepare a more precise proposal and follow up with the next steps.",
     fullName: "Full name",
     company: "Company",
     email: "Email",
     phone: "Phone number",
     country: "Country / market",
     industry: "Industry",
-    objective: "Report objective",
+    objective: "Project objective",
     competitors: "Competitors to analyze",
     timeline: "Expected timeline",
     budget: "Approximate budget",
     notes: "Additional notes",
-    submit: "Submit request",
+    submit: "Submit Detailed Brief",
     sending: "Submitting...",
     error: "There was a problem submitting the form.",
   },
   pt: {
-    title: "Solicite uma cotação ou fale conosco",
-    intro: "Ligue ou envie uma mensagem no WhatsApp para +1 305 784 0514. Teremos prazer em conversar sobre suas necessidades de pesquisa.",
+    title: "Detailed Project Brief",
+    intro: "Compartilhe os detalhes do seu projeto para prepararmos uma proposta mais precisa e definirmos os próximos passos.",
     fullName: "Nome completo",
     company: "Empresa",
     email: "Email",
     phone: "Número de telefone",
     country: "País / mercado",
     industry: "Indústria",
-    objective: "Objetivo do relatório",
+    objective: "Objetivo do projeto",
     competitors: "Concorrentes a analisar",
     timeline: "Prazo esperado",
     budget: "Orçamento aproximado",
     notes: "Notas adicionais",
-    submit: "Enviar solicitação",
+    submit: "Submit Detailed Brief",
     sending: "Enviando...",
     error: "Houve um problema ao enviar o formulário.",
   },
@@ -84,12 +85,13 @@ export function ReportRequestForm({ locale }: ReportRequestFormProps) {
       setError(copy.error);
       return;
     }
-    router.push(`/${locale}/thank-you/report-request`);
+    router.push(getLocalizedPath(locale, "/thank-you/report-request"));
   }
 
   return (
     <form action={onSubmit} className="surface-card grid gap-5">
       <h2 className="text-2xl font-semibold text-brand-primary">{copy.title}</h2>
+      <p className="text-sm leading-6 text-body-secondary">{copy.intro}</p>
       <div className="grid gap-5 md:grid-cols-2">
         <label className="grid gap-2">
           <span className="form-label">{copy.fullName}</span>
@@ -108,12 +110,12 @@ export function ReportRequestForm({ locale }: ReportRequestFormProps) {
           <input className="form-input" name="phoneNumber" type="tel" inputMode="tel" autoComplete="tel" required />
         </label>
         <label className="grid gap-2">
-          <span className="form-label">{copy.industry}</span>
-          <input className="form-input" name="industry" required />
-        </label>
-        <label className="grid gap-2">
           <span className="form-label">{copy.country}</span>
           <input className="form-input" name="country" required />
+        </label>
+        <label className="grid gap-2">
+          <span className="form-label">{copy.industry}</span>
+          <input className="form-input" name="industry" required />
         </label>
         <label className="grid gap-2 md:col-span-2">
           <span className="form-label">{copy.objective}</span>
