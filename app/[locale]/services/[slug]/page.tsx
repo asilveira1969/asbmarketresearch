@@ -5,6 +5,7 @@ import { ContactCalloutCard } from "@/components/content/contact-callout-card";
 import { PdfDownloadCard } from "@/components/cards/pdf-download-card";
 import { ReportRequestForm } from "@/components/forms/report-request-form";
 import { Section } from "@/components/ui/section";
+import type { Locale } from "@/config/locales";
 import { buildPageMetadata } from "@/lib/metadata";
 import { resolveLocale } from "@/lib/i18n";
 import { serviceDetails } from "@/content/services";
@@ -30,6 +31,25 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   });
 }
 
+const quoteCardNotes: Record<Locale, string> = {
+  es: "El precio cotizado puede variar según el alcance, la geografía y el plazo de entrega.",
+  en: "Quoted price may vary by scope, geography, and delivery time.",
+  pt: "O preço cotado pode variar conforme o escopo, a geografia e o prazo de entrega.",
+};
+
+function QuotePriceCard({ buttonLabel, note }: { buttonLabel: string; note: string }) {
+  return (
+    <div className="rounded-2xl border border-line bg-canvas px-5 py-4 shadow-soft">
+      <div className="flex min-h-[132px] flex-col items-center justify-center gap-4 text-center md:min-h-[140px]">
+        <a className="button-primary inline-flex w-fit min-w-max items-center justify-center whitespace-nowrap text-center" href="#request-a-quote-form">
+          {buttonLabel}
+        </a>
+        <p className="max-w-md text-sm leading-6 text-body-secondary">{note}</p>
+      </div>
+    </div>
+  );
+}
+
 export default async function ServiceDetailPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const { locale: localeParam, slug } = await params;
   const locale = resolveLocale(localeParam);
@@ -38,9 +58,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
   const content = service.locales[locale];
   const bodyParagraphs = [content.summary, ...content.body];
-  const samplePrice = service.samplePrice?.[locale];
+  const hasQuoteCard = Boolean(service.samplePrice?.[locale]);
   const requestQuoteLabel = locale === "es" ? "Solicitar cotización" : locale === "pt" ? "Solicitar cotação" : "Request a Quote";
-  const requestDemoLabel = locale === "es" ? "Solicitar demo" : locale === "pt" ? "Solicitar demo" : "Request a Demo";
+  const quoteCardNote = quoteCardNotes[locale];
   const workstationWorkflowImageAlt = {
     es: "Diagrama del flujo de trabajo del workstation de inteligencia de mercado",
     en: "Workflow diagram showing how the market research workstation works",
@@ -133,31 +153,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                   </p>
                 ))}
               </div>
-              {samplePrice ? (
-                <div className="rounded-2xl border border-line bg-canvas px-5 py-4 shadow-soft">
-                  <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-                    <div>
-                      <p className="eyebrow">{samplePrice.label}</p>
-                      <p className="mt-3 text-3xl font-semibold tracking-tight text-brand-primary md:text-4xl">{samplePrice.amount}</p>
-                      <p className="mt-2 max-w-md text-sm leading-6 text-body-secondary">{samplePrice.note}</p>
-                    </div>
-                    {service.slug === "industry-product-reports" ||
-                    service.slug === "custom-research-studies" ||
-                    service.slug === "monthly-market-briefings" ||
-                    service.slug === "agentic-research-workstation" ? (
-                      <div className="flex flex-col gap-3 md:self-start">
-                        <a className="button-primary inline-flex w-fit min-w-max items-center justify-center whitespace-nowrap text-center" href="#request-a-quote-form">
-                          {requestQuoteLabel}
-                        </a>
-                        {service.slug === "agentic-research-workstation" ? (
-                          <a className="button-secondary inline-flex w-fit min-w-max items-center justify-center whitespace-nowrap text-center" href="#request-a-quote-form">
-                            {requestDemoLabel}
-                          </a>
-                        ) : null}
-                      </div>
-                    ) : null}
-                  </div>
-                </div>
+              {hasQuoteCard ? (
+                <QuotePriceCard buttonLabel={requestQuoteLabel} note={quoteCardNote} />
               ) : null}
               <div className="surface-panel">
                 <p className="eyebrow">{labels.deliverables}</p>
@@ -190,26 +187,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               ) : null}
             </div>
             <div className="grid gap-6">
-              {samplePrice ? (
-                <div className="rounded-2xl border border-line bg-canvas px-5 py-4 shadow-soft">
-                  <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-                    <div>
-                      <p className="eyebrow">{samplePrice.label}</p>
-                      <p className="mt-3 text-3xl font-semibold tracking-tight text-brand-primary md:text-4xl">{samplePrice.amount}</p>
-                      <p className="mt-2 max-w-md text-sm leading-6 text-body-secondary">{samplePrice.note}</p>
-                    </div>
-                    {service.slug === "agentic-research-workstation" ? (
-                      <div className="flex flex-col gap-3 md:self-start">
-                        <a className="button-primary inline-flex w-fit min-w-max items-center justify-center whitespace-nowrap text-center" href="#request-a-quote-form">
-                          {requestQuoteLabel}
-                        </a>
-                        <a className="button-secondary inline-flex w-fit min-w-max items-center justify-center whitespace-nowrap text-center" href="#request-a-quote-form">
-                          {requestDemoLabel}
-                        </a>
-                      </div>
-                    ) : null}
-                  </div>
-                </div>
+              {hasQuoteCard ? (
+                <QuotePriceCard buttonLabel={requestQuoteLabel} note={quoteCardNote} />
               ) : null}
               <div className="surface-panel">
                 <p className="eyebrow">{labels.deliverables}</p>
