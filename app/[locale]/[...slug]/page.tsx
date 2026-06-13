@@ -79,7 +79,6 @@ const pageLabels = {
     capabilities: "Capacidades",
     pdfDownloads: "Descargas PDF",
     process: "Proceso",
-    leadGeneration: "Generación de leads",
     briefing: "Detailed Project Brief",
     legal: "Legal",
   },
@@ -89,7 +88,6 @@ const pageLabels = {
     capabilities: "Capabilities",
     pdfDownloads: "PDF Downloads",
     process: "Process",
-    leadGeneration: "Contact form",
     briefing: "Detailed Project Brief",
     legal: "Legal",
   },
@@ -99,7 +97,6 @@ const pageLabels = {
     capabilities: "Capacidades",
     pdfDownloads: "Downloads PDF",
     process: "Processo",
-    leadGeneration: "Geração de leads",
     briefing: "Detailed Project Brief",
     legal: "Legal",
   },
@@ -384,7 +381,7 @@ export default async function StaticPageRouter({
   if (key === "contact") {
     return (
       <>
-        <PageHeader title={page.title} description="" eyebrow={labels.leadGeneration} />
+        <PageHeader title={page.title} description="" />
         <Section className="bg-surface">
           <div className="grid gap-8">
             <ContactCalloutCard locale={locale} className="max-w-3xl" />

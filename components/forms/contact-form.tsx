@@ -10,7 +10,7 @@ type ContactFormProps = { locale: Locale };
 const labels = {
   es: {
     title: "Contacte a ASB Market Research",
-    subtitle: "Solicite una cotización, haga una pregunta o converse sobre sus necesidades de investigación.",
+    subtitle: "Solicite una demo, una cotización, haga una pregunta o converse sobre sus necesidades de investigación.",
     fullName: "Nombre completo",
     company: "Empresa / startup / proyecto",
     email: "Email",
@@ -23,7 +23,7 @@ const labels = {
   },
   en: {
     title: "Contact ASB Market Research",
-    subtitle: "Request a quote, ask a question, or discuss your research needs.",
+    subtitle: "Request a demo, quote, ask a question, or discuss your research needs.",
     fullName: "Full name",
     company: "Company / Startup / Project Name",
     email: "Email",
@@ -36,7 +36,7 @@ const labels = {
   },
   pt: {
     title: "Entre em contato com a ASB Market Research",
-    subtitle: "Solicite um orçamento, faça uma pergunta ou discuta suas necessidades de pesquisa.",
+    subtitle: "Solicite uma demo, um orçamento, faça uma pergunta ou discuta suas necessidades de pesquisa.",
     fullName: "Nome completo",
     company: "Empresa / startup / projeto",
     email: "Email",

@@ -37,14 +37,23 @@ const quoteCardNotes: Record<Locale, string> = {
   pt: "O preço cotado pode variar conforme o escopo, a geografia e o prazo de entrega.",
 };
 
-function QuotePriceCard({ buttonLabel, note }: { buttonLabel: string; note: string }) {
+function QuotePriceCard({
+  buttonLabel,
+  supportingText,
+  note,
+}: {
+  buttonLabel: string;
+  supportingText?: string;
+  note?: string;
+}) {
   return (
     <div className="rounded-2xl border border-line bg-canvas px-5 py-4 shadow-soft">
       <div className="flex min-h-[132px] flex-col items-center justify-center gap-4 text-center md:min-h-[140px]">
         <a className="button-primary inline-flex w-fit min-w-max items-center justify-center whitespace-nowrap text-center" href="#request-a-quote-form">
           {buttonLabel}
         </a>
-        <p className="max-w-md text-sm leading-6 text-body-secondary">{note}</p>
+        {supportingText ? <p className="max-w-md text-sm leading-6 text-body-secondary">{supportingText}</p> : null}
+        {note ? <p className="max-w-md text-sm leading-6 text-body-secondary">{note}</p> : null}
       </div>
     </div>
   );
@@ -57,10 +66,18 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   if (!service) notFound();
 
   const content = service.locales[locale];
+  const isAgenticResearchWorkstation = service.slug === "agentic-research-workstation";
   const bodyParagraphs = [content.summary, ...content.body];
   const hasQuoteCard = Boolean(service.samplePrice?.[locale]);
-  const requestQuoteLabel = "Request a Quote";
-  const quoteCardNote = quoteCardNotes[locale];
+  const requestDemoLabel = "Request a Demo";
+  const requestDemoSupportText = isAgenticResearchWorkstation
+    ? {
+        es: "Vea cómo los flujos de trabajo de investigación personalizados, los agentes de IA y la inteligencia ejecutiva pueden adaptarse a su negocio.",
+        en: "See how custom research workflows, AI agents, and executive intelligence can be tailored to your business.",
+        pt: "Veja como fluxos de trabalho de pesquisa personalizados, agentes de IA e inteligência executiva podem ser adaptados ao seu negócio.",
+      }[locale]
+    : undefined;
+  const quoteCardNote = isAgenticResearchWorkstation ? undefined : quoteCardNotes[locale];
   const workstationWorkflowImageAlt = {
     es: "Diagrama del flujo de trabajo del workstation de inteligencia de mercado",
     en: "Workflow diagram showing how the market research workstation works",
@@ -154,7 +171,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 ))}
               </div>
               {hasQuoteCard ? (
-                <QuotePriceCard buttonLabel={requestQuoteLabel} note={quoteCardNote} />
+                <QuotePriceCard buttonLabel={requestDemoLabel} supportingText={requestDemoSupportText} note={quoteCardNote} />
               ) : null}
               <div className="surface-panel">
                 <p className="eyebrow">{labels.deliverables}</p>
@@ -188,7 +205,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             </div>
             <div className="grid gap-6">
               {hasQuoteCard ? (
-                <QuotePriceCard buttonLabel={requestQuoteLabel} note={quoteCardNote} />
+                <QuotePriceCard buttonLabel={requestDemoLabel} supportingText={requestDemoSupportText} note={quoteCardNote} />
               ) : null}
               <div className="surface-panel">
                 <p className="eyebrow">{labels.deliverables}</p>
