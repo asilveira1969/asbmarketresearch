@@ -69,7 +69,17 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   const isAgenticResearchWorkstation = service.slug === "agentic-research-workstation";
   const bodyParagraphs = [content.summary, ...content.body];
   const hasQuoteCard = Boolean(service.samplePrice?.[locale]);
-  const requestCardLabel = isAgenticResearchWorkstation ? "Request a Demo" : "Request a Quote";
+  const requestCardLabel = isAgenticResearchWorkstation
+    ? {
+        es: "Solicitar demo",
+        en: "Request a Demo",
+        pt: "Solicitar demonstração",
+      }[locale]
+    : {
+        es: "Solicitar cotización",
+        en: "Request a Quote",
+        pt: "Solicitar cotação",
+      }[locale];
   const requestDemoSupportText = isAgenticResearchWorkstation
     ? {
         es: "Vea cómo los flujos de trabajo de investigación personalizados, los agentes de IA y la inteligencia ejecutiva pueden adaptarse a su negocio.",
