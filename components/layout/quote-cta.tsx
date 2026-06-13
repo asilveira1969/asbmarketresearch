@@ -12,7 +12,7 @@ type QuoteCtaProps = {
 
 const quoteLabels: Record<Locale, string> = {
   es: "Request a Quote",
-  en: "Request a Quote",
+  en: "Request a Demo",
   pt: "Request a Quote",
 };
 
