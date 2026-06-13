@@ -69,7 +69,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   const isAgenticResearchWorkstation = service.slug === "agentic-research-workstation";
   const bodyParagraphs = [content.summary, ...content.body];
   const hasQuoteCard = Boolean(service.samplePrice?.[locale]);
-  const requestDemoLabel = "Request a Demo";
+  const requestCardLabel = isAgenticResearchWorkstation ? "Request a Demo" : "Request a Quote";
   const requestDemoSupportText = isAgenticResearchWorkstation
     ? {
         es: "Vea cómo los flujos de trabajo de investigación personalizados, los agentes de IA y la inteligencia ejecutiva pueden adaptarse a su negocio.",
@@ -171,7 +171,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 ))}
               </div>
               {hasQuoteCard ? (
-                <QuotePriceCard buttonLabel={requestDemoLabel} supportingText={requestDemoSupportText} note={quoteCardNote} />
+                <QuotePriceCard buttonLabel={requestCardLabel} supportingText={requestDemoSupportText} note={quoteCardNote} />
               ) : null}
               <div className="surface-panel">
                 <p className="eyebrow">{labels.deliverables}</p>
@@ -205,7 +205,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             </div>
             <div className="grid gap-6">
               {hasQuoteCard ? (
-                <QuotePriceCard buttonLabel={requestDemoLabel} supportingText={requestDemoSupportText} note={quoteCardNote} />
+                <QuotePriceCard buttonLabel={requestCardLabel} supportingText={requestDemoSupportText} note={quoteCardNote} />
               ) : null}
               <div className="surface-panel">
                 <p className="eyebrow">{labels.deliverables}</p>
