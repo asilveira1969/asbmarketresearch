@@ -17,8 +17,10 @@ export const metadata: Metadata = {
   verification: {
     google: "rP9uSG__9-NVBuhNbvVEX4CR4vINX90V2JpvyS1KPvE",
   },
-  };
-  
+  other: {
+    "facebook-domain-verification": "e93s6t29rca2vuzidh7gam63yxfxo4",
+  },
+};
 
 export default async function RootLayout({
   children,

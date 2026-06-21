@@ -75,7 +75,7 @@ export function ContactForm({ locale }: ContactFormProps) {
   return (
     <form action={onSubmit} className="surface-card grid gap-5">
       <h2 className="text-2xl font-semibold text-brand-primary">{copy.title}</h2>
-      <p className="text-sm leading-6 text-body-secondary">{copy.subtitle}</p>
+      <p className="text-base font-medium leading-7 text-body-secondary">{copy.subtitle}</p>
       <label className="grid gap-2">
         <span className="form-label">{copy.fullName}</span>
         <input className="form-input" name="fullName" autoComplete="name" required />
