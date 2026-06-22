@@ -16,6 +16,7 @@ type MetadataInput = {
   title: string;
   absoluteTitle?: string;
   description: string;
+  robots?: Metadata["robots"];
 };
 
 export function buildPageMetadata({
@@ -24,6 +25,7 @@ export function buildPageMetadata({
   title,
   absoluteTitle,
   description,
+  robots,
 }: MetadataInput): Metadata {
   const normalizedPath = pathname ? `/${pathname.replace(/^\/|\/$/g, "")}` : "";
   const localizedPath = `/${locale}${normalizedPath}`;
@@ -40,11 +42,12 @@ export function buildPageMetadata({
   return {
     title: absoluteTitle ? { absolute: absoluteTitle } : title,
     description,
+    ...(robots ? { robots } : {}),
     alternates: {
       canonical,
       languages: {
         ...languages,
-        "x-default": `${siteConfig.siteUrl}/${siteConfig.defaultLocale}${normalizedPath}`,
+        "x-default": `${siteConfig.siteUrl}/en${normalizedPath}`,
       },
     },
     openGraph: {

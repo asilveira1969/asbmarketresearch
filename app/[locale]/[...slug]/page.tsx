@@ -17,7 +17,6 @@ import { faqContent, staticPages } from "@/content/site";
 import { insightArticles, insightCategoryLabels, type InsightCategoryKey } from "@/content/insights";
 import { sampleReports } from "@/content/reports";
 import { founderProfile } from "@/data/company";
-import { siteConfig } from "@/config/site";
 import { serviceDetails } from "@/content/services";
 import { getLocalizedPath } from "@/lib/routes";
 
@@ -109,7 +108,16 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const locale = resolveLocale(localeParam);
   if (slug[0] === "thank-you" && slug[1] && slug[1] in thankYouContent) {
     const entry = thankYouContent[slug[1] as keyof typeof thankYouContent][locale];
-    return buildPageMetadata({ locale, pathname: `/thank-you/${slug[1]}`, title: entry.title, description: entry.description });
+    return buildPageMetadata({
+      locale,
+      pathname: `/thank-you/${slug[1]}`,
+      title: entry.title,
+      description: entry.description,
+      robots: {
+        index: false,
+        follow: true,
+      },
+    });
   }
   if (slug.length !== 1 || !(slug[0] in staticPages[locale])) return {};
   const page = staticPages[locale][slug[0] as keyof typeof staticPages[typeof locale]];
@@ -127,6 +135,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: metadataTitle,
     absoluteTitle: `${metadataTitle} | ASB Market Research`,
     description: page.description,
+    ...(slug[0] === "request-received"
+      ? {
+          robots: {
+            index: false,
+            follow: true,
+          },
+        }
+      : {}),
   });
 }
 
