@@ -13,6 +13,7 @@ const socialImage = {
 type MetadataInput = {
   locale: Locale;
   pathname: string;
+  canonicalPathname?: string;
   title: string;
   absoluteTitle?: string;
   description: string;
@@ -22,20 +23,23 @@ type MetadataInput = {
 export function buildPageMetadata({
   locale,
   pathname,
+  canonicalPathname,
   title,
   absoluteTitle,
   description,
   robots,
 }: MetadataInput): Metadata {
   const normalizedPath = pathname ? `/${pathname.replace(/^\/|\/$/g, "")}` : "";
-  const localizedPath = `/${locale}${normalizedPath}`;
-  const canonical = `${siteConfig.siteUrl}${localizedPath}`;
+  const normalizedCanonicalPath = canonicalPathname
+    ? `/${canonicalPathname.replace(/^\/|\/$/g, "")}`
+    : normalizedPath;
+  const canonical = `${siteConfig.siteUrl}/${locale}${normalizedCanonicalPath}`;
   const resolvedTitle = absoluteTitle ?? title;
 
   const languages = Object.fromEntries(
     locales.map((currentLocale) => [
       currentLocale,
-      `${siteConfig.siteUrl}/${currentLocale}${normalizedPath}`,
+      `${siteConfig.siteUrl}/${currentLocale}${normalizedCanonicalPath}`,
     ])
   );
 
@@ -47,7 +51,7 @@ export function buildPageMetadata({
       canonical,
       languages: {
         ...languages,
-        "x-default": `${siteConfig.siteUrl}/en${normalizedPath}`,
+        "x-default": `${siteConfig.siteUrl}/en${normalizedCanonicalPath}`,
       },
     },
     openGraph: {

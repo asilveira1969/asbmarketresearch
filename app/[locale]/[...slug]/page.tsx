@@ -108,14 +108,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const locale = resolveLocale(localeParam);
   if (slug[0] === "thank-you" && slug[1] && slug[1] in thankYouContent) {
     const entry = thankYouContent[slug[1] as keyof typeof thankYouContent][locale];
+    const canonicalPath =
+      slug[1] === "contact" ? "/contact" : slug[1] === "newsletter" ? "/newsletter" : "/quotation";
     return buildPageMetadata({
       locale,
       pathname: `/thank-you/${slug[1]}`,
+      canonicalPathname: canonicalPath,
       title: entry.title,
       description: entry.description,
       robots: {
         index: false,
-        follow: true,
+        follow: false,
       },
     });
   }
@@ -137,9 +140,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: page.description,
     ...(slug[0] === "request-received"
       ? {
+          canonicalPathname: "/contact",
           robots: {
             index: false,
-            follow: true,
+            follow: false,
           },
         }
       : {}),
