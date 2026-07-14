@@ -60,5 +60,32 @@ export const sampleReports: SampleReport[] = [
       en: { title: "World Bank Country Profile", excerpt: "Costa Rica Profile Top 10 Economic Indicators", market: "Costa Rica", highlights: ["Economic indicators", "Country snapshot", "Reference PDF"] },
       pt: { title: "Perfil do país do Banco Mundial", excerpt: "Perfil da Costa Rica: 10 principais indicadores econômicos.", market: "Costa Rica", highlights: ["Indicadores econômicos", "Resumo do país", "PDF de referência"] }
     }
+  },
+  {
+    slug: "smartphone-sales-in-spain",
+    pdfHref: "/pdfs/reports/smartphone-sales-in-spain.pdf",
+    locales: {
+      es: { title: "Ventas de smartphones en España", excerpt: "Panorama del mercado español de smartphones, con foco en demanda, competencia, canales de distribución y comportamiento del consumidor.", market: "España", highlights: ["Impulsores de demanda", "Panorama competitivo", "Canales y comportamiento del consumidor"] },
+      en: { title: "Smartphone Sales in Spain", excerpt: "An overview of Spain's smartphone sales market, covering demand drivers, competition, distribution channels and consumer behavior.", market: "Spain", highlights: ["Demand drivers", "Competitive landscape", "Channels and consumer behavior"] },
+      pt: { title: "Vendas de smartphones na Espanha", excerpt: "Panorama do mercado espanhol de smartphones, com foco em demanda, concorrência, canais de distribuição e comportamento do consumidor.", market: "Espanha", highlights: ["Vetores de demanda", "Cenário competitivo", "Canais e comportamento do consumidor"] }
+    }
+  },
+  {
+    slug: "smartphone-sales-in-germany",
+    pdfHref: "/pdfs/reports/smartphone-sales-in-germany.pdf",
+    locales: {
+      es: { title: "Ventas de smartphones en Alemania", excerpt: "Panorama del mercado alemán de smartphones, con foco en demanda, competencia, canales de distribución y comportamiento del consumidor.", market: "Alemania", highlights: ["Impulsores de demanda", "Panorama competitivo", "Canales y comportamiento del consumidor"] },
+      en: { title: "Smartphone Sales in Germany", excerpt: "An overview of Germany's smartphone sales market, covering demand drivers, competition, distribution channels and consumer behavior.", market: "Germany", highlights: ["Demand drivers", "Competitive landscape", "Channels and consumer behavior"] },
+      pt: { title: "Vendas de smartphones na Alemanha", excerpt: "Panorama do mercado alemão de smartphones, com foco em demanda, concorrência, canais de distribuição e comportamento do consumidor.", market: "Alemanha", highlights: ["Vetores de demanda", "Cenário competitivo", "Canais e comportamento do consumidor"] }
+    }
+  },
+  {
+    slug: "italy-refurbished-smartphone-market",
+    pdfHref: "/pdfs/reports/italy-refurbished-smartphone-market.pdf",
+    locales: {
+      es: { title: "Mercado italiano de smartphones reacondicionados", excerpt: "Panorama del mercado italiano de smartphones reacondicionados, que analiza demanda, competencia, canales de venta y factores de adopción.", market: "Italia", highlights: ["Demanda de reacondicionados", "Panorama competitivo", "Canales y factores de adopción"] },
+      en: { title: "Italy Refurbished Smartphone Market", excerpt: "An overview of Italy's refurbished smartphone market, examining demand, competition, sales channels and adoption factors.", market: "Italy", highlights: ["Refurbished demand", "Competitive landscape", "Sales channels and adoption factors"] },
+      pt: { title: "Mercado italiano de smartphones recondicionados", excerpt: "Panorama do mercado italiano de smartphones recondicionados, analisando demanda, concorrência, canais de venda e fatores de adoção.", market: "Itália", highlights: ["Demanda por recondicionados", "Cenário competitivo", "Canais e fatores de adoção"] }
+    }
   }
 ];
