@@ -1,0 +1,6 @@
+import Link from "next/link";
+import report from "@/content/reports/smartphone-sales-in-spain/en/report.json";
+
+export function SpainSmartphoneReport() {
+  return <section className="border-t border-line bg-surface py-16 md:py-24"><article className="mx-auto max-w-4xl px-6 md:px-8"><header className="border-b border-line pb-10"><p className="eyebrow">Full market research report</p><h2 className="mt-4 text-display-sm text-brand-primary">{report.title}</h2><p className="mt-5 text-body-secondary">Read online or download the English PDF. This public report is based on supplied web evidence.</p><p className="mt-4 text-xs font-semibold uppercase tracking-wide text-muted">Available formats: HTML, PDF, Markdown, JSON</p></header><div className="whitespace-pre-wrap py-10 text-[1.03rem] leading-8 text-body-secondary">{report.content}</div><aside className="border-t border-line pt-8"><h2 className="text-display-xs text-brand-primary">Need a tailored answer?</h2><p className="mt-4 text-body-secondary">Discuss a custom market research report or ongoing intelligence support with ASB Market Research.</p><Link href="/en/quotation" className="button-primary mt-6">Request custom research</Link></aside></article></section>;
+}
