@@ -20,6 +20,7 @@ const copy = {
     english: "Inglés",
     spanish: "Español",
     portuguese: "Portugués",
+    reportFound: "reporte encontrado",
     reportsFound: "reportes encontrados",
     legacyTitle: "Reportes PDF heredados",
     legacyDescription: "Documentos PDF verificados que todavía no cuentan con una versión HTML completa.",
@@ -43,6 +44,7 @@ const copy = {
     english: "English",
     spanish: "Spanish",
     portuguese: "Portuguese",
+    reportFound: "report found",
     reportsFound: "reports found",
     legacyTitle: "Legacy PDF Reports",
     legacyDescription: "Verified PDF documents that do not yet have a complete HTML edition.",
@@ -66,6 +68,7 @@ const copy = {
     english: "Inglês",
     spanish: "Espanhol",
     portuguese: "Português",
+    reportFound: "relatório encontrado",
     reportsFound: "relatórios encontrados",
     legacyTitle: "Relatórios PDF legados",
     legacyDescription: "Documentos PDF verificados que ainda não têm uma edição HTML completa.",
@@ -83,6 +86,7 @@ const copy = {
 type CatalogCard = {
   report: SampleReport;
   details: (typeof reportCatalog)[string][Locale];
+  displayDetails: (typeof reportCatalog)[string][Locale];
 };
 
 type CatalogCopy = (typeof copy)[Locale];
@@ -100,10 +104,11 @@ export function FreeReportCatalog({ locale, reports }: { locale: Locale; reports
 
     const contentLocale = report.primaryLanguage === "en" ? "en" : locale;
     const details = reportCatalog[report.slug]?.[contentLocale];
-    return details ? [{ report, details }] : [];
+    const displayDetails = reportCatalog[report.slug]?.[locale];
+    return details && displayDetails ? [{ report, details, displayDetails }] : [];
   });
-  const countries = [...new Set(cards.map(({ details }) => details.country))];
-  const industries = [...new Set(cards.map(({ details }) => details.industry))];
+  const countries = uniqueFilterOptions(cards, "country");
+  const industries = uniqueFilterOptions(cards, "industry");
   const years = [...new Set(cards.map(({ details }) => details.year))];
   const languageOptions = (["en", "es", "pt"] as const)
     .filter((candidate) =>
@@ -152,15 +157,15 @@ export function FreeReportCatalog({ locale, reports }: { locale: Locale; reports
             className="h-14 w-full rounded-xl border border-brand-primary px-5 hover:ring-1 hover:ring-brand-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary"
           />
           <div className="mt-4 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
-            <Select value={country} setValue={setCountry} name={t.allCountries} options={countries.map((value) => ({ value, label: value }))} />
-            <Select value={industry} setValue={setIndustry} name={t.allIndustries} options={industries.map((value) => ({ value, label: value }))} />
+            <Select value={country} setValue={setCountry} name={t.allCountries} options={countries} />
+            <Select value={industry} setValue={setIndustry} name={t.allIndustries} options={industries} />
             <Select value={year} setValue={setYear} name={t.allYears} options={years.map((value) => ({ value: String(value), label: String(value) }))} />
             <Select value={language} setValue={setLanguage} name={t.allLanguages} options={languageOptions} />
           </div>
         </div>
 
         <p className="mt-6 border-b border-line pb-5 text-sm">
-          <b>{filtered.length}</b> {t.reportsFound}
+          <b>{filtered.length}</b> {filtered.length === 1 ? t.reportFound : t.reportsFound}
         </p>
 
         {primaryCards.length > 0 ? (
@@ -192,7 +197,7 @@ export function FreeReportCatalog({ locale, reports }: { locale: Locale; reports
 }
 
 function ReportCard({ card, locale, t }: { card: CatalogCard; locale: Locale; t: CatalogCopy }) {
-  const { report, details } = card;
+  const { report, details, displayDetails } = card;
   const contentLocale = report.primaryLanguage === "en" ? "en" : locale;
   const content = report.locales[contentLocale];
   const isFullReport = report.publicationTier === "full_report";
@@ -217,7 +222,7 @@ function ReportCard({ card, locale, t }: { card: CatalogCard; locale: Locale; t:
       </div>
       <div className="p-6">
         <p className="text-xs font-semibold uppercase text-muted">
-          {details.country} / {details.industry} / {details.year}
+          {displayDetails.country} / {displayDetails.industry} / {details.year}
         </p>
         <h2 className="mt-4 text-2xl font-semibold">{content.title}</h2>
         <p className="mt-3 text-sm text-body-secondary">{content.excerpt}</p>
@@ -250,6 +255,16 @@ function ReportCard({ card, locale, t }: { card: CatalogCard; locale: Locale; t:
       </div>
     </article>
   );
+}
+
+function uniqueFilterOptions(cards: CatalogCard[], field: "country" | "industry") {
+  return cards.reduce<Array<{ value: string; label: string }>>((options, card) => {
+    const value = card.details[field];
+    if (!options.some((option) => option.value === value)) {
+      options.push({ value, label: card.displayDetails[field] });
+    }
+    return options;
+  }, []);
 }
 
 function Select({
