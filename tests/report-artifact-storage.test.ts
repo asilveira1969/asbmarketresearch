@@ -75,6 +75,30 @@ test("uses the canonical local Markdown bytes by default", { concurrency: false 
   }
 });
 
+test("uses the canonical local JSON bytes by default", { concurrency: false }, async () => {
+  let fetchCalls = 0;
+  globalThis.fetch = (async () => {
+    fetchCalls += 1;
+    throw new Error("Cloudflare must not be called in local mode");
+  }) as typeof fetch;
+
+  try {
+    await withEnvironment({}, async () => {
+      const artifact = await loadSpainDownloadArtifact("json", "GET", null);
+      const source = await readFile("content/reports/smartphone-sales-in-spain/en/report.json");
+      assert.equal(artifact.status, 200);
+      assert.deepEqual(Buffer.from(artifact.body!), source);
+      assert.equal(artifact.headers.get("content-type"), "application/json; charset=utf-8");
+      assert.equal(artifact.headers.get("cache-control"), "private, no-store");
+      assert.match(artifact.headers.get("etag")!, /^"sha256-[0-9a-f]{64}"$/);
+      assert.equal(artifact.headers.get("x-robots-tag"), "noindex, nofollow");
+      assert.equal(fetchCalls, 0);
+    });
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
 test("local HEAD is bodyless and honors If-None-Match", { concurrency: false }, async () => {
   await withEnvironment({}, async () => {
     const head = await loadSpainDownloadArtifact("json", "HEAD", null);
