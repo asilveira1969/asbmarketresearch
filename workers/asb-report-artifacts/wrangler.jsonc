@@ -1,0 +1,20 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "asb-report-artifacts-pilot",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-02",
+  "workers_dev": true,
+  "r2_buckets": [
+    {
+      "binding": "ASB_REPORTS_BUCKET",
+      "bucket_name": "asb-market-reports-pilot"
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "ASB_REPORTS_DB",
+      "database_name": "asb-report-catalog-pilot",
+      "database_id": "f0fb2a1b-8780-4d3a-b265-516601d0882e"
+    }
+  ]
+}
