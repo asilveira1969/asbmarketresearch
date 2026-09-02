@@ -2,7 +2,7 @@ import { createHash, createHmac } from "node:crypto";
 import { readFile, stat } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 
-const workerUrl = process.env.ASB_WORKER_URL;
+const workerUrl = process.env.ASB_WORKER_URL ?? process.env.ASB_REPORTS_WORKER_URL;
 const secret = process.env.ASB_ARTIFACT_ORIGIN_SECRET;
 if (!workerUrl || !secret) {
   console.error("configuration status=FAIL");
