@@ -3,7 +3,7 @@ import { parseArtifactPath, parseSingleRange, verifyHmacSignature } from "./secu
 export interface Env {
   ASB_REPORTS_BUCKET: R2Bucket;
   ASB_REPORTS_DB: D1Database;
-  ASB_ARTIFACT_HMAC_SECRET: string;
+  ASB_ARTIFACT_ORIGIN_SECRET: string;
 }
 
 type ArtifactRecord = {
@@ -52,7 +52,7 @@ async function handleArtifact(request: Request, env: Env): Promise<Response> {
   const url = new URL(request.url);
   const parsed = parseArtifactPath(url.pathname);
   if (!parsed) return notFound();
-  if (!(await verifyHmacSignature(request, env.ASB_ARTIFACT_HMAC_SECRET.trim()))) return unauthorized();
+  if (!(await verifyHmacSignature(request, env.ASB_ARTIFACT_ORIGIN_SECRET.trim()))) return unauthorized();
 
   const artifact = await findArtifact(env, parsed.slug, parsed.format);
   if (!artifact) return notFound();
