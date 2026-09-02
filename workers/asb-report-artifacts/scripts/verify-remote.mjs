@@ -33,6 +33,7 @@ async function request(name, method, pathname, { signed = true, timestamp = Math
 }
 
 let failures = 0;
+const observedEtags = new Map();
 
 function check(name, status, condition, details = "") {
   if (condition) {
@@ -73,9 +74,11 @@ try {
     check(`get-${format}-content-type`, result.response.status, actualType === contentType, `header=content-type observed=${actualType ?? "missing"} expected=${contentType}`);
     check(`get-${format}-content-disposition`, result.response.status, actualDisposition?.startsWith(disposition), `header=content-disposition observed=${actualDisposition ?? "missing"} expected-prefix=${disposition}`);
     check(`get-${format}-etag`, result.response.status, Boolean(actualEtag), "header=etag observed=missing expected=present");
+    check(`get-${format}-etag-format`, result.response.status, /^"sha256-[0-9a-f]{64}"$/.test(actualEtag ?? ""), `header=etag observed=${actualEtag ?? "missing"} expected=\"sha256-<64-lowercase-hex>\"`);
     check(`get-${format}-last-modified`, result.response.status, Boolean(actualLastModified), "header=last-modified observed=missing expected=present");
     check(`get-${format}-body`, result.response.status, body.byteLength > 0, `body-bytes=${body.byteLength} expected=>0`);
     check(`get-${format}-sha256`, result.response.status, actualHash === expectedHash, `sha256-observed=${actualHash} sha256-expected=${expectedHash}`);
+    observedEtags.set(format, actualEtag);
     const head = await request(`head-${format}`, "HEAD", pathname);
     const headBody = await head.response.arrayBuffer();
     check(`head-${format}`, head.response.status, head.response.status === 200);
@@ -102,6 +105,7 @@ try {
   check("pdf-range-content-range", range.response.status, range.response.headers.get("content-range") === `bytes 0-99/${pdfSize}`, `header=content-range observed=${range.response.headers.get("content-range") ?? "missing"} expected=bytes 0-99/${pdfSize}`);
   check("pdf-range-body", range.response.status, rangeBody.byteLength === 100, `body-bytes=${rangeBody.byteLength} expected=100`);
   check("pdf-range-etag", range.response.status, Boolean(range.response.headers.get("etag")), "header=etag observed=missing expected=present");
+  check("pdf-range-etag-equivalence", range.response.status, range.response.headers.get("etag") === observedEtags.get("pdf"), "header=etag observed=not-equivalent-to-full-pdf expected=equivalent-to-full-pdf");
   for (const [name, pathname] of [["missing-slug", "/internal/v1/reports/no-report/artifacts/json"], ["missing-format", `${reportPath}/zip`], ["traversal", "/internal/v1/reports/../artifacts/json"], ["encoded-traversal", "/internal/v1/reports/%2e%2e/artifacts/json"]]) {
     const result = await request(name, "GET", pathname);
     check(name, result.response.status, result.response.status === 404);
