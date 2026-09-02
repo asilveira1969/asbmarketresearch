@@ -63,12 +63,20 @@ test("builds stable artifact headers for GET, HEAD, 304, and Range", async () =>
   assert.equal(getHeaders.get("content-disposition"), artifact.content_disposition);
   assert.equal(getHeaders.get("etag"), '"sha256-95a475d281d33c3b497ab1e2349c24d1d019659762da0ee0617f60f342050f94"');
   assert.equal(getHeaders.get("last-modified"), object.uploaded.toUTCString());
+  assert.equal(getHeaders.get("cache-control"), "public, max-age=31536000, immutable, no-transform");
   assert.equal(headHeaders.get("etag"), getHeaders.get("etag"));
+  assert.equal(headHeaders.get("cache-control"), getHeaders.get("cache-control"));
   assert.equal(rangeHeaders.get("etag"), getHeaders.get("etag"));
+  assert.equal(rangeHeaders.get("cache-control"), getHeaders.get("cache-control"));
   assert.equal(rangeHeaders.get("content-range"), "bytes 0-99/188595");
   assert.equal(ifNoneMatchMatches(getHeaders.get("etag"), getHeaders.get("etag")), true);
   const notModified = new Response(null, { status: 304, headers: getHeaders });
+  assert.equal(notModified.headers.get("etag"), getHeaders.get("etag"));
+  assert.equal(notModified.headers.get("cache-control"), getHeaders.get("cache-control"));
   assert.equal((await notModified.arrayBuffer()).byteLength, 0);
+  const body = new TextEncoder().encode("artifact body");
+  const response = new Response(body, { headers: getHeaders });
+  assert.deepEqual(new Uint8Array(await response.arrayBuffer()), body);
 });
 
 test("derives deterministic validators and supports weak conditional requests", () => {

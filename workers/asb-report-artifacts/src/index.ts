@@ -47,7 +47,7 @@ export function artifactHeaders(object: ArtifactObjectMetadata, artifact: Artifa
   object.writeHttpMetadata(headers);
   headers.set("content-type", artifact.content_type);
   headers.set("content-disposition", artifact.content_disposition);
-  headers.set("cache-control", "private, no-store");
+  headers.set("cache-control", "public, max-age=31536000, immutable, no-transform");
   headers.set("etag", etag);
   headers.set("last-modified", object.uploaded.toUTCString());
   headers.set("accept-ranges", "bytes");
