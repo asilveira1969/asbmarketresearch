@@ -1,10 +1,11 @@
-﻿import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { PageHeader } from "@/components/ui/page-header";
 import { Section } from "@/components/ui/section";
 import { EmbedContentBlock } from "@/components/content/embed-content-block";
 import { PdfDownloadCard } from "@/components/cards/pdf-download-card";
 import { GermanySmartphoneReport } from "@/components/content/germany-smartphone-report";
+import { SpainSmartphoneReport } from "@/components/content/spain-smartphone-report";
 import { JsonLd } from "@/components/seo/json-ld";
 import { buildPageMetadata } from "@/lib/metadata";
 import { resolveLocale } from "@/lib/i18n";
@@ -20,6 +21,22 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const locale = resolveLocale(localeParam);
   const report = sampleReports.find((item) => item.slug === slug);
   if (!report) return {};
+  if (slug === "smartphone-sales-in-spain") {
+    const englishContent = report.locales.en;
+    const englishPath = "/sample-reports/smartphone-sales-in-spain";
+    return {
+      ...buildPageMetadata({
+        locale: "en",
+        pathname: englishPath,
+        title: englishContent.title,
+        absoluteTitle: `${englishContent.title} | ASB Market Research`,
+        description: englishContent.excerpt,
+      }),
+      alternates: {
+        canonical: `${siteConfig.siteUrl}/en${englishPath}`,
+      },
+    };
+  }
   const metadataTitle = slug === germanySmartphoneReportSlug
     ? report.locales[locale].title
     : `${report.locales[locale].title} — ${report.locales[locale].market}`;
@@ -43,9 +60,13 @@ export default async function SampleReportDetailPage({ params }: { params: Promi
   const locale = resolveLocale(localeParam);
   const report = sampleReports.find((item) => item.slug === slug);
   if (!report) notFound();
+  if (slug === "smartphone-sales-in-spain" && locale !== "en") {
+    permanentRedirect("/en/sample-reports/smartphone-sales-in-spain");
+  }
   const content = report.locales[locale];
   const pdfHref = report.pdfHref;
   const isGermanySmartphoneReport = slug === germanySmartphoneReportSlug;
+  const isSpainSmartphoneReport = slug === "smartphone-sales-in-spain";
   const sampleReportsLabel = locale === "es" ? "Reportes de muestra" : locale === "pt" ? "Relatórios de amostra" : "Sample Reports";
   const reportUrl = `${siteConfig.siteUrl}/${locale}/sample-reports/${slug}`;
   const reportJsonLd = isGermanySmartphoneReport ? {
@@ -69,15 +90,21 @@ export default async function SampleReportDetailPage({ params }: { params: Promi
       name: content.title,
     } : undefined,
   } : null;
+  const spainReportJsonLd = isSpainSmartphoneReport ? { "@context": "https://schema.org", "@type": "Report", headline: "Smartphone Sales in Spain: Market Profile and Competitive Dynamics", name: content.title, description: content.excerpt, inLanguage: "en", datePublished: "2026-07-14", dateModified: "2026-07-14", url: reportUrl, mainEntityOfPage: reportUrl, isAccessibleForFree: true, author: { "@type": "Organization", name: siteConfig.name, url: siteConfig.siteUrl }, publisher: { "@type": "Organization", name: siteConfig.name, url: siteConfig.siteUrl }, associatedMedia: { "@type": "MediaObject", contentUrl: `${siteConfig.siteUrl}${pdfHref}`, encodingFormat: "application/pdf", name: content.title } } : null;
   const breadcrumbJsonLd = isGermanySmartphoneReport ? getBreadcrumbJsonLd(locale, [
     { name: locale === "es" ? "Inicio" : locale === "pt" ? "Início" : "Home", path: "" },
     { name: sampleReportsLabel, path: "/sample-reports" },
     { name: content.title, path: `/sample-reports/${slug}` },
   ]) : null;
 
+  if (isSpainSmartphoneReport && spainReportJsonLd) {
+    return <><JsonLd data={spainReportJsonLd} /><SpainSmartphoneReport /></>;
+  }
+
   return (
     <>
       {reportJsonLd ? <JsonLd data={reportJsonLd} /> : null}
+      {spainReportJsonLd ? <JsonLd data={spainReportJsonLd} /> : null}
       {breadcrumbJsonLd ? <JsonLd data={breadcrumbJsonLd} /> : null}
       <Section className="bg-canvas py-4"><Breadcrumbs locale={locale} items={[{ label: sampleReportsLabel, href: "/sample-reports" }, { label: content.title }]} /></Section>
       <PageHeader title={content.title} description={content.excerpt} eyebrow={content.market} />
@@ -107,6 +134,7 @@ export default async function SampleReportDetailPage({ params }: { params: Promi
         )}
       </Section>
       {isGermanySmartphoneReport ? <GermanySmartphoneReport locale={locale} /> : null}
+      {isSpainSmartphoneReport ? <SpainSmartphoneReport /> : null}
     </>
   );
 }

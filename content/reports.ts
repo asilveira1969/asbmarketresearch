@@ -1,14 +1,28 @@
 ﻿import type { Locale } from "@/config/locales";
 
+export type PublicationTier = "full_report" | "legacy_pdf" | "needs_review";
+export type CatalogVisibility = "primary" | "legacy" | "hidden";
+export type ReportFormat = "html" | "pdf" | "markdown" | "json";
+export type PrimaryLanguage = Locale | "multilingual" | "unverified";
 export type SampleReport = {
   slug: string;
   pdfHref?: string;
   locales: Record<Locale, { title: string; excerpt: string; market: string; highlights: string[] }>;
+  publicationTier: PublicationTier;
+  catalogVisibility: CatalogVisibility;
+  validationWarnings: string[];
+  availableFormats: ReportFormat[];
+  primaryLanguage: PrimaryLanguage;
 };
 
 export const sampleReports: SampleReport[] = [
   {
     slug: "latam-b2b-software-expansion-snapshot",
+    publicationTier: "needs_review",
+    catalogVisibility: "hidden",
+    validationWarnings: ["The generic software expansion slug does not identify the Brazilian wine export PDF."],
+    availableFormats: ["pdf"],
+    primaryLanguage: "unverified",
     pdfHref: "/pdfs/reports/brazilian-wine-exports-to-premium-importers.pdf",
     locales: {
       es: { title: "Industria y producto por país", excerpt: "Exportaciones de vino de Brasil a importadores premium.", market: "Brasil", highlights: ["Demanda priorizada", "Importadores premium", "Lectura por país"] },
@@ -18,6 +32,11 @@ export const sampleReports: SampleReport[] = [
   },
   {
     slug: "premium-food-category-benchmark",
+    publicationTier: "needs_review",
+    catalogVisibility: "hidden",
+    validationWarnings: ["The premium food title and description do not match the Uruguay Economic Profile PDF."],
+    availableFormats: ["pdf"],
+    primaryLanguage: "unverified",
     pdfHref: "/pdfs/reports/uruguay-economic-profile-2024-2025.pdf",
     locales: {
       es: { title: "Benchmark de categoria premium food", excerpt: "Reporte de muestra para comparar posicionamiento, pricing y canales.", market: "Alimentos", highlights: ["Mapa de marcas", "Rangos de precio", "Canales de distribucion"] },
@@ -27,6 +46,11 @@ export const sampleReports: SampleReport[] = [
   },
   {
     slug: "investor-market-scoping-note",
+    publicationTier: "needs_review",
+    catalogVisibility: "hidden",
+    validationWarnings: ["The investor scoping slug does not identify the Ferrari Luce consumer-sentiment PDF."],
+    availableFormats: ["pdf"],
+    primaryLanguage: "unverified",
     pdfHref: "/pdfs/reports/consumer-sentiment-pulse-italian-sentiment-on-electric-ferrari-luce.pdf",
     locales: {
       es: { title: "Pulso de sentimiento del consumidor", excerpt: "Sentimiento italiano sobre Electric Ferrari Luce.", market: "Italia", highlights: ["Percepcion de marca", "Senales de demanda", "Posicionamiento premium"] },
@@ -36,6 +60,11 @@ export const sampleReports: SampleReport[] = [
   },
   {
     slug: "consumer-sentiment-template",
+    publicationTier: "needs_review",
+    catalogVisibility: "hidden",
+    validationWarnings: ["The consumer sentiment template slug does not identify the Berlin restaurant leads PDF."],
+    availableFormats: ["pdf"],
+    primaryLanguage: "unverified",
     pdfHref: "/pdfs/reports/restaurants-berlin-germany-leads.pdf",
     locales: {
       es: { title: "Leads de negocio por segmentos de mercado", excerpt: "Restaurantes en Berlin, Alemania.", market: "Berlin, Alemania", highlights: ["Agregar PDF", "Agregar hallazgos", "Agregar resumen ejecutivo"] },
@@ -45,6 +74,11 @@ export const sampleReports: SampleReport[] = [
   },
   {
     slug: "competitive-benchmark-template",
+    publicationTier: "needs_review",
+    catalogVisibility: "hidden",
+    validationWarnings: ["The competitive benchmark template slug does not identify the Smartphone Sales in Italy PDF."],
+    availableFormats: ["pdf"],
+    primaryLanguage: "unverified",
     pdfHref: "/pdfs/reports/smartphone-sales-in-italy.pdf",
     locales: {
       es: { title: "Industria y producto por pais", excerpt: "Ventas de smartphones en Italia.", market: "Italia", highlights: ["Agregar PDF", "Agregar comparacion", "Agregar analisis"] },
@@ -54,6 +88,11 @@ export const sampleReports: SampleReport[] = [
   },
   {
     slug: "country-market-template",
+    publicationTier: "needs_review",
+    catalogVisibility: "hidden",
+    validationWarnings: ["The country market template slug does not identify the Costa Rica economic indicators PDF."],
+    availableFormats: ["pdf"],
+    primaryLanguage: "unverified",
     pdfHref: "/pdfs/reports/world-bank-costa-rica-study.pdf",
     locales: {
       es: { title: "Perfil de país del Banco Mundial", excerpt: "Perfil de Costa Rica: 10 indicadores económicos principales.", market: "Costa Rica", highlights: ["Indicadores economicos", "Resumen pais", "PDF de referencia"] },
@@ -63,6 +102,11 @@ export const sampleReports: SampleReport[] = [
   },
   {
     slug: "smartphone-sales-in-spain",
+    publicationTier: "full_report",
+    catalogVisibility: "primary",
+    validationWarnings: [],
+    availableFormats: ["html", "pdf", "markdown", "json"],
+    primaryLanguage: "en",
     pdfHref: "/pdfs/reports/smartphone-sales-in-spain.pdf",
     locales: {
       es: { title: "Ventas de smartphones en España", excerpt: "Panorama del mercado español de smartphones, con foco en demanda, competencia, canales de distribución y comportamiento del consumidor.", market: "España", highlights: ["Impulsores de demanda", "Panorama competitivo", "Canales y comportamiento del consumidor"] },
@@ -72,6 +116,11 @@ export const sampleReports: SampleReport[] = [
   },
   {
     slug: "smartphone-sales-in-germany",
+    publicationTier: "full_report",
+    catalogVisibility: "primary",
+    validationWarnings: [],
+    availableFormats: ["html", "pdf"],
+    primaryLanguage: "multilingual",
     pdfHref: "/pdfs/reports/smartphone-sales-in-germany.pdf",
     locales: {
       es: { title: "Ventas de smartphones en Alemania", excerpt: "Panorama del mercado alemán de smartphones, con foco en demanda, competencia, canales de distribución y comportamiento del consumidor.", market: "Alemania", highlights: ["Impulsores de demanda", "Panorama competitivo", "Canales y comportamiento del consumidor"] },
@@ -81,6 +130,11 @@ export const sampleReports: SampleReport[] = [
   },
   {
     slug: "italy-refurbished-smartphone-market",
+    publicationTier: "legacy_pdf",
+    catalogVisibility: "legacy",
+    validationWarnings: [],
+    availableFormats: ["pdf"],
+    primaryLanguage: "en",
     pdfHref: "/pdfs/reports/italy-refurbished-smartphone-market.pdf",
     locales: {
       es: { title: "Mercado italiano de smartphones reacondicionados", excerpt: "Panorama del mercado italiano de smartphones reacondicionados, que analiza demanda, competencia, canales de venta y factores de adopción.", market: "Italia", highlights: ["Demanda de reacondicionados", "Panorama competitivo", "Canales y factores de adopción"] },

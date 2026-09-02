@@ -1,0 +1,20 @@
+{
+  "report_id": "rpt_spain_smartphone_sales",
+  "canonical_slug": "smartphone-sales-in-spain",
+  "version": "1.0.0",
+  "primary_language": "en",
+  "published_at": "2026-07-14",
+  "modified_at": "2026-07-14",
+  "access_level": "free",
+  "license": "ASB-public-report",
+  "source_count": 156,
+  "available_formats": ["html", "pdf", "markdown", "json"],
+  "r2_keys": {
+    "html_en": "reports/rpt_spain_smartphone_sales/versions/1.0.0/html/en/index.html",
+    "pdf_en": "reports/rpt_spain_smartphone_sales/versions/1.0.0/pdf/en/report.pdf",
+    "markdown_en": "reports/rpt_spain_smartphone_sales/versions/1.0.0/content/en/report.md",
+    "json_en": "reports/rpt_spain_smartphone_sales/versions/1.0.0/content/en/report.json",
+    "metadata": "reports/rpt_spain_smartphone_sales/versions/1.0.0/metadata/report.json"
+  },
+  "d1_fields": ["id", "canonical_slug", "status", "report_type", "country_code", "region_code", "industry_code", "published_at", "modified_at", "current_version_id", "access_level", "license", "source_count", "primary_language", "available_formats"]
+}
