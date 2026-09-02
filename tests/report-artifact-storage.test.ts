@@ -65,6 +65,7 @@ test("uses the canonical local Markdown bytes by default", { concurrency: false 
       assert.equal(artifact.status, 200);
       assert.deepEqual(Buffer.from(artifact.body!), source);
       assert.equal(artifact.headers.get("content-type"), "text/markdown; charset=utf-8");
+      assert.equal(artifact.headers.get("cache-control"), "private, no-store");
       assert.match(artifact.headers.get("etag")!, /^"sha256-[0-9a-f]{64}"$/);
       assert.equal(artifact.headers.get("x-robots-tag"), "noindex, nofollow");
       assert.equal(fetchCalls, 0);

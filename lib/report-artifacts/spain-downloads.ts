@@ -57,13 +57,15 @@ function ifNoneMatchMatches(value: string | null, etag: string): boolean {
 
 function publicHeaders(source: Headers, fallback: Headers): Headers {
   const headers = new Headers();
-  for (const header of ["content-type", "content-disposition", "etag", "last-modified", "cache-control", "content-length"]) {
+  for (const header of ["content-type", "content-disposition", "etag", "last-modified", "content-length"]) {
     const value = source.get(header) ?? fallback.get(header);
     if (value) headers.set(header, value);
   }
 
   const acceptRanges = source.get("accept-ranges");
   if (acceptRanges === "bytes") headers.set("accept-ranges", acceptRanges);
+  // Conditional requests must reach this Route Handler instead of being answered by Vercel's CDN cache.
+  headers.set("cache-control", "private, no-store");
   headers.set("x-robots-tag", "noindex, nofollow");
   return headers;
 }
