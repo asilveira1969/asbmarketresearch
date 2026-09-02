@@ -107,8 +107,8 @@ export function FreeReportCatalog({ locale, reports }: { locale: Locale; reports
     const displayDetails = reportCatalog[report.slug]?.[locale];
     return details && displayDetails ? [{ report, details, displayDetails }] : [];
   });
-  const countries = uniqueFilterOptions(cards, "country");
-  const industries = uniqueFilterOptions(cards, "industry");
+  const countries = uniqueFilterOptions(cards, "country", locale);
+  const industries = uniqueFilterOptions(cards, "industry", locale);
   const years = [...new Set(cards.map(({ details }) => details.year))];
   const languageOptions = (["en", "es", "pt"] as const)
     .filter((candidate) =>
@@ -134,7 +134,7 @@ export function FreeReportCatalog({ locale, reports }: { locale: Locale; reports
     return (
       searchable.includes(normalizedQuery) &&
       (!country || country === details.country) &&
-      (!industry || industry === details.industry) &&
+      (!industry || industry === getFilterValue("industry", details.industry)) &&
       (!year || Number(year) === details.year) &&
       (!language || report.primaryLanguage === "multilingual" || report.primaryLanguage === language)
     );
@@ -222,7 +222,7 @@ function ReportCard({ card, locale, t }: { card: CatalogCard; locale: Locale; t:
       </div>
       <div className="p-6">
         <p className="text-xs font-semibold uppercase text-muted">
-          {displayDetails.country} / {displayDetails.industry} / {details.year}
+          {getVisibleLabel(locale, displayDetails.country)} / {getVisibleLabel(locale, displayDetails.industry)} / {details.year}
         </p>
         <h2 className="mt-4 text-2xl font-semibold">{content.title}</h2>
         <p className="mt-3 text-sm text-body-secondary">{content.excerpt}</p>
@@ -257,11 +257,34 @@ function ReportCard({ card, locale, t }: { card: CatalogCard; locale: Locale; t:
   );
 }
 
-function uniqueFilterOptions(cards: CatalogCard[], field: "country" | "industry") {
+const visibleLabelOverrides: Partial<Record<Locale, Record<string, string>>> = {
+  es: {
+    Espana: "España",
+    "Tecnologia movil": "Tecnología móvil",
+  },
+  pt: {
+    Italia: "Itália",
+    "Tecnologia movel": "Tecnologia móvel",
+  },
+};
+
+function getVisibleLabel(locale: Locale, value: string) {
+  return visibleLabelOverrides[locale]?.[value] ?? value;
+}
+
+function getFilterValue(field: "country" | "industry", value: string) {
+  if (field === "industry" && ["Mobile technology", "Tecnologia movil", "Tecnologia movel"].includes(value)) {
+    return "mobile-technology";
+  }
+
+  return value;
+}
+
+function uniqueFilterOptions(cards: CatalogCard[], field: "country" | "industry", locale: Locale) {
   return cards.reduce<Array<{ value: string; label: string }>>((options, card) => {
-    const value = card.details[field];
+    const value = getFilterValue(field, card.details[field]);
     if (!options.some((option) => option.value === value)) {
-      options.push({ value, label: card.displayDetails[field] });
+      options.push({ value, label: getVisibleLabel(locale, card.displayDetails[field]) });
     }
     return options;
   }, []);
