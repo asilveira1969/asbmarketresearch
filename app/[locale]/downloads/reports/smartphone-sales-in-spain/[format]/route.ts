@@ -1,35 +1,36 @@
-import report from "@/content/reports/smartphone-sales-in-spain/en/report.json";
+import {
+  ArtifactUnavailableError,
+  isPilotArtifactRequest,
+  loadSpainDownloadArtifact,
+  spainDownloadFormats,
+  type SpainDownloadFormat,
+} from "@/lib/report-artifacts/spain-downloads.server";
 
-const downloads = {
-  markdown: {
-    body: report.content,
-    contentType: "text/markdown; charset=utf-8",
-    filename: "smartphone-sales-in-spain-v1.0.0.md",
-  },
-  json: {
-    body: `${JSON.stringify(report, null, 2)}\n`,
-    contentType: "application/json; charset=utf-8",
-    filename: "smartphone-sales-in-spain-v1.0.0.json",
-  },
-} as const;
+export const runtime = "nodejs";
 
 export function generateStaticParams() {
-  return Object.keys(downloads).map((format) => ({ format }));
+  return spainDownloadFormats.map((format) => ({ format }));
 }
 
-export async function GET(_request: Request, { params }: RouteContext<"/[locale]/downloads/reports/smartphone-sales-in-spain/[format]">) {
+type DownloadContext = { params: Promise<{ format: string }> };
+
+async function handleDownload(request: Request, { params }: DownloadContext) {
   const { format } = await params;
-  const download = downloads[format as keyof typeof downloads];
+  if (!isPilotArtifactRequest("smartphone-sales-in-spain", format)) return new Response("Not found", { status: 404 });
 
-  if (!download) return new Response("Not found", { status: 404 });
+  try {
+    const artifact = await loadSpainDownloadArtifact(format as SpainDownloadFormat, request.method as "GET" | "HEAD", request.headers.get("if-none-match"));
+    return new Response(artifact.body ? Uint8Array.from(artifact.body).buffer : null, { status: artifact.status, headers: artifact.headers });
+  } catch (error) {
+    if (error instanceof ArtifactUnavailableError) return new Response("Report artifact is temporarily unavailable.", { status: 503 });
+    throw error;
+  }
+}
 
-  return new Response(download.body, {
-    headers: {
-      "Content-Type": download.contentType,
-      "Content-Disposition": `attachment; filename="${download.filename}"`,
-      "X-ASB-Report-Id": report.report_id,
-      "X-ASB-Report-Version": report.version,
-      "X-Robots-Tag": "noindex, nofollow",
-    },
-  });
+export async function GET(request: Request, context: DownloadContext) {
+  return handleDownload(request, context);
+}
+
+export async function HEAD(request: Request, context: DownloadContext) {
+  return handleDownload(request, context);
 }
