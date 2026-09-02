@@ -7,6 +7,7 @@ import {
 } from "@/lib/report-artifacts/spain-downloads.server";
 
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 export function generateStaticParams() {
   return spainDownloadFormats.map((format) => ({ format }));
