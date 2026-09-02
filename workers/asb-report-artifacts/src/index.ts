@@ -6,11 +6,18 @@ export interface Env {
   ASB_ARTIFACT_ORIGIN_SECRET: string;
 }
 
-type ArtifactRecord = {
+export type ArtifactRecord = {
   r2_key: string;
   content_type: string;
   content_disposition: string;
   byte_size: number;
+};
+
+export type ArtifactObjectMetadata = {
+  writeHttpMetadata(headers: Headers): void;
+  httpEtag?: string | null;
+  etag?: string | null;
+  uploaded: Date;
 };
 
 const artifactQuery = `
@@ -30,18 +37,29 @@ const artifactQuery = `
 function notFound() { return new Response("Not found", { status: 404 }); }
 function unauthorized() { return new Response("Unauthorized", { status: 401 }); }
 
-function objectHeaders(object: R2Object, artifact: ArtifactRecord, range?: { contentRange: string }): Headers {
+export function resolveHttpEtag(object: ArtifactObjectMetadata): string | null {
+  if (object.httpEtag) return object.httpEtag;
+  if (object.etag) return `"${object.etag.replaceAll('"', "")}"`;
+  return null;
+}
+
+export function artifactHeaders(object: ArtifactObjectMetadata, artifact: ArtifactRecord, range?: { contentRange: string }): Headers {
   const headers = new Headers();
   object.writeHttpMetadata(headers);
+  const etag = resolveHttpEtag(object);
   headers.set("content-type", artifact.content_type);
   headers.set("content-disposition", artifact.content_disposition);
   headers.set("cache-control", "private, no-store");
-  headers.set("etag", object.httpEtag);
+  if (etag) headers.set("etag", etag);
   headers.set("last-modified", object.uploaded.toUTCString());
   headers.set("accept-ranges", "bytes");
   headers.set("x-robots-tag", "noindex, nofollow");
   if (range) headers.set("content-range", range.contentRange);
   return headers;
+}
+
+export function ifNoneMatchMatches(value: string | null, etag: string | null): boolean {
+  return Boolean(etag && value && (value === "*" || value.split(",").map((candidate) => candidate.trim()).includes(etag)));
 }
 
 async function findArtifact(env: Env, slug: string, format: string): Promise<ArtifactRecord | null> {
@@ -63,14 +81,14 @@ async function handleArtifact(request: Request, env: Env): Promise<Response> {
   if (request.method === "HEAD") {
     const object = await env.ASB_REPORTS_BUCKET.head(artifact.r2_key);
     if (!object) return notFound();
-    return new Response(null, { status: range ? 206 : 200, headers: objectHeaders(object, artifact, range ?? undefined) });
+    return new Response(null, { status: range ? 206 : 200, headers: artifactHeaders(object, artifact, range ?? undefined) });
   }
 
   const object = await env.ASB_REPORTS_BUCKET.get(artifact.r2_key, range ? { range: { offset: range.offset, length: range.length } } : undefined);
   if (!object) return notFound();
-  const headers = objectHeaders(object, artifact, range ?? undefined);
+  const headers = artifactHeaders(object, artifact, range ?? undefined);
   const ifNoneMatch = request.headers.get("if-none-match");
-  if (!range && ifNoneMatch && (ifNoneMatch === "*" || ifNoneMatch.split(",").map((value) => value.trim()).includes(object.httpEtag))) {
+  if (!range && ifNoneMatchMatches(ifNoneMatch, resolveHttpEtag(object))) {
     return new Response(null, { status: 304, headers });
   }
   return new Response(object.body, { status: range ? 206 : 200, headers });

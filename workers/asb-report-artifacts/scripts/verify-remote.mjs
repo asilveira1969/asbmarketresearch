@@ -24,16 +24,28 @@ function signature(method, pathname, timestamp) {
 }
 
 async function request(name, method, pathname, { signed = true, timestamp = Math.floor(Date.now() / 1000), signatureValue, headers = {} } = {}) {
-  const response = await fetch(new URL(pathname, workerUrl), {
+  const url = new URL(pathname, workerUrl);
+  const response = await fetch(url, {
     method,
-    headers: signed ? { "x-asb-timestamp": String(timestamp), "x-asb-signature": signatureValue ?? signature(method, pathname, timestamp), ...headers } : headers,
+    headers: signed ? { "x-asb-timestamp": String(timestamp), "x-asb-signature": signatureValue ?? signature(method, url.pathname, timestamp), ...headers } : headers,
   });
   return { name, response };
 }
 
-function assert(name, status, condition) {
-  if (!condition) throw new Error(`${name} status=${status} FAIL`);
-  console.log(`${name} status=${status} PASS`);
+let failures = 0;
+
+function check(name, status, condition, details = "") {
+  if (condition) {
+    console.log(`${name} status=${status} PASS`);
+    return true;
+  }
+  failures += 1;
+  console.log(`${name} status=${status} FAIL${details ? ` ${details}` : ""}`);
+  return false;
+}
+
+function skip(name, reason) {
+  console.log(`${name} status=SKIP ${reason}`);
 }
 
 const sourceFile = (relativePath) => new URL(relativePath, rootUrl);
@@ -41,32 +53,62 @@ const sourceHash = async (relativePath) => createHash("sha256").update(await rea
 
 try {
   const unsigned = await request("unsigned", "GET", `${reportPath}/json`, { signed: false });
-  assert("unsigned", unsigned.response.status, unsigned.response.status === 401);
+  check("unsigned", unsigned.response.status, unsigned.response.status === 401);
   const invalid = await request("invalid-signature", "GET", `${reportPath}/json`, { signatureValue: "invalid" });
-  assert("invalid-signature", invalid.response.status, invalid.response.status === 401);
+  check("invalid-signature", invalid.response.status, invalid.response.status === 401);
   const expired = await request("expired", "GET", `${reportPath}/json`, { timestamp: 1 });
-  assert("expired", expired.response.status, expired.response.status === 401);
+  check("expired", expired.response.status, expired.response.status === 401);
 
   for (const [format, source, contentType, disposition] of formats) {
     const pathname = `${reportPath}/${format}`;
     const result = await request(`get-${format}`, "GET", pathname);
     const body = Buffer.from(await result.response.arrayBuffer());
-    assert(`get-${format}`, result.response.status, result.response.status === 200 && body.byteLength > 0 && result.response.headers.get("content-type") === contentType && result.response.headers.get("content-disposition")?.startsWith(disposition) && Boolean(result.response.headers.get("etag")) && Boolean(result.response.headers.get("last-modified")) && createHash("sha256").update(body).digest("hex") === await sourceHash(source));
-    const etag = result.response.headers.get("etag");
+    const actualType = result.response.headers.get("content-type");
+    const actualDisposition = result.response.headers.get("content-disposition");
+    const actualEtag = result.response.headers.get("etag");
+    const actualLastModified = result.response.headers.get("last-modified");
+    const actualHash = createHash("sha256").update(body).digest("hex");
+    const expectedHash = await sourceHash(source);
+    check(`get-${format}`, result.response.status, result.response.status === 200);
+    check(`get-${format}-content-type`, result.response.status, actualType === contentType, `header=content-type observed=${actualType ?? "missing"} expected=${contentType}`);
+    check(`get-${format}-content-disposition`, result.response.status, actualDisposition?.startsWith(disposition), `header=content-disposition observed=${actualDisposition ?? "missing"} expected-prefix=${disposition}`);
+    check(`get-${format}-etag`, result.response.status, Boolean(actualEtag), "header=etag observed=missing expected=present");
+    check(`get-${format}-last-modified`, result.response.status, Boolean(actualLastModified), "header=last-modified observed=missing expected=present");
+    check(`get-${format}-body`, result.response.status, body.byteLength > 0, `body-bytes=${body.byteLength} expected=>0`);
+    check(`get-${format}-sha256`, result.response.status, actualHash === expectedHash, `sha256-observed=${actualHash} sha256-expected=${expectedHash}`);
     const head = await request(`head-${format}`, "HEAD", pathname);
-    assert(`head-${format}`, head.response.status, head.response.status === 200 && (await head.response.arrayBuffer()).byteLength === 0 && head.response.headers.get("content-type") === contentType && head.response.headers.get("content-disposition") === result.response.headers.get("content-disposition") && head.response.headers.get("etag") === etag && head.response.headers.get("last-modified") === result.response.headers.get("last-modified"));
-    const cached = await request(`not-modified-${format}`, "GET", pathname, { headers: { "if-none-match": etag } });
-    assert(`not-modified-${format}`, cached.response.status, cached.response.status === 304 && (await cached.response.arrayBuffer()).byteLength === 0);
+    const headBody = await head.response.arrayBuffer();
+    check(`head-${format}`, head.response.status, head.response.status === 200);
+    check(`head-${format}-body`, head.response.status, headBody.byteLength === 0, `body-bytes=${headBody.byteLength} expected=0`);
+    check(`head-${format}-content-type`, head.response.status, head.response.headers.get("content-type") === contentType, `header=content-type observed=${head.response.headers.get("content-type") ?? "missing"} expected=${contentType}`);
+    check(`head-${format}-content-disposition`, head.response.status, head.response.headers.get("content-disposition") === actualDisposition, "header=content-disposition observed=not-equivalent-to-get expected=equivalent-to-get");
+    check(`head-${format}-etag`, head.response.status, head.response.headers.get("etag") === actualEtag && Boolean(actualEtag), "header=etag observed=missing-or-not-equivalent-to-get expected=equivalent-to-get");
+    check(`head-${format}-last-modified`, head.response.status, head.response.headers.get("last-modified") === actualLastModified && Boolean(actualLastModified), "header=last-modified observed=missing-or-not-equivalent-to-get expected=equivalent-to-get");
+
+    if (actualEtag) {
+      const cached = await request(`not-modified-${format}`, "GET", pathname, { headers: { "if-none-match": actualEtag } });
+      const cachedBody = await cached.response.arrayBuffer();
+      check(`not-modified-${format}`, cached.response.status, cached.response.status === 304);
+      check(`not-modified-${format}-body`, cached.response.status, cachedBody.byteLength === 0, `body-bytes=${cachedBody.byteLength} expected=0`);
+    } else {
+      skip(`not-modified-${format}`, "missing-get-etag");
+    }
   }
 
   const range = await request("pdf-range", "GET", `${reportPath}/pdf`, { headers: { range: "bytes=0-99" } });
   const pdfSize = (await stat(sourceFile("public/pdfs/reports/smartphone-sales-in-spain.pdf"))).size;
-  assert("pdf-range", range.response.status, range.response.status === 206 && range.response.headers.get("content-range") === `bytes 0-99/${pdfSize}` && (await range.response.arrayBuffer()).byteLength === 100);
+  const rangeBody = await range.response.arrayBuffer();
+  check("pdf-range", range.response.status, range.response.status === 206);
+  check("pdf-range-content-range", range.response.status, range.response.headers.get("content-range") === `bytes 0-99/${pdfSize}`, `header=content-range observed=${range.response.headers.get("content-range") ?? "missing"} expected=bytes 0-99/${pdfSize}`);
+  check("pdf-range-body", range.response.status, rangeBody.byteLength === 100, `body-bytes=${rangeBody.byteLength} expected=100`);
+  check("pdf-range-etag", range.response.status, Boolean(range.response.headers.get("etag")), "header=etag observed=missing expected=present");
   for (const [name, pathname] of [["missing-slug", "/internal/v1/reports/no-report/artifacts/json"], ["missing-format", `${reportPath}/zip`], ["traversal", "/internal/v1/reports/../artifacts/json"], ["encoded-traversal", "/internal/v1/reports/%2e%2e/artifacts/json"]]) {
     const result = await request(name, "GET", pathname);
-    assert(name, result.response.status, result.response.status === 404);
+    check(name, result.response.status, result.response.status === 404);
   }
 } catch (error) {
-  console.error(error.message);
-  process.exit(1);
+  failures += 1;
+  console.log(`request-execution status=ERROR FAIL ${error.message}`);
 }
+
+if (failures > 0) process.exitCode = 1;
