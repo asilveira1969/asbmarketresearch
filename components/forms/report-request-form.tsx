@@ -5,6 +5,7 @@ import { useState } from "react";
 import type { Locale } from "@/config/locales";
 import { reportBudgetOptions, reportTimelineOptions } from "@/config/forms";
 import { getLocalizedPath } from "@/lib/routes";
+import { Honeypot, Turnstile } from "@/components/forms/turnstile";
 
 type ReportRequestFormProps = { locale: Locale };
 
@@ -69,16 +70,18 @@ export function ReportRequestForm({ locale }: ReportRequestFormProps) {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState("");
   const copy = labels[locale];
 
   async function onSubmit(formData: FormData) {
     setIsSubmitting(true);
     setError("");
     const payload = Object.fromEntries(formData.entries());
+    if (!turnstileToken) { setIsSubmitting(false); setError(copy.error); return; }
     const response = await fetch("/api/forms", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ formType: "report-request", locale, payload }),
+      body: JSON.stringify({ formType: "report-request", locale, payload, turnstileToken }),
     });
     setIsSubmitting(false);
     if (!response.ok) {
@@ -91,6 +94,7 @@ export function ReportRequestForm({ locale }: ReportRequestFormProps) {
   return (
     <form action={onSubmit} className="surface-card grid gap-5">
       <h2 className="text-2xl font-semibold text-brand-primary">{copy.title}</h2>
+      <Honeypot />
       <p className="text-sm leading-6 text-body-secondary">{copy.intro}</p>
       <div className="grid gap-5 md:grid-cols-2">
         <label className="grid gap-2">
@@ -156,6 +160,7 @@ export function ReportRequestForm({ locale }: ReportRequestFormProps) {
           <textarea className="form-textarea" name="notes" rows={4} />
         </label>
       </div>
+      <Turnstile onToken={setTurnstileToken} onError={() => setTurnstileToken("")} />
       {error ? <p className="text-sm text-red-700">{error}</p> : null}
       <button className="button-primary w-fit" type="submit" disabled={isSubmitting}>
         {isSubmitting ? copy.sending : copy.submit}

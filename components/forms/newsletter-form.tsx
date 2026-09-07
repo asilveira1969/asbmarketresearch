@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import type { Locale } from "@/config/locales";
+import { Honeypot, Turnstile } from "@/components/forms/turnstile";
 
 type NewsletterFormProps = { locale: Locale };
 const labels = {
@@ -45,12 +46,14 @@ export function NewsletterForm({ locale }: NewsletterFormProps) {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState("");
   const copy = labels[locale];
 
   async function onSubmit(formData: FormData) {
     setIsSubmitting(true); setError("");
     const payload = Object.fromEntries(formData.entries());
-    const response = await fetch("/api/forms", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ formType: "newsletter", locale, payload }) });
+    if (!turnstileToken) { setIsSubmitting(false); setError(copy.error); return; }
+    const response = await fetch("/api/forms", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ formType: "newsletter", locale, payload, turnstileToken }) });
     setIsSubmitting(false);
     if (!response.ok) { setError(copy.error); return; }
     router.push(`/${locale}/thank-you/newsletter`);
@@ -59,10 +62,12 @@ export function NewsletterForm({ locale }: NewsletterFormProps) {
   return (
       <form action={onSubmit} className="surface-card grid gap-5">
       <h2 className="text-2xl font-semibold text-brand-primary">{copy.title}</h2>
+      <Honeypot />
       <label className="grid gap-2"><span className="form-label">{copy.name}</span><input className="form-input" name="name" required /></label>
       <label className="grid gap-2"><span className="form-label">{copy.email}</span><input className="form-input" name="email" type="email" required /></label>
       <label className="grid gap-2"><span className="form-label">{copy.industryLabel}</span><input className="form-input" name="industry" type="text" placeholder={copy.industryPlaceholder} /></label>
       <label className="flex items-start gap-3 text-sm text-body-secondary"><input className="mt-1" name="consent" type="checkbox" required /><span>{copy.consent}</span></label>
+      <Turnstile onToken={setTurnstileToken} onError={() => setTurnstileToken("")} />
       {error ? <p className="text-sm text-red-700">{error}</p> : null}
       <button className="button-primary w-fit" type="submit" disabled={isSubmitting}>{isSubmitting ? copy.sending : copy.submit}</button>
     </form>

@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import type { Locale } from "@/config/locales";
 import { getLocalizedPath } from "@/lib/routes";
+import { Honeypot, Turnstile } from "@/components/forms/turnstile";
 
 type ContactFormProps = { locale: Locale };
 
@@ -53,16 +54,18 @@ export function ContactForm({ locale }: ContactFormProps) {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState("");
   const copy = labels[locale];
 
   async function onSubmit(formData: FormData) {
     setIsSubmitting(true);
     setError("");
     const payload = Object.fromEntries(formData.entries());
+    if (!turnstileToken) { setIsSubmitting(false); setError(copy.error); return; }
     const response = await fetch("/api/forms", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ formType: "contact", locale, payload }),
+      body: JSON.stringify({ formType: "contact", locale, payload, turnstileToken }),
     });
     setIsSubmitting(false);
     if (!response.ok) {
@@ -75,11 +78,13 @@ export function ContactForm({ locale }: ContactFormProps) {
   return (
     <form action={onSubmit} className="surface-card grid gap-5">
       <h2 className="text-2xl font-semibold text-brand-primary">{copy.title}</h2>
+      <Honeypot />
       <p className="text-base font-medium leading-7 text-body-secondary">{copy.subtitle}</p>
       <label className="grid gap-2">
         <span className="form-label">{copy.fullName}</span>
         <input className="form-input" name="fullName" autoComplete="name" required />
       </label>
+      <Turnstile onToken={setTurnstileToken} onError={() => setTurnstileToken("")} />
       <label className="grid gap-2">
         <span className="form-label">{copy.company}</span>
         <input className="form-input" name="company" autoComplete="organization" />
