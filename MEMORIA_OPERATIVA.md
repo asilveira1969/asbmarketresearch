@@ -126,4 +126,4 @@
 - El HTML se renderiza desde `tavily-research-result.json`; el JSON descargable conserva ese resultado estructurado de Tavily.
 - Validación realizada el 2026-09-11: `npm run typecheck` correcto, `npm run lint` correcto con 3 advertencias preexistentes, y `npm test` con 28/28 pruebas aprobadas.
 - Smoke test local en `localhost:3053`: página HTML y ambas descargas responden 200; la ficha ES redirige 308 a la ruta EN.
-- Estado de publicación: cambios confirmados localmente en `aaad8a0` (rama `fix/forms-anti-spam-turnstile`); producción aún no los muestra hasta que el commit se envíe al remoto y se despliegue/integre en producción.
+- Estado de publicación: integrado en `master` mediante el PR #2 (merge `c081962`) y desplegado correctamente por Vercel a producción el 2026-09-11.
