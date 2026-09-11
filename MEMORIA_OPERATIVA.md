@@ -114,4 +114,16 @@
   - seguir afinando copy multidioma
   - mantener coherencia visual y de navegación
   - verificar despliegues después de cambios importantes
-
+## 14) Reporte Tavily: Smartphone Sales in England
+- Slug publicado: `smartphone-sales-in-england`.
+- Ruta canónica: `/en/sample-reports/smartphone-sales-in-england`.
+- Las rutas ES/PT son fichas localizadas y redirigen permanentemente a la edición EN.
+- Artefactos fuente: `content/reports/smartphone-sales-in-england/en/`.
+- PDF público: `public/pdfs/reports/smartphone-sales-in-england.pdf`.
+- Formatos disponibles: HTML, PDF, Markdown y JSON.
+- Descargas Markdown/JSON: `/en/downloads/reports/smartphone-sales-in-england/{markdown,json}`.
+- La tarjeta se registra en `content/reports.ts` y sus filtros en `content/report-catalog.ts`.
+- El HTML se renderiza desde `tavily-research-result.json`; el JSON descargable conserva ese resultado estructurado de Tavily.
+- Validación realizada el 2026-09-11: `npm run typecheck` correcto, `npm run lint` correcto con 3 advertencias preexistentes, y `npm test` con 28/28 pruebas aprobadas.
+- Smoke test local en `localhost:3053`: página HTML y ambas descargas responden 200; la ficha ES redirige 308 a la ruta EN.
+- Estado de publicación: cambios confirmados localmente en `aaad8a0` (rama `fix/forms-anti-spam-turnstile`); producción aún no los muestra hasta que el commit se envíe al remoto y se despliegue/integre en producción.

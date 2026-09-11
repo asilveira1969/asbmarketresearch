@@ -1,0 +1,25 @@
+{
+  "created_at": "2026-09-11T17:44:00Z",
+  "job_id": "TAVILY-England-Smartphones-20260911-1744",
+  "report_artifacts": {
+    "html": {
+      "path": "/home/opc/openclaw-projects/alphaterra-investments/agents/tavily-market-research/outputs/tavily-market-research/TAVILY-England-Smartphones-20260911-1744/report.html",
+      "sha256": "e7e642b6148bae163b3b49ce5eefb639c1dd331c8fcf435dcb603126cf0e89ed"
+    },
+    "markdown": {
+      "path": "/home/opc/openclaw-projects/alphaterra-investments/agents/tavily-market-research/outputs/tavily-market-research/TAVILY-England-Smartphones-20260911-1744/report.md",
+      "sha256": "c4c5cb22cc178cb04ae12a2acda60a8c118fdb3baee7842ed223824b46570c82"
+    },
+    "pdf": {
+      "path": "/home/opc/openclaw-projects/alphaterra-investments/agents/tavily-market-research/outputs/tavily-market-research/TAVILY-England-Smartphones-20260911-1744/report.pdf",
+      "sha256": "1fe788967eb411f121b2710941a902a3d8277b25b4ccf3af3d2ed32f9feb12b7"
+    }
+  },
+  "research_result": {
+    "path": "/home/opc/openclaw-projects/alphaterra-investments/agents/tavily-market-research/outputs/tavily-market-research/TAVILY-England-Smartphones-20260911-1744/tavily-research-result.json",
+    "sha256": "85f3276928fd49b92743914d663c787e96ae26dc821a46859a973bdbc574588c"
+  },
+  "schema_version": "1.0.0",
+  "title": "Smartphone Sales in England: Market Research Brief",
+  "workflow_id": "tavily-market-research"
+}

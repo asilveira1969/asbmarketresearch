@@ -204,8 +204,8 @@ function ReportCard({ card, locale, t }: { card: CatalogCard; locale: Locale; t:
   const language = report.primaryLanguage === "multilingual" ? "ES · EN · PT" : "ENGLISH";
   const badge = isFullReport ? `FREE · ${language}` : `LEGACY PDF · ${language}`;
   const readHref =
-    report.slug === "smartphone-sales-in-spain"
-      ? "/en/sample-reports/smartphone-sales-in-spain"
+    report.slug === "smartphone-sales-in-spain" || report.slug === "smartphone-sales-in-england"
+      ? `/en/sample-reports/${report.slug}`
       : getLocalizedPath(locale, `/sample-reports/${report.slug}`);
 
   return (
