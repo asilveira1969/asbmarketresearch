@@ -129,6 +129,20 @@ export const sampleReports: SampleReport[] = [
     }
   },
   {
+    slug: "smartphone-sales-in-england",
+    publicationTier: "full_report",
+    catalogVisibility: "primary",
+    validationWarnings: [],
+    availableFormats: ["html", "pdf", "markdown", "json"],
+    primaryLanguage: "en",
+    pdfHref: "/pdfs/reports/smartphone-sales-in-england.pdf",
+    locales: {
+      es: { title: "Ventas de smartphones en Inglaterra", excerpt: "Informe de mercado sobre ventas de smartphones en Inglaterra, con foco en la demanda de reposición, competencia, canales y restricciones.", market: "Inglaterra", highlights: ["Demanda de reposición", "Entorno competitivo", "Canales y restricciones"] },
+      en: { title: "Smartphone Sales in England", excerpt: "Market research on England's replacement-led smartphone market, covering competition, channels, demand drivers and constraints.", market: "England", highlights: ["Replacement demand", "Competitive environment", "Channels and constraints"] },
+      pt: { title: "Vendas de smartphones na Inglaterra", excerpt: "Relatório de mercado sobre vendas de smartphones na Inglaterra, com foco na demanda de substituição, concorrência, canais e restrições.", market: "Inglaterra", highlights: ["Demanda de substituição", "Ambiente competitivo", "Canais e restrições"] }
+    }
+  },
+  {
     slug: "italy-refurbished-smartphone-market",
     publicationTier: "legacy_pdf",
     catalogVisibility: "legacy",

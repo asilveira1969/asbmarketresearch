@@ -6,6 +6,7 @@ import { EmbedContentBlock } from "@/components/content/embed-content-block";
 import { PdfDownloadCard } from "@/components/cards/pdf-download-card";
 import { GermanySmartphoneReport } from "@/components/content/germany-smartphone-report";
 import { SpainSmartphoneReport } from "@/components/content/spain-smartphone-report";
+import { EnglandSmartphoneReport } from "@/components/content/england-smartphone-report";
 import { JsonLd } from "@/components/seo/json-ld";
 import { buildPageMetadata } from "@/lib/metadata";
 import { resolveLocale } from "@/lib/i18n";
@@ -21,9 +22,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const locale = resolveLocale(localeParam);
   const report = sampleReports.find((item) => item.slug === slug);
   if (!report) return {};
-  if (slug === "smartphone-sales-in-spain") {
+  if (slug === "smartphone-sales-in-spain" || slug === "smartphone-sales-in-england") {
     const englishContent = report.locales.en;
-    const englishPath = "/sample-reports/smartphone-sales-in-spain";
+    const englishPath = `/sample-reports/${slug}`;
     return {
       ...buildPageMetadata({
         locale: "en",
@@ -60,13 +61,14 @@ export default async function SampleReportDetailPage({ params }: { params: Promi
   const locale = resolveLocale(localeParam);
   const report = sampleReports.find((item) => item.slug === slug);
   if (!report) notFound();
-  if (slug === "smartphone-sales-in-spain" && locale !== "en") {
-    permanentRedirect("/en/sample-reports/smartphone-sales-in-spain");
+  if ((slug === "smartphone-sales-in-spain" || slug === "smartphone-sales-in-england") && locale !== "en") {
+    permanentRedirect(`/en/sample-reports/${slug}`);
   }
   const content = report.locales[locale];
   const pdfHref = report.pdfHref;
   const isGermanySmartphoneReport = slug === germanySmartphoneReportSlug;
   const isSpainSmartphoneReport = slug === "smartphone-sales-in-spain";
+  const isEnglandSmartphoneReport = slug === "smartphone-sales-in-england";
   const sampleReportsLabel = locale === "es" ? "Reportes de muestra" : locale === "pt" ? "Relatórios de amostra" : "Sample Reports";
   const reportUrl = `${siteConfig.siteUrl}/${locale}/sample-reports/${slug}`;
   const reportJsonLd = isGermanySmartphoneReport ? {
@@ -99,6 +101,9 @@ export default async function SampleReportDetailPage({ params }: { params: Promi
 
   if (isSpainSmartphoneReport && spainReportJsonLd) {
     return <><JsonLd data={spainReportJsonLd} /><SpainSmartphoneReport /></>;
+  }
+  if (isEnglandSmartphoneReport) {
+    return <EnglandSmartphoneReport />;
   }
 
   return (

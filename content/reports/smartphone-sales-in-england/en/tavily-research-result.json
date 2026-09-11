@@ -1,0 +1,340 @@
+{
+  "access_date": "2026-09-11",
+  "confidence": {
+    "level": "medium",
+    "rationale": "High-quality Ofcom evidence supports device use and network-transition claims. Confidence is reduced because the central requested metric\u2014England smartphone sales\u2014is not publicly quantified in the sources located, requiring UK/Great Britain proxies and a commercial-report summary."
+  },
+  "created_at": "2026-09-11T17:44:00Z",
+  "evidence_gaps": [
+    "No publicly verified England-specific annual or quarterly smartphone unit sales, revenue, ASP, replacement-cycle or channel-share series was located.",
+    "No England-specific vendor sell-through, model mix, refurbished-device share or carrier-versus-open-market split was located.",
+    "The public evidence does not quantify the England share of UK 2G/3G-reliant residential devices.",
+    "Tavily-backed search results were reviewed; a dedicated Tavily page-extraction tool was not available in this runtime, so priority claims are limited to returned primary-source passages and clearly labelled secondary summaries."
+  ],
+  "job_id": "TAVILY-England-Smartphones-20260911-1744",
+  "key_findings": [
+    "1. England has a premium-leaning installed base: 54% of smartphone users aged 16+ reported an iPhone as their primary device in Ofcom's 2025 evidence (E1).",
+    "2. Sales conditions appear replacement-led rather than expansion-led: Mintel reports UK mobile-phone volumes declined in 2025 amid economic headwinds (E4).",
+    "3. Network migration remains a tangible upgrade catalyst: 1.6 million UK residential devices were identified as 2G/3G-reliant, while operators are progressing retirements (E3).",
+    "4. Apple and Samsung dominate UK mobile web usage (81.18% combined in August 2026), implying a concentrated competitive environment; this is an installed-base indicator, not sales share (E5).",
+    "5. England-specific handset sell-through, revenue, ASP, and channel data were not located in publicly accessible sources; UK and Great Britain proxies should not be converted into England market size estimates (E4, E6)."
+  ],
+  "limitations": [
+    "England-specific sales data were unavailable; no market-size estimate has been calculated.",
+    "Evidence combines 2025 regulator data with an August 2026 installed-base web-usage snapshot and a 2026 commercial research summary.",
+    "Sales, shipments, activations, ownership and web-usage shares are different measures and are not interchangeable.",
+    "No primary retail panel or company sell-through disclosure was available in the public search results."
+  ],
+  "market_analysis": [
+    "Executive answer \u2014 medium confidence: England is a mature, high-penetration smartphone market where replacement cycles, affordability, ecosystem loyalty and network transitions are more important than first-time adoption. The available evidence supports a premium/iPhone-leaning demand profile, but not a defensible England-only sales total.",
+    "Competition is concentrated at the installed-base level. Apple has clear relevance in England, while Samsung remains the main broad-range Android competitor. Smaller brands may find openings in value, trade-in, retail availability and clearly evidenced feature benefits rather than broad-brand displacement.",
+    "Distribution should be treated as omnichannel. Great Britain retail evidence indicates meaningful online spending alongside specialist computer and telecom retail performance, but the public evidence does not provide a handset-specific channel split."
+  ],
+  "market_drivers": [
+    "5G standalone availability and growing mobile data use support demand for capable 5G devices, especially where consumers see clear service benefits (E2).",
+    "2G/3G retirement creates a compatibility-driven replacement cohort, though part of this cohort is non-smartphone or non-consumer equipment (E3).",
+    "Trade-in credits, battery-health guarantees and concrete use cases for AI features are identified by Mintel as potential upgrade catalysts in a price-sensitive environment (E4).",
+    "Apple's stronger England device-use position indicates ecosystem continuity may influence upgrades (E1)."
+  ],
+  "market_implications": [
+    "Prioritise replacement conversion over penetration assumptions: segment offers by battery condition, network compatibility, trade-in eligibility and upgrade affordability.",
+    "For premium propositions, ecosystem migration and retention tools are likely to matter; for Android propositions, range breadth, value transparency and carrier/retail execution are important counterweights.",
+    "Treat 5G and AI as supporting proof points, not standalone demand engines. Messaging should demonstrate immediate consumer value and compatibility benefits.",
+    "Commission paid England-level sell-through and ASP data before sizing revenue pools, setting sales targets or making investment decisions."
+  ],
+  "presentation": {
+    "executive_summary": "England appears to be a mature, replacement-led smartphone market with a premium/iPhone-leaning installed base. Network migration and credible everyday upgrade value are the clearest public-evidence demand levers. England-specific sales values and volumes were not found, so no market-size estimate is made.",
+    "finding_details": [
+      {
+        "evidence_ids": [
+          "E1"
+        ],
+        "fact": "England's primary iPhone use was 54% in Ofcom's 2025 evidence.",
+        "finding_index": 1,
+        "interpretation": "The installed base leans premium and ecosystem-led.",
+        "market_implication": "Retention, trade-in and migration propositions matter."
+      },
+      {
+        "evidence_ids": [
+          "E4"
+        ],
+        "fact": "Mintel reports UK mobile-phone volumes fell in 2025 amid economic headwinds.",
+        "finding_index": 2,
+        "interpretation": "Upgrade demand is sensitive to affordability.",
+        "market_implication": "Use finance, trade-in and concrete value messaging."
+      },
+      {
+        "evidence_ids": [
+          "E3"
+        ],
+        "fact": "About 1.6 million UK residential devices were 2G/3G-reliant.",
+        "finding_index": 3,
+        "interpretation": "Network retirement can create replacement demand.",
+        "market_implication": "Target compatibility-driven upgrade cohorts, avoiding assumptions all are smartphones."
+      }
+    ],
+    "geography": "England (with UK/Great Britain proxies explicitly labelled)",
+    "limitation_categories": {
+      "conflicting_definitions": [
+        "Ownership, web-usage share, shipments, sales and activations are distinct measures."
+      ],
+      "country_specific_gaps": [
+        "England-specific handset sales, value, ASP, channel and vendor sell-through data were not located."
+      ],
+      "methodological_limits": [
+        "Research used Tavily-backed web discovery. Dedicated page extraction was unavailable in this runtime; findings rely on returned source passages and source metadata."
+      ],
+      "missing_market_size_pricing": [
+        "No defensible England market size, sales volume, revenue, ASP or price-band mix could be established."
+      ],
+      "regional_global_proxies": [
+        "UK network, installed-base and commercial-market evidence and Great Britain retail evidence are used only as labelled proxies."
+      ],
+      "stale_sources": [
+        "Most primary market-environment evidence is from 2025; the installed-base usage snapshot is August 2026."
+      ]
+    },
+    "market": "Smartphone handset sales",
+    "methodology_performed": [
+      "Tavily-backed targeted web discovery across primary regulator, national-statistics and commercial-research sources.",
+      "Selection prioritised Ofcom and ONS, then clearly labelled commercial and analytics sources for gaps.",
+      "Cross-checked dates, geography and metric definitions in returned source passages; no fieldwork, interviews or independent sales-data verification was performed."
+    ],
+    "metrics": [
+      {
+        "context": "Smartphone users aged 16+, 2025",
+        "evidence_ids": [
+          "E1"
+        ],
+        "label": "England primary iPhone use",
+        "value": "54%"
+      },
+      {
+        "context": "Areas outside premises; at least one MNO; Ofcom High Confidence, 2025",
+        "evidence_ids": [
+          "E2"
+        ],
+        "label": "UK 5G standalone availability",
+        "value": "83%"
+      },
+      {
+        "context": "Ofcom estimate, 2025; includes device categories beyond smartphones",
+        "evidence_ids": [
+          "E3"
+        ],
+        "label": "UK 2G/3G-reliant residential devices",
+        "value": "~1.6 million"
+      },
+      {
+        "context": "August 2026; installed-base web usage, not handset sales",
+        "evidence_ids": [
+          "E5"
+        ],
+        "label": "Apple UK mobile web-usage share",
+        "value": "51.47%"
+      }
+    ],
+    "provider": "Tavily-backed web research",
+    "sections": {
+      "buyer_trends": [
+        "Younger and more affluent groups are more likely to use Apple smartphones; England's iPhone share is 54% (E1)."
+      ],
+      "competitive_landscape": [
+        "UK mobile web-usage share is concentrated: Apple 51.47% and Samsung 29.71% in August 2026 (E5). This is installed-base usage, not sales share."
+      ],
+      "key_opportunities": [
+        "Trade-ins, battery-health assurances and clear 4G/5G VoLTE compatibility can convert replacement demand. Tangible rather than abstract AI benefits are more likely to help upgrades (E3, E4)."
+      ],
+      "market_constraints": [
+        "Affordability and component-cost risk may delay replacement decisions (E4). Public data do not isolate the impact in England."
+      ],
+      "market_overview": [
+        "England's smartphone market should be approached as a mature replacement market. Ofcom reports that 54% of England smartphone users aged 16+ use an iPhone as their primary device (E1)."
+      ],
+      "market_size_demand_supply": [
+        "No publicly verified England-specific smartphone sales series was found. A UK commercial-research summary reports a 2025 mobile-phone volume decline under economic headwinds (E4)."
+      ],
+      "pricing_distribution": [
+        "Late-2025 Great Britain retail evidence shows resilient computer and telecommunications retail performance and material online retail spend (E6). Handset-specific pricing and channel shares are unavailable."
+      ],
+      "regulatory_environment": [
+        "The 2G/3G transition is a practical market constraint and upgrade driver. Operators committed to retire 2G by 2033 at the latest (E3)."
+      ]
+    },
+    "source_assessments": [
+      {
+        "credibility": "high",
+        "geography": "England and UK",
+        "rationale": "UK communications regulator; primary consumer-research publication.",
+        "source_id": "S1"
+      },
+      {
+        "credibility": "high",
+        "geography": "UK",
+        "rationale": "UK communications regulator; primary infrastructure report.",
+        "source_id": "S2"
+      },
+      {
+        "credibility": "high",
+        "geography": "UK",
+        "rationale": "UK communications regulator; primary infrastructure and device-transition evidence.",
+        "source_id": "S3"
+      },
+      {
+        "credibility": "medium",
+        "geography": "UK",
+        "rationale": "Established commercial research provider, but only a public report summary was available.",
+        "source_id": "S4"
+      },
+      {
+        "credibility": "medium",
+        "geography": "UK",
+        "rationale": "Direct analytics publisher, but metric is web usage rather than sales.",
+        "source_id": "S5"
+      },
+      {
+        "credibility": "high",
+        "geography": "Great Britain",
+        "rationale": "Official national statistics authority; category is broader than smartphones.",
+        "source_id": "S6"
+      }
+    ]
+  },
+  "queries": [
+    {
+      "purpose": "Identify England-specific demand and device-use evidence.",
+      "query": "England smartphone sales market 2025 shipments smartphone penetration Ofcom"
+    },
+    {
+      "purpose": "Find primary regulator evidence on device mix and usage.",
+      "query": "site:ofcom.org.uk smartphone ownership England 2025 Communications Market Report"
+    },
+    {
+      "purpose": "Identify UK sales-volume and retail context as a proxy for England.",
+      "query": "UK smartphone market 2025 retail sales value volume GfK"
+    },
+    {
+      "purpose": "Assess brand concentration and competitive structure.",
+      "query": "UK mobile handset market 2025 Apple Samsung market share England"
+    },
+    {
+      "purpose": "Assess network-led upgrade drivers and device-transition needs.",
+      "query": "site:ofcom.org.uk Connected Nations 2025 5G premises UK standalone 83%"
+    },
+    {
+      "purpose": "Check recent UK market direction and constraints.",
+      "query": "Mintel UK Smartphones Market Report 2026 published volume mobile phone sales 2025 economic headwinds"
+    }
+  ],
+  "recommended_next_diligence_step": "Obtain a licensed England/UK handset sell-through dataset (units, revenue, ASP, vendor/model, refurbished versus new, channel and contract type) for 2024-26, then triangulate it with carrier upgrade/porting data and Ofcom regional coverage data before any market sizing or commercial commitment.",
+  "research_question": "What is the current outlook for smartphone sales in England, including demand, competitive positioning, channels, and near-term constraints?",
+  "risks": [
+    "Economic pressure and possible component-cost inflation may prolong replacement cycles and suppress volumes (E4).",
+    "UK-wide data can mask England regional, income and urban-rural differences.",
+    "Installed-base and web-usage shares may differ materially from current-period sell-through shares (E1, E5).",
+    "2G/3G replacement potential overstates smartphone demand if devices are IoT, feature phones or other non-handset equipment (E3)."
+  ],
+  "schema_version": "1.0.0",
+  "scope": "England smartphone handset sales market, assessed using England-specific device-use evidence where available and UK-level sales, network, and market proxies. Research access date: 11 September 2026. This is market research, not investment, legal, tax, or transaction advice.",
+  "selected_evidence": [
+    {
+      "claim_supported": "England is an iPhone-leaning market, supporting premium/ecosystem-led positioning while retaining a large Android addressable base.",
+      "confidence": "high",
+      "evidence_id": "E1",
+      "excerpt": "In 2025, 54% of England smartphone users aged 16+ reported using an Apple iPhone as their primary device; 45% of UK smartphone users used Android.",
+      "limitations": "The Android figure is UK-wide, not England-specific; this is installed-base/device-use evidence, not handset sell-through.",
+      "source_id": "S1"
+    },
+    {
+      "claim_supported": "Network capability supports 5G-feature messaging and upgrades, but does not itself quantify England handset sales.",
+      "confidence": "high",
+      "evidence_id": "E2",
+      "excerpt": "5G Standalone was available across 83% of UK areas outside premises at Ofcom's High Confidence level; 5G coverage from at least one MNO ranged from 94% to 97%.",
+      "limitations": "UK-wide coverage proxy; geography and service quality differ within England.",
+      "source_id": "S3"
+    },
+    {
+      "claim_supported": "Legacy-network retirement creates a replacement tailwind for compatible 4G/5G VoLTE handsets.",
+      "confidence": "high",
+      "evidence_id": "E3",
+      "excerpt": "Around 2 million active devices were reliant on 2G/3G networks; about 1.6 million were identified as residential devices. Operators have committed to retire 2G by 2033 at the latest.",
+      "limitations": "UK-wide and includes devices beyond smartphones; no England or sales-period split.",
+      "source_id": "S3"
+    },
+    {
+      "claim_supported": "The near-term market is replacement-led and price-sensitive; feature claims alone are unlikely to sustain volume growth.",
+      "confidence": "medium",
+      "evidence_id": "E4",
+      "excerpt": "Mintel reports economic headwinds drove a decline in UK mobile-phone sales volumes in 2025, while highlighting trade-in credits, battery-health guarantees and tangible AI value as upgrade levers.",
+      "limitations": "Paywalled commercial-research summary; UK proxy rather than England-only data; no public absolute volume provided.",
+      "source_id": "S4"
+    },
+    {
+      "claim_supported": "The UK installed base is concentrated around Apple and Samsung, elevating ecosystem, trade-in and carrier-retail execution importance.",
+      "confidence": "medium",
+      "evidence_id": "E5",
+      "excerpt": "Statcounter listed Apple at 51.47% and Samsung at 29.71% of UK mobile vendor web-usage share in August 2026.",
+      "limitations": "Web-usage share is not sales share and is UK-wide; it should not be interpreted as shipment or revenue market share.",
+      "source_id": "S5"
+    },
+    {
+      "claim_supported": "Specialist retail demand was resilient in late 2025 and online is a material purchase context, though handset-specific channel mix is unavailable.",
+      "confidence": "medium",
+      "evidence_id": "E6",
+      "excerpt": "Great Britain computer and telecommunications retailers maintained strong three-month retail-sales performance to November 2025; online sales represented 28.6% of total retail spend in November.",
+      "limitations": "Great Britain retail category and all-retail online-share proxy; not England-only or smartphone-specific.",
+      "source_id": "S6"
+    }
+  ],
+  "sources": [
+    {
+      "access_date": "2026-09-11",
+      "publication_date": "2025-12-10",
+      "publisher": "Ofcom",
+      "source_id": "S1",
+      "title": "Online Nation 2025",
+      "url": "https://www.ofcom.org.uk/siteassets/resources/documents/research-and-data/online-research/online-nation/2025/online-nations-report-2025.pdf?v=409837"
+    },
+    {
+      "access_date": "2026-09-11",
+      "publication_date": "2025-11-19",
+      "publisher": "Ofcom",
+      "source_id": "S2",
+      "title": "Connected Nations 2025",
+      "url": "https://www.ofcom.org.uk/phones-and-broadband/coverage-and-speeds/connected-nations-20252"
+    },
+    {
+      "access_date": "2026-09-11",
+      "publication_date": "2025-11-19",
+      "publisher": "Ofcom",
+      "source_id": "S3",
+      "title": "Connected Nations UK Report 2025",
+      "url": "https://www.ofcom.org.uk/siteassets/resources/documents/research-and-data/multi-sector/infrastructure-research/connected-nations-2025/connected-nations-uk-report-2025.pdf?v=407947"
+    },
+    {
+      "access_date": "2026-09-11",
+      "publication_date": "2026-06-03",
+      "publisher": "Mintel",
+      "source_id": "S4",
+      "title": "UK Smartphones Market Report 2026",
+      "url": "https://store.mintel.com/report/uk-smartphones-market-report"
+    },
+    {
+      "access_date": "2026-09-11",
+      "publication_date": null,
+      "publisher": "Statcounter Global Stats",
+      "source_id": "S5",
+      "title": "Mobile Vendor Market Share: United Kingdom",
+      "url": "https://gs.statcounter.com/vendor-market-share/mobile/united-kingdom"
+    },
+    {
+      "access_date": "2026-09-11",
+      "publication_date": "2025-12-19",
+      "publisher": "Office for National Statistics",
+      "source_id": "S6",
+      "title": "Retail sales, Great Britain: November 2025",
+      "url": "https://www.ons.gov.uk/businessindustryandtrade/retailindustry/bulletins/retailsales/november2025"
+    }
+  ],
+  "title": "Smartphone Sales in England: Market Research Brief"
+}
